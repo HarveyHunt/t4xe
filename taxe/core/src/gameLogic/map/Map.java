@@ -129,7 +129,7 @@ public class Map {
             }
         }
 
-       return null;
+        return null;
     }
 
     public List<Station> createRoute(List<IPositionable> positions) {
@@ -161,11 +161,11 @@ public class Map {
         //This blocks a random connection
         int rand = random.nextInt(2);
         if (rand > 0) {
-        //50% chance of connection being blocked
+            //50% chance of connection being blocked
             Connection toBlock;
             boolean canBlock;
             do {
-               canBlock = true;
+                canBlock = true;
                 toBlock = getRandomConnection();
                 for (Player player : Game.getInstance().getPlayerManager().getAllPlayers()) {
                     for (Train train : player.getTrains()) {
@@ -176,7 +176,8 @@ public class Map {
                                     || (train.getNextStation() == toBlock.getStation2() && train.getLastStation() == toBlock.getStation1())) {
                                 canBlock = false;
                             }
-                        }catch(Exception e){}
+                        } catch (Exception e) {
+                        }
                     }
                 }
             } while (!canBlock);

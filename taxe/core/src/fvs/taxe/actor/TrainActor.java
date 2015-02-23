@@ -50,7 +50,7 @@ public class TrainActor extends Image {
 
     @Override
     public void act(float delta) {
-        if ((Game.getInstance().getState() == GameState.ANIMATING) && (!this.paused)){
+        if ((Game.getInstance().getState() == GameState.ANIMATING) && (!this.paused)) {
             //This function moves the train actors along their routes.
             //It renders everything every 1/delta seconds
             super.act(delta);

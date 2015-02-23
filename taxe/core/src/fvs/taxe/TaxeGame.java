@@ -18,8 +18,8 @@ public class TaxeGame extends Game {
 
     public SpriteBatch batch;
     public BitmapFont font;
-	public BitmapFont fontSmall;
-	public BitmapFont fontTiny;
+    public BitmapFont fontSmall;
+    public BitmapFont fontTiny;
     public ShapeRenderer shapeRenderer;
 
     @Override
@@ -39,9 +39,9 @@ public class TaxeGame extends Game {
         parameter.size = 20;
         fontSmall = generator.generateFont(parameter);
 
-		//font size 12pt
-		parameter.size = 14;
-		fontTiny = generator.generateFont(parameter);
+        //font size 12pt
+        parameter.size = 14;
+        fontTiny = generator.generateFont(parameter);
 
 
         generator.dispose();

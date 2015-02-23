@@ -38,7 +38,8 @@ public class GoalManager {
         do {
             //This generates a suitable random station to be the destination node of the goal (i.e not equal to the origin)
             destination = map.getRandomStation();
-        } while (destination == origin || destination instanceof CollisionStation);
+        }
+        while (destination == origin || destination instanceof CollisionStation);
 
         double shortestDist = map.getShortestDistance(origin, destination); //Stores the shortest distance between two points
         int score = (int) (shortestDist * (Math.pow(1.0001, shortestDist))); //Score by default = shortestDist*1.0001^shortestDist.
@@ -64,8 +65,8 @@ public class GoalManager {
         if (rand == 1) {
             //decides if goal can be competed in a number of turns for bonus;
             double expectedTurns;
-            expectedTurns = Math.ceil(shortestDist / 60.0/2); //This is the number of turns a goal is expected to be completed in using an average speed train
-            double lowerBound = Math.floor(0.75*expectedTurns); //These two variables are bounds for the generation of a suitable forTurns variable.
+            expectedTurns = Math.ceil(shortestDist / 60.0 / 2); //This is the number of turns a goal is expected to be completed in using an average speed train
+            double lowerBound = Math.floor(0.75 * expectedTurns); //These two variables are bounds for the generation of a suitable forTurns variable.
             double upperBound = Math.ceil(1.25 * expectedTurns);
             //By creating these bounds it adds an element of randomisation to the goals which SHOULD increase the enjoyment of the game
             do {

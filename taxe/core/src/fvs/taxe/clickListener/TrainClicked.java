@@ -69,14 +69,14 @@ public class TrainClicked extends ClickListener {
 
                         }
                     }
-                    if (stackedTrains.size()==1) {
-                        clicked(event,-1,-1);
-                    }else{
+                    if (stackedTrains.size() == 1) {
+                        clicked(event, -1, -1);
+                    } else {
                         //Creates a new multitrain dialog based on the number of trains at that location
                         DialogStationMultitrain dia = new DialogStationMultitrain(stackedTrains, context.getSkin(), context);
                         dia.show(context.getStage());
                     }
-                }else{
+                } else {
                     if (train.isOwnedBy(currentPlayer)) {
                         DialogButtonClicked listener = new DialogButtonClicked(context, currentPlayer, train);
                         DialogResourceTrain dia = new DialogResourceTrain(train, context.getSkin(), train.getPosition() != null);

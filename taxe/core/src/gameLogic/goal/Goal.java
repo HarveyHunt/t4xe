@@ -102,7 +102,8 @@ public class Goal {
         boolean passedThrough = false;
         if (this.isComplete(train))
             //One issue with this could be that the intermediary station could have been visited before the goal was issued
-            if (goingThrough && train.routeContains(intermediary)) passedThrough = true;
+            if (goingThrough && train.routeContains(intermediary))
+                passedThrough = true;
         return passedThrough;
     }
 

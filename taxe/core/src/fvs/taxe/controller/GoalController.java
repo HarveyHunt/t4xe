@@ -24,11 +24,11 @@ public class GoalController {
         //Makes the system redraw the currentGoals whenever the player changes.
         context.getGameLogic().getPlayerManager()
                 .subscribePlayerChanged(new PlayerChangedListener() {
-					@Override
-					public void changed() {
-						showCurrentPlayerGoals();
-					}
-				});
+                    @Override
+                    public void changed() {
+                        showCurrentPlayerGoals();
+                    }
+                });
     }
 
     public void drawHeaderText() {
