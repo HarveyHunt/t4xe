@@ -1,13 +1,10 @@
 package test;
 
-import junit.framework.TestCase;
-
 import gameLogic.goal.Goal;
 import gameLogic.map.Position;
 import gameLogic.map.Station;
 import gameLogic.resource.Train;
-
-import java.util.ArrayList;
+import junit.framework.TestCase;
 
 public class GoalTest extends TestCase {
 

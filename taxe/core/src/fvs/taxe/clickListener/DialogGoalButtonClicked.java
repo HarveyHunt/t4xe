@@ -1,9 +1,8 @@
 package fvs.taxe.clickListener;
 
 import fvs.taxe.Button;
-import fvs.taxe.clickListener.ResourceDialogClickListener;
-import gameLogic.player.Player;
 import gameLogic.goal.Goal;
+import gameLogic.player.Player;
 
 public class DialogGoalButtonClicked implements ResourceDialogClickListener {
     private Player currentPlayer;

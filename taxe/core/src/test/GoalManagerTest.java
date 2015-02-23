@@ -1,7 +1,5 @@
 package test;
 
-import junit.framework.TestCase;
-
 import gameLogic.goal.Goal;
 import gameLogic.goal.GoalManager;
 import gameLogic.map.Position;
@@ -10,6 +8,7 @@ import gameLogic.player.Player;
 import gameLogic.player.PlayerManager;
 import gameLogic.resource.ResourceManager;
 import gameLogic.resource.Train;
+import junit.framework.TestCase;
 
 public class GoalManagerTest extends TestCase {
 	ResourceManager rs = new ResourceManager();

@@ -1,11 +1,10 @@
 package test;
 
-import junit.framework.TestCase;
-
 import gameLogic.player.Player;
 import gameLogic.player.PlayerManager;
 import gameLogic.resource.ResourceManager;
 import gameLogic.resource.Train;
+import junit.framework.TestCase;
 
 public class ResourceManagerTest extends TestCase {
 	ResourceManager rm = new ResourceManager();

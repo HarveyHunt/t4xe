@@ -6,10 +6,10 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import fvs.taxe.TaxeGame;
 import fvs.taxe.clickListener.GoalClickListener;
-import gameLogic.player.Player;
-import gameLogic.listeners.PlayerChangedListener;
-import gameLogic.player.PlayerManager;
 import gameLogic.goal.Goal;
+import gameLogic.listeners.PlayerChangedListener;
+import gameLogic.player.Player;
+import gameLogic.player.PlayerManager;
 
 import java.text.DecimalFormat;
 

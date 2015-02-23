@@ -9,9 +9,9 @@ import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import fvs.taxe.controller.Context;
 import gameLogic.Game;
 import gameLogic.GameState;
-import gameLogic.player.Player;
 import gameLogic.map.IPositionable;
 import gameLogic.map.Station;
+import gameLogic.player.Player;
 import gameLogic.resource.Train;
 
 public class TrainActor extends Image {

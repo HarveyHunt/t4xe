@@ -1,8 +1,8 @@
 package gameLogic.resource;
 
 import Util.Tuple;
-import gameLogic.player.Player;
 import gameLogic.map.JSONImporter;
+import gameLogic.player.Player;
 
 import java.util.ArrayList;
 import java.util.Random;

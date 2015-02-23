@@ -8,8 +8,8 @@ import fvs.taxe.clickListener.EngineerClicked;
 import fvs.taxe.clickListener.ObstacleClicked;
 import fvs.taxe.clickListener.SkipClicked;
 import fvs.taxe.clickListener.TrainClicked;
-import gameLogic.player.Player;
 import gameLogic.listeners.PlayerChangedListener;
+import gameLogic.player.Player;
 import gameLogic.resource.*;
 
 public class ResourceController {

@@ -1,10 +1,10 @@
 package gameLogic.goal;
 
 import gameLogic.Game;
-import gameLogic.player.Player;
 import gameLogic.map.CollisionStation;
 import gameLogic.map.Map;
 import gameLogic.map.Station;
+import gameLogic.player.Player;
 import gameLogic.resource.ResourceManager;
 import gameLogic.resource.Train;
 

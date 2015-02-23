@@ -2,8 +2,8 @@ package gameLogic.map;
 
 import com.badlogic.gdx.math.Vector2;
 import gameLogic.Game;
-import gameLogic.player.Player;
 import gameLogic.dijkstra.Dijkstra;
+import gameLogic.player.Player;
 import gameLogic.resource.Train;
 
 import java.util.ArrayList;

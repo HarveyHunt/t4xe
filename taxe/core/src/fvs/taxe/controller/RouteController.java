@@ -1,5 +1,6 @@
 package fvs.taxe.controller;
 
+import Util.Tuple;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
@@ -7,20 +8,18 @@ import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-
-import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.List;
-
-import Util.Tuple;
-import fvs.taxe.clickListener.StationClickListener;
 import fvs.taxe.TaxeGame;
+import fvs.taxe.clickListener.StationClickListener;
 import gameLogic.GameState;
 import gameLogic.map.CollisionStation;
 import gameLogic.map.IPositionable;
 import gameLogic.map.Position;
 import gameLogic.map.Station;
 import gameLogic.resource.Train;
+
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 public class RouteController {
     private Context context;

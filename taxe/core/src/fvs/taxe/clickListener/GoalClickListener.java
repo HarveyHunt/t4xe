@@ -9,9 +9,9 @@ import fvs.taxe.controller.Context;
 import fvs.taxe.dialog.DialogGoal;
 import gameLogic.Game;
 import gameLogic.GameState;
-import gameLogic.player.Player;
 import gameLogic.goal.Goal;
 import gameLogic.map.Station;
+import gameLogic.player.Player;
 
 //Responsible for checking whether the goal is clicked
 public class GoalClickListener extends ClickListener {
