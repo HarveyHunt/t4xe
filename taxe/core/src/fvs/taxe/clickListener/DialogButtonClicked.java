@@ -444,7 +444,7 @@ public class DialogButtonClicked implements ResourceDialogClickListener {
                                 } else {
                                     //If the connection is not blocked then placement is cancelled and the user is informed
                                     Dialog dia = new Dialog("Invalid Selection", context.getSkin());
-                                    dia.text("You have selected two stations which are not connected." +
+                                    dia.text("You have selected two stations which cannot be connected." +
                                             "\nPlease use the engineer again.").align(Align.center);
                                     dia.button("OK", "OK");
                                     dia.show(context.getStage());
@@ -454,7 +454,7 @@ public class DialogButtonClicked implements ResourceDialogClickListener {
                             } else {
                                 //If the connection does not exist then placement is cancelled and the user is informed of this
                                 Dialog dia = new Dialog("Invalid Selection", context.getSkin());
-                                dia.text("You have selected two stations which are not connected." +
+                                dia.text("You have selected two stations which cannot be connected." +
                                         "\nPlease use the engineer again.").align(Align.center);
                                 dia.button("OK", "OK");
                                 dia.show(context.getStage());
