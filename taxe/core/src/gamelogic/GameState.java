@@ -6,5 +6,7 @@ public enum GameState {
     PLACING_TRAIN,
     PLACING_RESOURCE,
     ROUTING,
-    ANIMATING
+    ANIMATING,
+    REMOVING_TRACK,
+    ADDING_TRACK
 }

@@ -108,7 +108,8 @@ public class GameScreen extends ScreenAdapter {
 
         topBarController.drawBackground();
 
-        stationController.renderConnections(map.getConnections(), Color.GRAY);
+        stationController.renderConnections(map.getEnabledConnections(), Color.GRAY);
+
         if (gameLogic.getState() == GameState.PLACING_TRAIN || gameLogic.getState() == GameState
                 .ROUTING) {
             stationController.renderStationGoalHighlights();
