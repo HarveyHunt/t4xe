@@ -14,5 +14,7 @@ public enum Button {
     SKIP_RESOURCE,
     SKIP_DROP,
     ENGINEER_DROP,
-    ENGINEER_USE
+    ENGINEER_USE,
+    TRACK_ADD,
+    TRACK_REMOVE
 }

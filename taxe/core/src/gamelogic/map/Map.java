@@ -93,8 +93,12 @@ public class Map {
         return stations;
     }
 
-    public List<Connection> getConnections() {
+    public List<Connection> getEnabledConnections() {
         return enabledConnections;
+    }
+
+    public List<Connection> getDisabledConnections() {
+        return disabledConnections;
     }
 
     public void disableConnection(Connection target) {

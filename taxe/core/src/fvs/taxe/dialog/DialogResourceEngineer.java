@@ -18,6 +18,7 @@ public class DialogResourceEngineer extends Dialog {
         //Generates all the buttons that allow the user to interact with the dialog
         text("What do you want to do with this engineer?");
         button("Repair a blocked connection", "PLACE");
+        button("Destroy a track", "REM_TRACK");
         button("Drop", "DROP");
         button("Cancel", "CLOSE");
     }
@@ -57,6 +58,8 @@ public class DialogResourceEngineer extends Dialog {
             clicked(Button.ENGINEER_DROP);
         } else if (obj == "PLACE") {
             clicked(Button.ENGINEER_USE);
+        } else if (obj == "REM_TRACK") {
+            clicked(Button.TRACK_REMOVE);
         }
     }
 }
