@@ -12,14 +12,19 @@ import java.util.Random;
 
 public class Map {
     private List<Station> stations;
-    private List<Connection> connections;
+
+    private List<Connection> enabledConnections;
+    private List<Connection> disabledConnections;
+
     private Random random = new Random();
     private Dijkstra dijkstra;
     private JSONImporter jsonImporter;
 
     public Map() {
         stations = new ArrayList<Station>();
-        connections = new ArrayList<Connection>();
+
+        enabledConnections = new ArrayList<Connection>();
+        disabledConnections = new ArrayList<Connection>();
 
         //Imports all values from the JSON file using the JSONImporter
         jsonImporter = new JSONImporter(this);
@@ -30,7 +35,7 @@ public class Map {
 
     public boolean doesConnectionExist(String stationName, String anotherStationName) {
         //Returns whether or not the connection exists by checking the two station names passed to it
-        for (Connection connection : connections) {
+        for (Connection connection : enabledConnections) {
             String s1 = connection.getStation1().getName();
             String s2 = connection.getStation2().getName();
 
@@ -50,7 +55,7 @@ public class Map {
         String anotherStationName = station2.getName();
 
         //Iterates through every connection and checks them
-        for (Connection connection : connections) {
+        for (Connection connection : enabledConnections) {
             String s1 = connection.getStation1().getName();
             String s2 = connection.getStation2().getName();
 
@@ -89,14 +94,33 @@ public class Map {
     }
 
     public List<Connection> getConnections() {
-        return connections;
+        return enabledConnections;
     }
+
+    public void disableConnection(Connection target) {
+        // Attempt to move the connection from an enabled to a disabled state
+        int i = enabledConnections.indexOf(target);
+
+        if (i > -1) {
+            disabledConnections.add(enabledConnections.remove(i));
+        }
+    }
+
+    public void enableConnection(Connection target) {
+        // Attempt to move the connection from a disabled to an enabled state
+        int i = disabledConnections.indexOf(target);
+
+        if (i > -1) {
+            enabledConnections.add(disabledConnections.remove(i));
+        }
+    }
+
 
     public Connection addConnection(Station station1, Station station2) {
         //Adds a new connection the map
         //This addConnection adds a connection based on stations
         Connection newConnection = new Connection(station1, station2);
-        connections.add(newConnection);
+        enabledConnections.add(newConnection);
         return newConnection;
     }
 
@@ -146,15 +170,15 @@ public class Map {
 
     public void decrementBlockedConnections() {
         //This is called every turn and decrements every connection's blocked attribute
-        for (Connection connection : connections) {
+        for (Connection connection : enabledConnections) {
             connection.decrementBlocked();
         }
     }
 
     public Connection getRandomConnection() {
         //Returns a random connection, used for blocking a random connection
-        int index = random.nextInt(connections.size());
-        return connections.get(index);
+        int index = random.nextInt(enabledConnections.size());
+        return enabledConnections.get(index);
     }
 
     public void blockRandomConnection() {
@@ -199,8 +223,8 @@ public class Map {
     }
 
     public boolean isConnectionBlocked(Station station1, Station station2) {
-        //Iterates through all the connections and finds the connection that links station1 and station2. Returns if this connection is blocked.
-        for (Connection connection : connections) {
+        //Iterates through all the enabledConnections and finds the connection that links station1 and station2. Returns if this connection is blocked.
+        for (Connection connection : enabledConnections) {
             if (connection.getStation1() == station1)
                 if (connection.getStation2() == station2)
                     return connection.isBlocked();
