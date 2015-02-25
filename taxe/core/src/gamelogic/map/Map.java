@@ -49,6 +49,22 @@ public class Map {
         return false;
     }
 
+    public boolean doesDisabledConnectionExist(String stationName, String anotherStationName) {
+        //Returns whether or not the connection exists by checking the two station names passed to it
+        for (Connection connection : disabledConnections) {
+            String s1 = connection.getStation1().getName();
+            String s2 = connection.getStation2().getName();
+
+            //Checks whether or not the connection has station 1 and station 2 in its attributes, if so returns true, if not returns false
+            if (s1.equals(stationName) && s2.equals(anotherStationName)
+                    || s1.equals(anotherStationName) && s2.equals(stationName)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public Connection getConnection(Station station1, Station station2) {
         //Returns the connection that connects station1 and station2 if it exists
         String stationName = station1.getName();
@@ -56,6 +72,26 @@ public class Map {
 
         //Iterates through every connection and checks them
         for (Connection connection : enabledConnections) {
+            String s1 = connection.getStation1().getName();
+            String s2 = connection.getStation2().getName();
+
+            //Checks whether the connection is between station1 and station2 by comparing the start and end to their names
+            if (s1.equals(stationName) && s2.equals(anotherStationName)
+                    || s1.equals(anotherStationName) && s2.equals(stationName)) {
+                return connection;
+            }
+        }
+
+        return null;
+    }
+
+    public Connection getDisabledConnection(Station station1, Station station2) {
+        //Returns the connection that connects station1 and station2 if it exists
+        String stationName = station1.getName();
+        String anotherStationName = station2.getName();
+
+        //Iterates through every connection and checks them
+        for (Connection connection : disabledConnections) {
             String s1 = connection.getStation1().getName();
             String s2 = connection.getStation2().getName();
 

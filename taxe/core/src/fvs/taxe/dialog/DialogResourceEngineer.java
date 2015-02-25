@@ -19,6 +19,7 @@ public class DialogResourceEngineer extends Dialog {
         text("What do you want to do with this engineer?");
         button("Repair a blocked connection", "PLACE");
         button("Destroy a track", "REM_TRACK");
+        button("Add a track", "ADD_TRACK");
         button("Drop", "DROP");
         button("Cancel", "CLOSE");
     }
@@ -60,6 +61,8 @@ public class DialogResourceEngineer extends Dialog {
             clicked(Button.ENGINEER_USE);
         } else if (obj == "REM_TRACK") {
             clicked(Button.TRACK_REMOVE);
+        } else if (obj == "ADD_TRACK") {
+            clicked(Button.TRACK_ADD);
         }
     }
 }
