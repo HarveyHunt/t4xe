@@ -1,32 +1,32 @@
 {
-    "trains": [
-        {
-            "name": "Bullet Train",
-            "speed": 90
-        },
-        {
-            "name": "Diesel Train",
-            "speed": 40
-        },
-        {
-            "name": "MagLev Train",
-            "speed": 80
-        },
-        {
-            "name": "Nuclear Train",
-            "speed": 70
-        },
-        {
-            "name": "Petrol Train",
-            "speed": 50
-        },
-        {
-			"name": "Steam Train",
-			"speed": 20
-		},
-		{
-			"name": "Electric Train",
-			"speed": 60
-		}
-    ]
+  "trains": [
+    {
+      "name": "Bullet Train",
+      "speed": 90
+    },
+    {
+      "name": "Diesel Train",
+      "speed": 40
+    },
+    {
+      "name": "MagLev Train",
+      "speed": 80
+    },
+    {
+      "name": "Nuclear Train",
+      "speed": 70
+    },
+    {
+      "name": "Petrol Train",
+      "speed": 50
+    },
+    {
+      "name": "Steam Train",
+      "speed": 20
+    },
+    {
+      "name": "Electric Train",
+      "speed": 60
+    }
+  ]
 }
