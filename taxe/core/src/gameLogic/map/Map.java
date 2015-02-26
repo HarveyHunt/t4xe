@@ -33,9 +33,16 @@ public class Map {
         dijkstra = new Dijkstra(this);
     }
 
-    public boolean doesConnectionExist(String stationName, String anotherStationName) {
+    public boolean doesConnectionExist(String stationName, String anotherStationName, ConnectionType t) {
+        List<Connection> connections;
+
+        if (t == ConnectionType.ENABLED)
+            connections = enabledConnections;
+        else
+            connections = disabledConnections;
+
         //Returns whether or not the connection exists by checking the two station names passed to it
-        for (Connection connection : enabledConnections) {
+        for (Connection connection : connections) {
             String s1 = connection.getStation1().getName();
             String s2 = connection.getStation2().getName();
 
@@ -49,20 +56,9 @@ public class Map {
         return false;
     }
 
-    public boolean doesDisabledConnectionExist(String stationName, String anotherStationName) {
-        //Returns whether or not the connection exists by checking the two station names passed to it
-        for (Connection connection : disabledConnections) {
-            String s1 = connection.getStation1().getName();
-            String s2 = connection.getStation2().getName();
-
-            //Checks whether or not the connection has station 1 and station 2 in its attributes, if so returns true, if not returns false
-            if (s1.equals(stationName) && s2.equals(anotherStationName)
-                    || s1.equals(anotherStationName) && s2.equals(stationName)) {
-                return true;
-            }
-        }
-
-        return false;
+    public boolean doesConnectionExist(String stationName, String anotherStationName) {
+        // If no flag is specified, return the list of enabled connections
+        return doesConnectionExist(stationName, anotherStationName, ConnectionType.ENABLED);
     }
 
     public Connection getConnection(Station station1, Station station2) {

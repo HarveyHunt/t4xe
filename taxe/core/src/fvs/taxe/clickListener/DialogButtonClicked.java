@@ -16,6 +16,7 @@ import fvs.taxe.controller.TrainController;
 import gameLogic.Game;
 import gameLogic.GameState;
 import gameLogic.map.CollisionStation;
+import gameLogic.map.ConnectionType;
 import gameLogic.map.Station;
 import gameLogic.player.Player;
 import gameLogic.resource.Engineer;
@@ -433,7 +434,7 @@ public class DialogButtonClicked implements ResourceDialogClickListener {
                             engineer.setStation2(station);
 
                             //Checks whether a connection exists between the two selected stations
-                            if (context.getGameLogic().getMap().doesDisabledConnectionExist(engineer.getStation1().getName(), engineer.getStation2().getName())) {
+                            if (context.getGameLogic().getMap().doesConnectionExist(engineer.getStation1().getName(), engineer.getStation2().getName(), ConnectionType.DISABLED)) {
                                 //If a connection exists then it checks whether the connection is blocked
                                 if (context.getGameLogic().getMap().getDisabledConnection(engineer.getStation1(), engineer.getStation2()) != null) {
                                     //If the connection is blocked then it removes the blockage
