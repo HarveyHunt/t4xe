@@ -92,7 +92,8 @@ public class RouteController {
                 } else {
                     Station lastStation = train.getLastStation();
                     Station nextStation = train.getNextStation();
-                    if (station.getName() == lastStation.getName() || nextStation.getName() == station.getName()) {
+                    if (station.getName().equals(lastStation.getName())
+                            || nextStation.getName().equals(station.getName())) {
                         //If the connection exists then the station passed to the method is added to the route
                         positions.add(station.getLocation());
 
@@ -176,6 +177,7 @@ public class RouteController {
         //A move controller is created to allow the train to move along its route.
         //Although move is never used later on in the program, it must be instantiated or else the trains will not move.
         //Hence you should not remove this even though it appears useless, I tried and trains do not move at all.
+        //WTF is wrong with people - this _SHOULD NOT_ be how the code works.
         TrainMoveController move = new TrainMoveController(context, train);
     }
 
@@ -215,8 +217,8 @@ public class RouteController {
                 // check to see if the connection between to 2 positions is one that has been
                 // visited, and if it has been visited then change the colour of the connection line
                 for (int j = i; j < history.size(); j++) {
-                    if (history.get(j).getLocation().equals(positions.get(i)) &&
-                            history.get(j - 1).getLocation().equals(previousPosition)) {
+                    if (history.get(j).getLocation().equals(positions.get(i))
+                            && history.get(j - 1).getLocation().equals(previousPosition)) {
                         game.shapeRenderer.setColor(Color.RED);
                         b = true;
                         break;

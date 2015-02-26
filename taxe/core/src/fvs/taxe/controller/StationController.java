@@ -161,17 +161,17 @@ public class StationController {
         List<Station> stations = context.getGameLogic().getMap().getStations();
         ArrayList<StationHighlight> list = new ArrayList<StationHighlight>();
         for (Station station : stations) {
-            if (Game.getInstance().getState() == GameState.PLACING_TRAIN ||
-                    Game.getInstance().getState() == GameState.ROUTING) {
+            if (Game.getInstance().getState() == GameState.PLACING_TRAIN
+                    || Game.getInstance().getState() == GameState.ROUTING) {
                 int index = 0;
                 //Creates a new hashmap which stores the maximum radius of each station
                 HashMap<String, Integer> map = new HashMap<String, Integer>();
                 for (Goal goal : Game.getInstance().getPlayerManager().getCurrentPlayer()
                         .getGoals()) {
                     if (!goal.getComplete()) {
-                        if (goal.getOrigin().equals(station) ||
-                                goal.getDestination().equals(station) ||
-                                goal.getIntermediary().equals(station)) {
+                        if (goal.getOrigin().equals(station)
+                                || goal.getDestination().equals(station)
+                                || goal.getIntermediary().equals(station)) {
                             //If the station matches a node in the goal then the radius is calculated
                             int radius;
                             if (map.containsKey(station.getName())) {
@@ -292,9 +292,7 @@ public class StationController {
 
         // if the game is in routing mode, then the length of the connection is displayed
         for (Connection connection : connections) {
-            if (connection.isBlocked()) {
-
-            } else if (Game.getInstance().getState() == GameState.ROUTING) {
+            if (Game.getInstance().getState() == GameState.ROUTING) {
                 IPositionable midpoint = connection.getMidpoint();
                 game.batch.begin();
                 game.fontTiny.setColor(Color.BLACK);

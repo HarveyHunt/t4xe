@@ -54,10 +54,6 @@ class TrainMoveController {
 
                 train.addHistory(station, context.getGameLogic().getPlayerManager().getTurnNumber());
 
-                //Uncomment to test whether or not the train is correctly adding stations to its history.
-/*                System.out.println("Added to history: passed " + station.getName() + " on turn "
-                        + context.getGameLogic().getPlayerManager().getTurnNumber());*/
-
                 int stationIndex = train.getRoute().indexOf(station); //find this station in route
                 int nextIndex = stationIndex + 1;
 

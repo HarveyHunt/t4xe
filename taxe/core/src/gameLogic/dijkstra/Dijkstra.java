@@ -106,7 +106,8 @@ public class Dijkstra {
     public double findMinDistance(Station s1, Station s2) {
         //Returns the minimum distance between two stations
         for (DijkstraData d : dijkstras) {
-            if (d.getSource().getName().equals(s1.getName()) && d.getTarget().getName().equals(s2.getName())) {
+            if (d.getSource().getName().equals(s1.getName())
+                    && d.getTarget().getName().equals(s2.getName())) {
                 return d.getDistance();
             }
         }
@@ -117,7 +118,8 @@ public class Dijkstra {
     public boolean inShortestPath(Station s1, Station s2, Station s3) {
         //Returns whether not station s3 is in the shortest path between s1 and s2
         for (DijkstraData d : dijkstras) {
-            if (d.getSource().getName().equals(s1.getName()) && d.getTarget().getName().equals(s2.getName())) {
+            if (d.getSource().getName().equals(s1.getName())
+                    && d.getTarget().getName().equals(s2.getName())) {
                 return d.inShortestPath(s3.getName());
             }
         }

@@ -59,8 +59,6 @@ public class Goal {
             this.inTurns = true;
             this.turnsTime = turnsTime;
         }
-        System.out.println(this.toString() + " for " + this.score + "/" + this.bonus + " points");
-
     }
 
     public boolean isComplete(Train train) {
@@ -70,8 +68,8 @@ public class Goal {
         boolean passedOrigin = false;
         for (Tuple<Station, Integer> history : train.getHistory()) {
             //Checks whether or not the station is the origin and if it was visited after the goal was issued
-            if (history.getFirst().getName().equals(origin.getName()) && history.getSecond() >=
-                    turnIssued) {
+            if (history.getFirst().getName().equals(origin.getName())
+                    && history.getSecond() >= turnIssued) {
                 passedOrigin = true;
             }
         }
@@ -87,10 +85,8 @@ public class Goal {
         if (inTurns) {
             return completedWithinMaxTurns(train);
         }
-        if (withTrain) {
-            return completedWithTrain(train);
-        }
-        return false;
+
+        return withTrain && completedWithTrain(train);
     }
 
     boolean wentThroughStation(Train train) {
