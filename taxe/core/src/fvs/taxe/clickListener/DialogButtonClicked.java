@@ -436,11 +436,11 @@ public class DialogButtonClicked implements ResourceDialogClickListener {
                             //Checks whether a connection exists between the two selected stations
                             if (context.getGameLogic().getMap().doesConnectionExist(engineer.getStation1().getName(), engineer.getStation2().getName(), ConnectionType.DISABLED)) {
                                 //If a connection exists then it checks whether the connection is blocked
-                                if (context.getGameLogic().getMap().getDisabledConnection(engineer.getStation1(), engineer.getStation2()) != null) {
+                                if (context.getGameLogic().getMap().getConnection(engineer.getStation1(), engineer.getStation2(), ConnectionType.DISABLED) != null) {
                                     //If the connection is blocked then it removes the blockage
                                     //engineer.use(context.getGameLogic().getMap().getConnection(engineer.getStation1(), engineer.getStation2()));
 
-                                    context.getGameLogic().getMap().enableConnection(context.getGameLogic().getMap().getDisabledConnection(engineer.getStation1(), engineer.getStation2()));
+                                    context.getGameLogic().getMap().enableConnection(context.getGameLogic().getMap().getConnection(engineer.getStation1(), engineer.getStation2(), ConnectionType.DISABLED));
                                     currentPlayer.removeResource(engineer);
                                 } else {
                                     //If the connection is not blocked then placement is cancelled and the user is informed
