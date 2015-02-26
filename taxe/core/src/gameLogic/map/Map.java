@@ -146,7 +146,7 @@ public class Map {
     }
 
 
-    public Connection addConnection(Station station1, Station station2 , ConnectionType t) {
+    public Connection addConnection(Station station1, Station station2, ConnectionType t) {
         //Adds a new connection the map
 
         // Determine which list of connections to use
