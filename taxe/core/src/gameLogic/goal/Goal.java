@@ -91,10 +91,8 @@ public class Goal {
         if (inTurns) {
             return completedWithinMaxTurns(train);
         }
-        if (withTrain) {
-            return completedWithTrain(train);
-        }
-        return false;
+
+        return withTrain && completedWithTrain(train);
     }
 
     public boolean wentThroughStation(Train train) {
