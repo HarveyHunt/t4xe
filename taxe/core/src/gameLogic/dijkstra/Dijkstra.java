@@ -40,7 +40,6 @@ public class Dijkstra {
                 }
             }
         }
-        return;
     }
 
     public static ArrayList<Vertex> getShortestPathTo(Vertex target) {
