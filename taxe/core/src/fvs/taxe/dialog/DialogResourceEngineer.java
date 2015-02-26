@@ -58,11 +58,11 @@ public class DialogResourceEngineer extends Dialog {
         } else if (obj == "DROP") {
             clicked(Button.ENGINEER_DROP);
         } else if (obj == "PLACE") {
-            clicked(Button.ENGINEER_USE);
+            clicked(Button.ENGINEER_REPAIR_TRACK);
         } else if (obj == "REM_TRACK") {
-            clicked(Button.TRACK_REMOVE);
+            clicked(Button.ENGINEER_REMOVE_TRACK);
         } else if (obj == "ADD_TRACK") {
-            clicked(Button.TRACK_ADD);
+            clicked(Button.ENGINEER_ADD_TRACK);
         }
     }
 }

@@ -284,8 +284,8 @@ public class DialogButtonClicked implements ResourceDialogClickListener {
                 break;
             }
 
-            case ENGINEER_USE: {
-                //This is called when the player presses a ENGINEER_USE button
+            case ENGINEER_REPAIR_TRACK: {
+                //This is called when the player presses a ENGINEER_REPAIR_TRACK button
 
                 Game.getInstance().setState(GameState.PLACING_RESOURCE);
 
@@ -408,7 +408,7 @@ public class DialogButtonClicked implements ResourceDialogClickListener {
                 context.getRouteController().begin(train);
                 break;
 
-            case TRACK_ADD: {
+            case ENGINEER_ADD_TRACK: {
                 context.getGameLogic().setState(GameState.ADDING_TRACK);
 
                 //Sets the cursor to be the one used for placement of engineers
@@ -503,8 +503,8 @@ public class DialogButtonClicked implements ResourceDialogClickListener {
             }
 
 
-            case TRACK_REMOVE: {
-                //This is called when the player presses a TRACK_REMOVE button
+            case ENGINEER_REMOVE_TRACK: {
+                //This is called when the player presses a ENGINEER_REMOVE_TRACK button
 
                 Game.getInstance().setState(GameState.REMOVING_TRACK);
 
