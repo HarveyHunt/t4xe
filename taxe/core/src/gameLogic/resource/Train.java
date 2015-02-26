@@ -56,8 +56,7 @@ public class Train extends Resource {
 
     public boolean routeContains(Station station) {
         //Returns whether or not the route contains the station passed to the method
-        if (this.route.contains(station)) return true;
-        return false;
+        return this.route.contains(station);
     }
 
     public IPositionable getPosition() {
