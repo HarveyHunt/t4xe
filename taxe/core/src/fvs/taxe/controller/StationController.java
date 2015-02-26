@@ -292,9 +292,7 @@ public class StationController {
 
         // if the game is in routing mode, then the length of the connection is displayed
         for (Connection connection : connections) {
-            if (connection.isBlocked()) {
-
-            } else if (Game.getInstance().getState() == GameState.ROUTING) {
+            if (Game.getInstance().getState() == GameState.ROUTING) {
                 IPositionable midpoint = connection.getMidpoint();
                 game.batch.begin();
                 game.fontTiny.setColor(Color.BLACK);

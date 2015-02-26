@@ -176,6 +176,7 @@ public class RouteController {
         //A move controller is created to allow the train to move along its route.
         //Although move is never used later on in the program, it must be instantiated or else the trains will not move.
         //Hence you should not remove this even though it appears useless, I tried and trains do not move at all.
+        //WTF is wrong with people - this _SHOULD NOT_ be how the code works.
         TrainMoveController move = new TrainMoveController(context, train);
     }
 
