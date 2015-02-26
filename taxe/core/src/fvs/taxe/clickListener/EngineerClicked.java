@@ -13,8 +13,8 @@ import gameLogic.resource.Engineer;
 
 //Responsible for checking whether then engineer has been clicked
 public class EngineerClicked extends ClickListener {
-    private Engineer engineer;
-    private Context context;
+    private final Engineer engineer;
+    private final Context context;
     private boolean displayingMessage;
 
     public EngineerClicked(Context context, Engineer engineer) {

@@ -7,7 +7,6 @@ public enum Button {
     TRAIN_ROUTE,
     VIEW_ROUTE,
     GOAL_DROP,
-    GOAL_VIEW,
     OBSTACLE_DROP,
     OBSTACLE_USE,
     TRAIN_CHANGE_ROUTE,

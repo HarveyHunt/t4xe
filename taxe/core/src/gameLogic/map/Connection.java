@@ -1,8 +1,8 @@
 package gameLogic.map;
 
 public class Connection {
-    private Station station1;
-    private Station station2;
+    private final Station station1;
+    private final Station station2;
     //Added this variable to the Connection class which indicates how long the connection shall be blocked for
     //We could have used a boolean to indicate whether it was blocked but this implementation makes it very easy to set the connections to be blocked for a certain number of turns
     private int blocked;
@@ -52,16 +52,6 @@ public class Connection {
             @Override
             public int getY() {
                 return (station1.getLocation().getY() + station2.getLocation().getY()) / 2;
-            }
-
-            @Override
-            public void setX(int x) {
-
-            }
-
-            @Override
-            public void setY(int y) {
-
             }
 
             @Override

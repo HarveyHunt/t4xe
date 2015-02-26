@@ -8,17 +8,13 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class ResourceManager {
-    public final int CONFIG_MAX_RESOURCES = 7;
-    private Random random = new Random();
+    private final int CONFIG_MAX_RESOURCES = 7;
+    private final Random random = new Random();
     private ArrayList<Tuple<String, Integer>> trains;
 
     public ResourceManager() {
         //This calls the JSON importer which sets the train
         JSONImporter jsonImporter = new JSONImporter(this);
-    }
-
-    public ArrayList<Tuple<String, Integer>> getTrains() {
-        return trains;
     }
 
     public void setTrains(ArrayList<Tuple<String, Integer>> trains) {

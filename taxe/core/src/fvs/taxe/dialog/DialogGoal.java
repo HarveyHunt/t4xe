@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DialogGoal extends Dialog {
-    private List<ResourceDialogClickListener> clickListeners = new ArrayList<ResourceDialogClickListener>();
+    private final List<ResourceDialogClickListener> clickListeners = new ArrayList<ResourceDialogClickListener>();
 
     public DialogGoal(Goal goal, Skin skin) {
         //Generates a dialog allowing the player to select what they want to do with the goal
@@ -38,10 +38,10 @@ public class DialogGoal extends Dialog {
         hide(null);
     }
 
-    private void clicked(Button button) {
+    private void clicked() {
         //Informs all listeners that the dialog has been pressed, and which button has been pressed
         for (ResourceDialogClickListener listener : clickListeners) {
-            listener.clicked(button);
+            listener.clicked(Button.GOAL_DROP);
         }
     }
 
@@ -59,7 +59,7 @@ public class DialogGoal extends Dialog {
 
         } else if (obj == "DROP") {
             //Removes the goal if the drop button is pressed
-            clicked(Button.GOAL_DROP);
+            clicked();
         }
     }
 }

@@ -10,7 +10,7 @@ import gameLogic.resource.Train;
 
 public class TrainController {
     //This class controls all the train actors
-    private Context context;
+    private final Context context;
 
 
     public TrainController(Context context) {

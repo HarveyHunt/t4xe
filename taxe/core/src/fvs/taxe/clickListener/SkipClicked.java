@@ -14,8 +14,8 @@ import gameLogic.resource.Skip;
 //Responsible for checking whether the Skip is clicked.
 public class SkipClicked extends ClickListener {
 
-    Context context;
-    Skip skip;
+    private final Context context;
+    private final Skip skip;
     private boolean displayingMessage;
 
     public SkipClicked(Context context, Skip skip) {

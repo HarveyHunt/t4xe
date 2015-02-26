@@ -8,10 +8,10 @@ import java.util.Collections;
 import java.util.PriorityQueue;
 
 public class Dijkstra {
-    ArrayList<Vertex> vertices;
-    ArrayList<DijkstraData> dijkstras = new ArrayList<DijkstraData>();
+    private ArrayList<Vertex> vertices;
+    private final ArrayList<DijkstraData> dijkstras = new ArrayList<DijkstraData>();
 
-    public void computePaths(Vertex source) {
+    void computePaths(Vertex source) {
         for (Vertex v : vertices) {
             //Resets the necessary values for all vertices
             v.setMinDistance(Double.POSITIVE_INFINITY);
@@ -40,10 +40,9 @@ public class Dijkstra {
                 }
             }
         }
-        return;
     }
 
-    public static ArrayList<Vertex> getShortestPathTo(Vertex target) {
+    private static ArrayList<Vertex> getShortestPathTo(Vertex target) {
         //Returns the shortest path from the source node to the target node
         ArrayList<Vertex> path = new ArrayList<Vertex>();
         for (Vertex vertex = target; vertex != null; vertex = vertex.getPrevious()) {

@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Tuple<T, U> {
-    private T val1;
-    private U val2;
+    private final T val1;
+    private final U val2;
 
     public Tuple(T val1, U val2) {
         this.val1 = val1;
@@ -28,11 +28,4 @@ public class Tuple<T, U> {
         return al;
     }
 
-    public static <T, U> ArrayList<U> getSecondsFromList(List<Tuple<T, U>> list) {
-        ArrayList<U> al = new ArrayList<U>();
-        for (Tuple<T, U> t : list) {
-            al.add(t.getSecond());
-        }
-        return al;
-    }
 }

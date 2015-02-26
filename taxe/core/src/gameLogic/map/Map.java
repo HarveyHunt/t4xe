@@ -11,14 +11,13 @@ import java.util.List;
 import java.util.Random;
 
 public class Map {
-    private List<Station> stations;
+    private final List<Station> stations;
 
-    private List<Connection> enabledConnections;
-    private List<Connection> disabledConnections;
+    private final List<Connection> enabledConnections;
+    private final List<Connection> disabledConnections;
 
-    private Random random = new Random();
-    private Dijkstra dijkstra;
-    private JSONImporter jsonImporter;
+    private final Random random = new Random();
+    private final Dijkstra dijkstra;
 
     public Map() {
         stations = new ArrayList<Station>();
@@ -27,7 +26,7 @@ public class Map {
         disabledConnections = new ArrayList<Connection>();
 
         //Imports all values from the JSON file using the JSONImporter
-        jsonImporter = new JSONImporter(this);
+        JSONImporter jsonImporter = new JSONImporter(this);
 
         //Analyses the graph using Dijkstra's algorithm
         dijkstra = new Dijkstra(this);
@@ -163,7 +162,7 @@ public class Map {
         return newConnection;
     }
 
-    public Connection addConnection(Station station1, Station station2) {
+    Connection addConnection(Station station1, Station station2) {
         // If no connection type is specified, operate on the enabled list
         return addConnection(station1, station2, ConnectionType.ENABLED);
     }
@@ -219,7 +218,7 @@ public class Map {
         }
     }
 
-    public Connection getRandomConnection() {
+    Connection getRandomConnection() {
         //Returns a random connection, used for blocking a random connection
         int index = random.nextInt(enabledConnections.size());
         return enabledConnections.get(index);
@@ -244,7 +243,7 @@ public class Map {
                                     || (train.getNextStation() == toBlock.getStation2() && train.getLastStation() == toBlock.getStation1())) {
                                 canBlock = false;
                             }
-                        } catch (Exception e) {
+                        } catch (Exception ignored) {
                         }
                     }
                 }

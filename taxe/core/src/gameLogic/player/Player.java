@@ -9,10 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Player {
-    private PlayerManager pm;
-    private List<Resource> resources;
-    private List<Goal> goals;
-    private int number;
+    private final PlayerManager pm;
+    private final List<Resource> resources;
+    private final List<Goal> goals;
+    private final int number;
     private double score;
     //This indicates whether the player is skipping their turn.
     private boolean skip;

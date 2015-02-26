@@ -13,8 +13,8 @@ import gameLogic.player.Player;
 import gameLogic.resource.*;
 
 public class ResourceController {
-    private Context context;
-    private Group resourceButtons = new Group();
+    private final Context context;
+    private final Group resourceButtons = new Group();
 
     public ResourceController(final Context context) {
         this.context = context;

@@ -17,7 +17,7 @@ public class TopBarController {
     //It's very possible to move away from a topBar orientated design and more to dialogs as we have done, but we decided not to entirely due to the work required.
     public final static int CONTROLS_HEIGHT = 40;
 
-    private Context context;
+    private final Context context;
     private Color controlsColor = Color.LIGHT_GRAY;
     private TextButton endTurnButton;
     private Label flashMessage;

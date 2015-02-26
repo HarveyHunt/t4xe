@@ -16,10 +16,10 @@ import java.util.ArrayList;
 
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.moveTo;
 
-public class TrainMoveController {
+class TrainMoveController {
     //This class handles all train movement in the game
-    private Context context;
-    private Train train;
+    private final Context context;
+    private final Train train;
 
     public TrainMoveController(Context context, Train train) {
         this.context = context;
@@ -104,7 +104,7 @@ public class TrainMoveController {
     }
 
     //Adds the relevant movement actions to the train's actor
-    public void addMoveActions() {
+    void addMoveActions() {
         SequenceAction actions = Actions.sequence();
         IPositionable current = train.getPosition();
 

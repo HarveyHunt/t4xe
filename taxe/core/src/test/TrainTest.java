@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import static org.junit.Assert.assertTrue;
 
 public class TrainTest {
-    Train train;
+    private Train train;
 
     @Before
     public void trainSetup() throws Exception {

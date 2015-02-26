@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DialogResourceEngineer extends Dialog {
-    private List<ResourceDialogClickListener> clickListeners = new ArrayList<ResourceDialogClickListener>();
+    private final List<ResourceDialogClickListener> clickListeners = new ArrayList<ResourceDialogClickListener>();
 
     public DialogResourceEngineer(Engineer engineer, Skin skin) {
         super(engineer.toString(), skin);

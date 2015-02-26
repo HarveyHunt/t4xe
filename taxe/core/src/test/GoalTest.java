@@ -8,22 +8,20 @@ import junit.framework.TestCase;
 
 public class GoalTest extends TestCase {
 
-    Station origin = new Station("station1", new Position(5, 5));
-    Station destination = new Station("station2", new Position(2, 2));
+    private final Station origin = new Station("station1", new Position(5, 5));
+    private final Station destination = new Station("station2", new Position(2, 2));
 
-    Station station3 = new Station("station3", new Position(3, 5));
-    Station station4 = new Station("station4", new Position(4, 2));
-    Station station5 = new Station("station5", new Position(5, 1));
-    Station station6 = new Station("station6", new Position(6, 2));
-    Station station7 = new Station("station7", new Position(7, 5));
-    Station station8 = new Station("station8", new Position(8, 2));
+    private final Station station3 = new Station("station3", new Position(3, 5));
+    private final Station station4 = new Station("station4", new Position(4, 2));
+    private final Station station5 = new Station("station5", new Position(5, 1));
+    private final Station station6 = new Station("station6", new Position(6, 2));
+    private final Station station7 = new Station("station7", new Position(7, 5));
+    private final Station station8 = new Station("station8", new Position(8, 2));
 
 
-    Station intermediary = new Station("station3", new Position(5, 5));
-    Train train = new Train("RedTrain", "RedTrain.png", "RedTrainRight.png", 250);
-    Train train2 = new Train("RedTrain", "RedTrain.png", "RedTrainRight.png", 250);
-    Goal goal = new Goal(origin, destination, intermediary, 0, 4, 50, 20, train);
-    Goal goal2 = new Goal(origin, destination, intermediary, 0, 4, 50, 20, train2);
+    private final Station intermediary = new Station("station3", new Position(5, 5));
+    private final Train train = new Train("RedTrain", "RedTrain.png", "RedTrainRight.png", 250);
+    private final Goal goal = new Goal(origin, destination, intermediary, 0, 4, 50, 20, train);
 
 
     public void testIsComplete() throws Exception {

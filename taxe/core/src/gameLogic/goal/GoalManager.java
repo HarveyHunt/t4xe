@@ -13,7 +13,7 @@ import java.util.Random;
 
 public class GoalManager {
     public final static int CONFIG_MAX_PLAYER_GOALS = 3;
-    private ResourceManager resourceManager;
+    private final ResourceManager resourceManager;
 
     public GoalManager(ResourceManager resourceManager) {
         this.resourceManager = resourceManager;
@@ -38,8 +38,7 @@ public class GoalManager {
         do {
             //This generates a suitable random station to be the destination node of the goal (i.e not equal to the origin)
             destination = map.getRandomStation();
-        }
-        while (destination == origin || destination instanceof CollisionStation);
+        } while (destination == origin || destination instanceof CollisionStation);
 
         double shortestDist = map.getShortestDistance(origin, destination); //Stores the shortest distance between two points
         int score = (int) (shortestDist * (Math.pow(1.0001, shortestDist))); //Score by default = shortestDist*1.0001^shortestDist.
@@ -87,9 +86,7 @@ public class GoalManager {
             bonus = (int) ((((100 - (float) train.getSpeed()) / 100) * shortestDist) + score);
         }
 
-        Goal goal = new Goal(origin, destination, intermediary, turn, forTurns, score, bonus, train);
-
-        return goal;
+        return new Goal(origin, destination, intermediary, turn, forTurns, score, bonus, train);
     }
 
     public void addRandomGoalToPlayer(Player player) {

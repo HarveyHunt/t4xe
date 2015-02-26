@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class DialogStationMultitrain extends Dialog {
     //This class is used to create a dialog for when there are multiple trains in one location
-    private Context context;
+    private final Context context;
 
     public DialogStationMultitrain(ArrayList<Train> trains, Skin skin, Context context) {
 

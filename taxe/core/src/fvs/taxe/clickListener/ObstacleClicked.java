@@ -13,8 +13,8 @@ import gameLogic.resource.Obstacle;
 
 //Responsible for checking whether the Obstacle is clicked.
 public class ObstacleClicked extends ClickListener {
-    private Obstacle obstacle;
-    private Context context;
+    private final Obstacle obstacle;
+    private final Context context;
     private boolean displayingMessage;
 
     public ObstacleClicked(Context context, Obstacle obstacle) {

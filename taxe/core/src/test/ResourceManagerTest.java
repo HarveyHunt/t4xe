@@ -7,7 +7,7 @@ import gameLogic.resource.Train;
 import junit.framework.TestCase;
 
 public class ResourceManagerTest extends TestCase {
-    ResourceManager rm = new ResourceManager();
+    private final ResourceManager rm = new ResourceManager();
 
     public void testGetRandomTrain() throws Exception {
         Train train1 = rm.getRandomTrain();

@@ -21,16 +21,6 @@ public class Position extends IPositionable {
     }
 
     @Override
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    @Override
-    public void setY(int y) {
-        this.y = y;
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (o instanceof Position) {
             Position pos = (Position) o;

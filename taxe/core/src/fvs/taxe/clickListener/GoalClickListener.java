@@ -15,8 +15,8 @@ import gameLogic.player.Player;
 
 //Responsible for checking whether the goal is clicked
 public class GoalClickListener extends ClickListener {
-    private Context context;
-    private Goal goal;
+    private final Context context;
+    private final Goal goal;
     private Tooltip tooltip1;
     private Tooltip tooltip2;
     private Tooltip tooltip3;
@@ -46,7 +46,7 @@ public class GoalClickListener extends ClickListener {
             //Tooltip3 might not always exist, therefore by enclosing this in a try catch, if tooltip3 is null then the program does not crash
             try {
                 tooltip3.hide();
-            } catch (Exception e) {
+            } catch (Exception ignored) {
             }
 
             //Resets the tooltip flag to false
@@ -111,7 +111,7 @@ public class GoalClickListener extends ClickListener {
             //Tooltip3 might not exist and hence be a null value. By enclosing this in a try catch, it prevents the program from crashing if this is the case
             try {
                 tooltip3.hide();
-            } catch (Exception e) {
+            } catch (Exception ignored) {
             }
 
             //Indicates that tooltips are currently not being displayed

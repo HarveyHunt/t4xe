@@ -16,23 +16,22 @@ import gameLogic.listeners.TurnListener;
 import gameLogic.map.Map;
 
 
-public class GameScreen extends ScreenAdapter {
+class GameScreen extends ScreenAdapter {
     final private TaxeGame game;
-    private Stage stage;
-    private Texture mapTexture;
-    private Game gameLogic;
-    private Skin skin;
-    private Map map;
+    private final Stage stage;
+    private final Texture mapTexture;
+    private final Game gameLogic;
+    private final Skin skin;
+    private final Map map;
     private float timeAnimated = 0;
-    public static final int ANIMATION_TIME = 2;
-    private Tooltip tooltip;
-    private Context context;
+    private static final int ANIMATION_TIME = 2;
+    private final Context context;
 
-    private StationController stationController;
-    private TopBarController topBarController;
-    private ResourceController resourceController;
-    private GoalController goalController;
-    private RouteController routeController;
+    private final StationController stationController;
+    private final TopBarController topBarController;
+    private final ResourceController resourceController;
+    private final GoalController goalController;
+    private final RouteController routeController;
 
     public GameScreen(TaxeGame game) {
         this.game = game;
@@ -50,7 +49,7 @@ public class GameScreen extends ScreenAdapter {
         mapTexture = new Texture(Gdx.files.internal("gamemap.png"));
         map = gameLogic.getMap();
 
-        tooltip = new Tooltip(skin);
+        Tooltip tooltip = new Tooltip(skin);
         stage.addActor(tooltip);
 
         //Initialises all of the controllers for the UI

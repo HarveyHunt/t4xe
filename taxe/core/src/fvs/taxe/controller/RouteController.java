@@ -22,8 +22,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RouteController {
-    private Context context;
-    private Group routingButtons = new Group();
+    private final Context context;
+    private final Group routingButtons = new Group();
     private List<IPositionable> positions;
     private boolean isRouting = false;
     private Train train;

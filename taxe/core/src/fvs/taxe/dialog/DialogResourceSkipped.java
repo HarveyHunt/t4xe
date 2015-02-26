@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DialogResourceSkipped extends Dialog {
-    private List<ResourceDialogClickListener> clickListeners = new ArrayList<ResourceDialogClickListener>();
+    private final List<ResourceDialogClickListener> clickListeners = new ArrayList<ResourceDialogClickListener>();
 
     public DialogResourceSkipped(Context context) {
         super("Skip", context.getSkin());

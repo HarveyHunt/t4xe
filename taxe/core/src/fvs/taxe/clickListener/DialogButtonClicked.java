@@ -26,12 +26,12 @@ import gameLogic.resource.Train;
 
 public class DialogButtonClicked implements ResourceDialogClickListener {
     //This class is huge and seemingly complicated because it handles the events based off of any button being clicked
-    private Context context;
-    private Player currentPlayer;
-    private Train train;
-    private Obstacle obstacle;
-    private Skip skip;
-    private Engineer engineer;
+    private final Context context;
+    private final Player currentPlayer;
+    private final Train train;
+    private final Obstacle obstacle;
+    private final Skip skip;
+    private final Engineer engineer;
 
     public DialogButtonClicked(Context context, Player player, Train train) {
         //This constructor is used when a train dialog button is clicked.
