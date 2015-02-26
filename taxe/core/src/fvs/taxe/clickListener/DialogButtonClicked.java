@@ -347,34 +347,12 @@ public class DialogButtonClicked implements ResourceDialogClickListener {
                         }
                     }
                 };
+
+                // Handle ESC key-press
                 StationController.subscribeStationClick(stationListener);
-
-                //Adds a keyListener that triggers when the
-                final InputListener keyListener = new InputListener() {
-                    @Override
-                    public boolean keyDown(InputEvent event, int keycode) {
-                        if (keycode == Input.Keys.ESCAPE) {
-                            //Makes all trains visible
-                            TrainController trainController = new TrainController(context);
-                            trainController.setTrainsVisible(null, true);
-
-                            //Resets cursor
-                            Gdx.input.setCursorImage(null, 0, 0);
-
-                            //Unsubscribes from the StationClickListener as this would cause a lot of errors and unexpected behaviour is not called from the correct context
-                            StationController.unsubscribeStationClick(stationListener);
-                            Game.getInstance().setState(GameState.NORMAL);
-
-                            //Resets the topBar
-                            context.getTopBarController().clearMessage();
-
-                            //Removes itself from the keylisteners of the game as otherwise there would be a lot of null pointer exceptions and unintended behaviour
-                            context.getStage().removeListener(this);
-                        }
-                        return true;
-                    }
-                };
+                final InputListener keyListener = escPressedHandler(stationListener);
                 this.context.getStage().addListener(keyListener);
+
                 break;
             }
 
@@ -471,35 +449,12 @@ public class DialogButtonClicked implements ResourceDialogClickListener {
                         }
                     }
                 };
+
+                // Handle ESC key-press
                 StationController.subscribeStationClick(stationListener);
-
-                //Adds a keyListener that triggers when the
-                final InputListener keyListener = new InputListener() {
-                    @Override
-                    public boolean keyDown(InputEvent event, int keycode) {
-                        if (keycode == Input.Keys.ESCAPE) {
-                            //Makes all trains visible
-                            TrainController trainController = new TrainController(context);
-                            trainController.setTrainsVisible(null, true);
-
-                            //Resets cursor
-                            Gdx.input.setCursorImage(null, 0, 0);
-
-                            //Unsubscribes from the StationClickListener as this would cause a lot of errors and unexpected behaviour is not called from the correct context
-                            StationController.unsubscribeStationClick(stationListener);
-                            Game.getInstance().setState(GameState.NORMAL);
-
-                            //Resets the topBar
-                            context.getTopBarController().clearMessage();
-
-                            //Removes itself from the keylisteners of the game as otherwise there would be a lot of null pointer exceptions and unintended behaviour
-                            context.getStage().removeListener(this);
-                        }
-                        return true;
-                    }
-                };
-
+                final InputListener keyListener = escPressedHandler(stationListener);
                 this.context.getStage().addListener(keyListener);
+
                 break;
             }
 
@@ -568,36 +523,41 @@ public class DialogButtonClicked implements ResourceDialogClickListener {
                         }
                     }
                 };
+
+                // Handle ESC key-press
                 StationController.subscribeStationClick(stationListener);
-
-                //Adds a keyListener that triggers when the
-                final InputListener keyListener = new InputListener() {
-                    @Override
-                    public boolean keyDown(InputEvent event, int keycode) {
-                        if (keycode == Input.Keys.ESCAPE) {
-                            //Makes all trains visible
-                            TrainController trainController = new TrainController(context);
-                            trainController.setTrainsVisible(null, true);
-
-                            //Resets cursor
-                            Gdx.input.setCursorImage(null, 0, 0);
-
-                            //Unsubscribes from the StationClickListener as this would cause a lot of errors and unexpected behaviour is not called from the correct context
-                            StationController.unsubscribeStationClick(stationListener);
-                            Game.getInstance().setState(GameState.NORMAL);
-
-                            //Resets the topBar
-                            context.getTopBarController().clearMessage();
-
-                            //Removes itself from the keylisteners of the game as otherwise there would be a lot of null pointer exceptions and unintended behaviour
-                            context.getStage().removeListener(this);
-                        }
-                        return true;
-                    }
-                };
+                final InputListener keyListener = escPressedHandler(stationListener);
                 this.context.getStage().addListener(keyListener);
+
                 break;
             }
         }
+    }
+
+    private InputListener escPressedHandler(final StationClickListener stationListener) {
+        return new InputListener() {
+            @Override
+            public boolean keyDown(InputEvent event, int keycode) {
+                if (keycode == Input.Keys.ESCAPE) {
+                    //Makes all trains visible
+                    TrainController trainController = new TrainController(context);
+                    trainController.setTrainsVisible(null, true);
+
+                    //Resets cursor
+                    Gdx.input.setCursorImage(null, 0, 0);
+
+                    //Unsubscribes from the StationClickListener as this would cause a lot of errors and unexpected behaviour is not called from the correct context
+                    StationController.unsubscribeStationClick(stationListener);
+                    Game.getInstance().setState(GameState.NORMAL);
+
+                    //Resets the topBar
+                    context.getTopBarController().clearMessage();
+
+                    //Removes itself from the keylisteners of the game as otherwise there would be a lot of null pointer exceptions and unintended behaviour
+                    context.getStage().removeListener(this);
+                }
+                return true;
+            }
+        };
     }
 }
