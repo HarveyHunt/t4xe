@@ -38,10 +38,10 @@ public class DialogGoal extends Dialog {
         hide(null);
     }
 
-    private void clicked(Button button) {
+    private void clicked() {
         //Informs all listeners that the dialog has been pressed, and which button has been pressed
         for (ResourceDialogClickListener listener : clickListeners) {
-            listener.clicked(button);
+            listener.clicked(Button.GOAL_DROP);
         }
     }
 
@@ -59,7 +59,7 @@ public class DialogGoal extends Dialog {
 
         } else if (obj == "DROP") {
             //Removes the goal if the drop button is pressed
-            clicked(Button.GOAL_DROP);
+            clicked();
         }
     }
 }
