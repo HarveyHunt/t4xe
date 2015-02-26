@@ -108,9 +108,13 @@ public class GameScreen extends ScreenAdapter {
 
         topBarController.drawBackground();
 
-        stationController.renderConnections(map.getConnections(), Color.GRAY);
-        if (gameLogic.getState() == GameState.PLACING_TRAIN || gameLogic.getState() == GameState
-                .ROUTING) {
+        stationController.renderConnections(map.getEnabledConnections(), Color.GRAY);
+
+        if (gameLogic.getState() == GameState.ADDING_TRACK) {
+            stationController.renderConnections(map.getDisabledConnections(), Color.CYAN);
+        }
+
+        if (gameLogic.getState() == GameState.PLACING_TRAIN || gameLogic.getState() == GameState.ROUTING) {
             stationController.renderStationGoalHighlights();
             //This colours the start and end nodes of each goal to allow the player to easily see where they need to route
         }
@@ -118,7 +122,6 @@ public class GameScreen extends ScreenAdapter {
         //Draw routing
         if (gameLogic.getState() == GameState.ROUTING) {
             routeController.drawRoute(Color.BLACK);
-
         } else
             //Draw train moving
             if (gameLogic.getState() == GameState.ANIMATING) {

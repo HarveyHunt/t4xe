@@ -71,6 +71,23 @@ public class JSONImporter {
             //Adds the connection the map passed to the function
             map.addConnection(station1, station2);
         }
+
+        for (JsonValue connection = jsonVal.getChild("disabledConnections"); connection != null; connection = connection.next) {
+            String station1 = "";
+            String station2 = "";
+
+            for (JsonValue val = connection.child; val != null; val = val.next) {
+                //Checks which station each value represents and sets the station variables appropriately
+                if (val.name.equalsIgnoreCase("station1")) {
+                    station1 = val.asString();
+                } else {
+                    station2 = val.asString();
+                }
+            }
+
+            //Adds the connection the map passed to the function
+            map.addConnection(map.getStationByName(station1), map.getStationByName(station2), ConnectionType.DISABLED);
+        }
     }
 
     private void parseStations(JsonValue jsonVal, Map map) {

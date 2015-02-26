@@ -12,14 +12,19 @@ import java.util.Random;
 
 public class Map {
     private List<Station> stations;
-    private List<Connection> connections;
+
+    private List<Connection> enabledConnections;
+    private List<Connection> disabledConnections;
+
     private Random random = new Random();
     private Dijkstra dijkstra;
     private JSONImporter jsonImporter;
 
     public Map() {
         stations = new ArrayList<Station>();
-        connections = new ArrayList<Connection>();
+
+        enabledConnections = new ArrayList<Connection>();
+        disabledConnections = new ArrayList<Connection>();
 
         //Imports all values from the JSON file using the JSONImporter
         jsonImporter = new JSONImporter(this);
@@ -28,7 +33,15 @@ public class Map {
         dijkstra = new Dijkstra(this);
     }
 
-    public boolean doesConnectionExist(String stationName, String anotherStationName) {
+    public boolean doesConnectionExist(String stationName, String anotherStationName, ConnectionType t) {
+        // Determine which list of connections to use
+        List<Connection> connections;
+
+        if (t == ConnectionType.ENABLED)
+            connections = enabledConnections;
+        else
+            connections = disabledConnections;
+
         //Returns whether or not the connection exists by checking the two station names passed to it
         for (Connection connection : connections) {
             String s1 = connection.getStation1().getName();
@@ -44,7 +57,20 @@ public class Map {
         return false;
     }
 
-    public Connection getConnection(Station station1, Station station2) {
+    public boolean doesConnectionExist(String stationName, String anotherStationName) {
+        // If no flag is specified, return the list of enabled connections
+        return doesConnectionExist(stationName, anotherStationName, ConnectionType.ENABLED);
+    }
+
+    public Connection getConnection(Station station1, Station station2, ConnectionType t) {
+        // Determine which list of connections to use
+        List<Connection> connections;
+
+        if (t == ConnectionType.ENABLED)
+            connections = enabledConnections;
+        else
+            connections = disabledConnections;
+
         //Returns the connection that connects station1 and station2 if it exists
         String stationName = station1.getName();
         String anotherStationName = station2.getName();
@@ -62,6 +88,11 @@ public class Map {
         }
 
         return null;
+    }
+
+    public Connection getConnection(Station station1, Station station2) {
+        // If no flag is specified, return the list of enabled connections
+        return getConnection(station1, station2, ConnectionType.ENABLED);
     }
 
 
@@ -88,16 +119,53 @@ public class Map {
         return stations;
     }
 
-    public List<Connection> getConnections() {
-        return connections;
+    public List<Connection> getEnabledConnections() {
+        return enabledConnections;
     }
 
-    public Connection addConnection(Station station1, Station station2) {
+    public List<Connection> getDisabledConnections() {
+        return disabledConnections;
+    }
+
+    public void disableConnection(Connection target) {
+        // Attempt to move the connection from an enabled to a disabled state
+        int i = enabledConnections.indexOf(target);
+
+        if (i > -1) {
+            disabledConnections.add(enabledConnections.remove(i));
+        }
+    }
+
+    public void enableConnection(Connection target) {
+        // Attempt to move the connection from a disabled to an enabled state
+        int i = disabledConnections.indexOf(target);
+
+        if (i > -1) {
+            enabledConnections.add(disabledConnections.remove(i));
+        }
+    }
+
+
+    public Connection addConnection(Station station1, Station station2 , ConnectionType t) {
         //Adds a new connection the map
+
+        // Determine which list of connections to use
+        List<Connection> connections;
+
+        if (t == ConnectionType.ENABLED)
+            connections = enabledConnections;
+        else
+            connections = disabledConnections;
+
         //This addConnection adds a connection based on stations
         Connection newConnection = new Connection(station1, station2);
         connections.add(newConnection);
         return newConnection;
+    }
+
+    public Connection addConnection(Station station1, Station station2) {
+        // If no connection type is specified, operate on the enabled list
+        return addConnection(station1, station2, ConnectionType.ENABLED);
     }
 
     //Add Connection by Names
@@ -146,15 +214,15 @@ public class Map {
 
     public void decrementBlockedConnections() {
         //This is called every turn and decrements every connection's blocked attribute
-        for (Connection connection : connections) {
+        for (Connection connection : enabledConnections) {
             connection.decrementBlocked();
         }
     }
 
     public Connection getRandomConnection() {
         //Returns a random connection, used for blocking a random connection
-        int index = random.nextInt(connections.size());
-        return connections.get(index);
+        int index = random.nextInt(enabledConnections.size());
+        return enabledConnections.get(index);
     }
 
     public void blockRandomConnection() {
@@ -199,8 +267,8 @@ public class Map {
     }
 
     public boolean isConnectionBlocked(Station station1, Station station2) {
-        //Iterates through all the connections and finds the connection that links station1 and station2. Returns if this connection is blocked.
-        for (Connection connection : connections) {
+        //Iterates through all the enabledConnections and finds the connection that links station1 and station2. Returns if this connection is blocked.
+        for (Connection connection : enabledConnections) {
             if (connection.getStation1() == station1)
                 if (connection.getStation2() == station2)
                     return connection.isBlocked();
