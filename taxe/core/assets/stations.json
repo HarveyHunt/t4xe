@@ -462,5 +462,24 @@
       "station1": "York",
       "station2": "London"
     }
+  ],
+
+  "disabledConnections": [
+    {
+      "station1": "Frankfurt",
+      "station2": "Prague"
+    },
+    {
+      "station1": "Prague",
+      "station2": "Krakow"
+    },
+    {
+      "station1": "Belgrade",
+      "station2": "Bucharest"
+    },
+    {
+      "station1": "York",
+      "station2": "Copenhagen"
+    }
   ]
 }

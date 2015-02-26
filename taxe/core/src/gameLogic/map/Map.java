@@ -33,9 +33,17 @@ public class Map {
         dijkstra = new Dijkstra(this);
     }
 
-    public boolean doesConnectionExist(String stationName, String anotherStationName) {
+    public boolean doesConnectionExist(String stationName, String anotherStationName, ConnectionType t) {
+        // Determine which list of connections to use
+        List<Connection> connections;
+
+        if (t == ConnectionType.ENABLED)
+            connections = enabledConnections;
+        else
+            connections = disabledConnections;
+
         //Returns whether or not the connection exists by checking the two station names passed to it
-        for (Connection connection : enabledConnections) {
+        for (Connection connection : connections) {
             String s1 = connection.getStation1().getName();
             String s2 = connection.getStation2().getName();
 
@@ -49,60 +57,42 @@ public class Map {
         return false;
     }
 
-    public boolean doesDisabledConnectionExist(String stationName, String anotherStationName) {
-        //Returns whether or not the connection exists by checking the two station names passed to it
-        for (Connection connection : disabledConnections) {
+    public boolean doesConnectionExist(String stationName, String anotherStationName) {
+        // If no flag is specified, return the list of enabled connections
+        return doesConnectionExist(stationName, anotherStationName, ConnectionType.ENABLED);
+    }
+
+    public Connection getConnection(Station station1, Station station2, ConnectionType t) {
+        // Determine which list of connections to use
+        List<Connection> connections;
+
+        if (t == ConnectionType.ENABLED)
+            connections = enabledConnections;
+        else
+            connections = disabledConnections;
+
+        //Returns the connection that connects station1 and station2 if it exists
+        String stationName = station1.getName();
+        String anotherStationName = station2.getName();
+
+        //Iterates through every connection and checks them
+        for (Connection connection : connections) {
             String s1 = connection.getStation1().getName();
             String s2 = connection.getStation2().getName();
 
-            //Checks whether or not the connection has station 1 and station 2 in its attributes, if so returns true, if not returns false
+            //Checks whether the connection is between station1 and station2 by comparing the start and end to their names
             if (s1.equals(stationName) && s2.equals(anotherStationName)
                     || s1.equals(anotherStationName) && s2.equals(stationName)) {
-                return true;
+                return connection;
             }
         }
 
-        return false;
+        return null;
     }
 
     public Connection getConnection(Station station1, Station station2) {
-        //Returns the connection that connects station1 and station2 if it exists
-        String stationName = station1.getName();
-        String anotherStationName = station2.getName();
-
-        //Iterates through every connection and checks them
-        for (Connection connection : enabledConnections) {
-            String s1 = connection.getStation1().getName();
-            String s2 = connection.getStation2().getName();
-
-            //Checks whether the connection is between station1 and station2 by comparing the start and end to their names
-            if (s1.equals(stationName) && s2.equals(anotherStationName)
-                    || s1.equals(anotherStationName) && s2.equals(stationName)) {
-                return connection;
-            }
-        }
-
-        return null;
-    }
-
-    public Connection getDisabledConnection(Station station1, Station station2) {
-        //Returns the connection that connects station1 and station2 if it exists
-        String stationName = station1.getName();
-        String anotherStationName = station2.getName();
-
-        //Iterates through every connection and checks them
-        for (Connection connection : disabledConnections) {
-            String s1 = connection.getStation1().getName();
-            String s2 = connection.getStation2().getName();
-
-            //Checks whether the connection is between station1 and station2 by comparing the start and end to their names
-            if (s1.equals(stationName) && s2.equals(anotherStationName)
-                    || s1.equals(anotherStationName) && s2.equals(stationName)) {
-                return connection;
-            }
-        }
-
-        return null;
+        // If no flag is specified, return the list of enabled connections
+        return getConnection(station1, station2, ConnectionType.ENABLED);
     }
 
 
@@ -156,12 +146,26 @@ public class Map {
     }
 
 
-    public Connection addConnection(Station station1, Station station2) {
+    public Connection addConnection(Station station1, Station station2 , ConnectionType t) {
         //Adds a new connection the map
+
+        // Determine which list of connections to use
+        List<Connection> connections;
+
+        if (t == ConnectionType.ENABLED)
+            connections = enabledConnections;
+        else
+            connections = disabledConnections;
+
         //This addConnection adds a connection based on stations
         Connection newConnection = new Connection(station1, station2);
-        enabledConnections.add(newConnection);
+        connections.add(newConnection);
         return newConnection;
+    }
+
+    public Connection addConnection(Station station1, Station station2) {
+        // If no connection type is specified, operate on the enabled list
+        return addConnection(station1, station2, ConnectionType.ENABLED);
     }
 
     //Add Connection by Names
