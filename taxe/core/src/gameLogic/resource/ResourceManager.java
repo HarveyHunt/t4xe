@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class ResourceManager {
-    public final int CONFIG_MAX_RESOURCES = 7;
+    private final int CONFIG_MAX_RESOURCES = 7;
     private final Random random = new Random();
     private ArrayList<Tuple<String, Integer>> trains;
 

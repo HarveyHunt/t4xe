@@ -16,7 +16,7 @@ import gameLogic.listeners.TurnListener;
 import gameLogic.map.Map;
 
 
-public class GameScreen extends ScreenAdapter {
+class GameScreen extends ScreenAdapter {
     final private TaxeGame game;
     private final Stage stage;
     private final Texture mapTexture;
@@ -24,7 +24,7 @@ public class GameScreen extends ScreenAdapter {
     private final Skin skin;
     private final Map map;
     private float timeAnimated = 0;
-    public static final int ANIMATION_TIME = 2;
+    private static final int ANIMATION_TIME = 2;
     private final Context context;
 
     private final StationController stationController;

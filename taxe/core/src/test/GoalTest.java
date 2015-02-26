@@ -8,21 +8,21 @@ import junit.framework.TestCase;
 
 public class GoalTest extends TestCase {
 
-    final Station origin = new Station("station1", new Position(5, 5));
-    final Station destination = new Station("station2", new Position(2, 2));
+    private final Station origin = new Station("station1", new Position(5, 5));
+    private final Station destination = new Station("station2", new Position(2, 2));
 
-    final Station station3 = new Station("station3", new Position(3, 5));
-    final Station station4 = new Station("station4", new Position(4, 2));
-    final Station station5 = new Station("station5", new Position(5, 1));
-    final Station station6 = new Station("station6", new Position(6, 2));
-    final Station station7 = new Station("station7", new Position(7, 5));
-    final Station station8 = new Station("station8", new Position(8, 2));
+    private final Station station3 = new Station("station3", new Position(3, 5));
+    private final Station station4 = new Station("station4", new Position(4, 2));
+    private final Station station5 = new Station("station5", new Position(5, 1));
+    private final Station station6 = new Station("station6", new Position(6, 2));
+    private final Station station7 = new Station("station7", new Position(7, 5));
+    private final Station station8 = new Station("station8", new Position(8, 2));
 
 
-    final Station intermediary = new Station("station3", new Position(5, 5));
-    final Train train = new Train("RedTrain", "RedTrain.png", "RedTrainRight.png", 250);
-    final Train train2 = new Train("RedTrain", "RedTrain.png", "RedTrainRight.png", 250);
-    final Goal goal = new Goal(origin, destination, intermediary, 0, 4, 50, 20, train);
+    private final Station intermediary = new Station("station3", new Position(5, 5));
+    private final Train train = new Train("RedTrain", "RedTrain.png", "RedTrainRight.png", 250);
+    private final Train train2 = new Train("RedTrain", "RedTrain.png", "RedTrainRight.png", 250);
+    private final Goal goal = new Goal(origin, destination, intermediary, 0, 4, 50, 20, train);
     Goal goal2 = new Goal(origin, destination, intermediary, 0, 4, 50, 20, train2);
 
 

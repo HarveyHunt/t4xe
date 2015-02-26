@@ -2,7 +2,7 @@ package gameLogic.dijkstra;
 
 import java.util.ArrayList;
 
-public class DijkstraData {
+class DijkstraData {
     //This class is an abstract data structure used to be easily searchable and contain the results of running dijkstra's algorithm on the graph
     private final Vertex source;
     private final Vertex target;

@@ -11,21 +11,21 @@ import gameLogic.resource.Train;
 import junit.framework.TestCase;
 
 public class GoalManagerTest extends TestCase {
-    final ResourceManager rs = new ResourceManager();
-    final GoalManager goalManager = new GoalManager(rs);
-    final PlayerManager playerManager = new PlayerManager();
+    private final ResourceManager rs = new ResourceManager();
+    private final GoalManager goalManager = new GoalManager(rs);
+    private final PlayerManager playerManager = new PlayerManager();
 
 
     //  playerManager.createPlayers(2);
     //  Player player1 = playerManager.getCurrentPlayer();
 
-    final Train train = new Train("Green", "", "", 100);
+    private final Train train = new Train("Green", "", "", 100);
 
-    final Station station1 = new Station("station1", new Position(5, 5));
-    final Station station2 = new Station("station2", new Position(2, 2));
-    final Station station3 = new Station("station3", new Position(6, 2));
+    private final Station station1 = new Station("station1", new Position(5, 5));
+    private final Station station2 = new Station("station2", new Position(2, 2));
+    private final Station station3 = new Station("station3", new Position(6, 2));
 
-    final Goal goal = new Goal(station1, station2, station3, 0, 0, 0, 0, train);
+    private final Goal goal = new Goal(station1, station2, station3, 0, 0, 0, 0, train);
 
     public void testGenerateRandom() throws Exception {
 

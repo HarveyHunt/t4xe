@@ -4,7 +4,7 @@ import gameLogic.Disposable;
 import gameLogic.player.Player;
 
 public abstract class Resource implements Disposable {
-    protected String name;
+    String name;
     private Player player;
 
     public void setPlayer(Player player) {
@@ -21,7 +21,7 @@ public abstract class Resource implements Disposable {
         return name;
     }
 
-    protected void changed() {
+    void changed() {
         player.changed();
     }
 

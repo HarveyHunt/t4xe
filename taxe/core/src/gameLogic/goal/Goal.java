@@ -93,7 +93,7 @@ public class Goal {
         return false;
     }
 
-    public boolean wentThroughStation(Train train) {
+    boolean wentThroughStation(Train train) {
         //checks if a train has passed through the intermediary station if it exists
         boolean passedThrough = false;
         if (this.isComplete(train))
@@ -117,7 +117,7 @@ public class Goal {
 
     }
 
-    public boolean completedWithTrain(Train train) {
+    boolean completedWithTrain(Train train) {
         //Checks whether the train passed to it has the same name as the train required by the goal's bonus
         return this.train.getName().equals(train.getName());
     }

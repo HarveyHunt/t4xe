@@ -11,14 +11,14 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
-public class MainMenuScreen extends ScreenAdapter {
-    final TaxeGame game;
-    final OrthographicCamera camera;
-    final Rectangle playBounds;
-    final Rectangle exitBounds;
-    final Vector3 touchPoint;
-    final Texture mapTexture;
-    final Image mapImage;
+class MainMenuScreen extends ScreenAdapter {
+    private final TaxeGame game;
+    private final OrthographicCamera camera;
+    private final Rectangle playBounds;
+    private final Rectangle exitBounds;
+    private final Vector3 touchPoint;
+    private final Texture mapTexture;
+    private final Image mapImage;
 
     public MainMenuScreen(TaxeGame game) {
         //This sets all the relevant variables for the menu screen
@@ -36,7 +36,7 @@ public class MainMenuScreen extends ScreenAdapter {
         mapImage = new Image(mapTexture);
     }
 
-    public void update() {
+    void update() {
         //Begins the game or exits the application based on where the user presses
         if (Gdx.input.justTouched()) {
             camera.unproject(touchPoint.set(Gdx.input.getX(), Gdx.input.getY(), 0));
@@ -50,7 +50,7 @@ public class MainMenuScreen extends ScreenAdapter {
         }
     }
 
-    public void draw() {
+    void draw() {
         //This method draws the menu
 
         GL20 gl = Gdx.gl;

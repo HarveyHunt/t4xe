@@ -20,7 +20,7 @@ public class TrainActor extends Image {
     public final Train train;
 
     private final Rectangle bounds;
-    public boolean facingLeft;
+    private boolean facingLeft;
     private float previousX;
     private final Drawable leftDrawable;
     private final Drawable rightDrawable;
@@ -94,7 +94,7 @@ public class TrainActor extends Image {
         bounds.set(getX(), getY(), getWidth(), getHeight());
     }
 
-    public void updateFacingDirection() {
+    void updateFacingDirection() {
         float currentX = getX();
         //This updates the direction that the train is facing and the image representing the train based on which direction it is travelling
         if (facingLeft && previousX < currentX) {
@@ -124,7 +124,7 @@ public class TrainActor extends Image {
         return this.paused;
     }
 
-    public boolean isRecentlyPaused() {
+    boolean isRecentlyPaused() {
         return recentlyPaused;
     }
 
@@ -132,7 +132,7 @@ public class TrainActor extends Image {
         this.recentlyPaused = recentlyPaused;
     }
 
-    public Train collided() {
+    Train collided() {
         //The aim of this function is to check whether the train represented by the actor has collided with any other trains on the board
         Station last = train.getLastStation();
         Station next = train.getNextStation();

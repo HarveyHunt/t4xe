@@ -5,7 +5,7 @@ import com.badlogic.gdx.backends.lwjgl.LwjglFileHandle;
 import com.badlogic.gdx.files.FileHandle;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
-public class MockFileHandler implements Files {
+class MockFileHandler implements Files {
     private final String assets;
 
     public MockFileHandler(String assets) {

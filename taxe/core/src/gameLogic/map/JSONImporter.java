@@ -53,7 +53,7 @@ public class JSONImporter {
         resourceManager.setTrains(trains);
     }
 
-    public void parseConnections(JsonValue jsonVal, Map map) {
+    void parseConnections(JsonValue jsonVal, Map map) {
         //Iterates through all the connections stored in the JSON array associated with the connections attribute
         for (JsonValue connection = jsonVal.getChild("connections"); connection != null; connection = connection.next) {
             String station1 = "";

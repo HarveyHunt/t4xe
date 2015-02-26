@@ -162,7 +162,7 @@ public class Map {
         return newConnection;
     }
 
-    public Connection addConnection(Station station1, Station station2) {
+    Connection addConnection(Station station1, Station station2) {
         // If no connection type is specified, operate on the enabled list
         return addConnection(station1, station2, ConnectionType.ENABLED);
     }
@@ -218,7 +218,7 @@ public class Map {
         }
     }
 
-    public Connection getRandomConnection() {
+    Connection getRandomConnection() {
         //Returns a random connection, used for blocking a random connection
         int index = random.nextInt(enabledConnections.size());
         return enabledConnections.get(index);
