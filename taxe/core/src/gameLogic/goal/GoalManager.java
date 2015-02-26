@@ -86,9 +86,7 @@ public class GoalManager {
             bonus = (int) ((((100 - (float) train.getSpeed()) / 100) * shortestDist) + score);
         }
 
-        Goal goal = new Goal(origin, destination, intermediary, turn, forTurns, score, bonus, train);
-
-        return goal;
+        return new Goal(origin, destination, intermediary, turn, forTurns, score, bonus, train);
     }
 
     public void addRandomGoalToPlayer(Player player) {
