@@ -59,8 +59,6 @@ public class Goal {
             this.inTurns = true;
             this.turnsTime = turnsTime;
         }
-        System.out.println(this.toString() + " for " + this.score + "/" + this.bonus + " points");
-
     }
 
     public boolean isComplete(Train train) {
