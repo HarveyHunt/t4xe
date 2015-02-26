@@ -3,241 +3,241 @@
     {
       "name": "Madrid",
       "junction": false,
-      "x": "159",
+      "x": 159,
       "y": 19
     },
     {
       "name": "Paris",
       "junction": false,
-      "x": "330",
+      "x": 330,
       "y": 280
     },
     {
       "name": "London",
       "junction": false,
-      "x": "300",
+      "x": 300,
       "y": 373
     },
     {
       "name": "Lille",
       "junction": true,
-      "x": "352",
+      "x": 352,
       "y": 334
     },
     {
       "name": "Brussels",
       "junction": false,
-      "x": "389",
+      "x": 389,
       "y": 336
     },
     {
       "name": "Amsterdam",
       "junction": false,
-      "x": "411",
+      "x": 411,
       "y": 384
     },
     {
       "name": "Berlin",
       "junction": false,
-      "x": "545",
+      "x": 545,
       "y": 385
     },
     {
       "name": "Rome",
       "junction": false,
-      "x": "548",
+      "x": 548,
       "y": 65
     },
     {
       "name": "Geneva",
       "junction": false,
-      "x": "413",
+      "x": 413,
       "y": 190
     },
     {
       "name": "Lisbon",
       "junction": false,
-      "x": "38",
+      "x": 38,
       "y": 22
     },
     {
       "name": "Barcelona",
       "junction": false,
-      "x": "260",
+      "x": 260,
       "y": 36
     },
     {
       "name": "Andorra",
       "junction": true,
-      "x": "296",
+      "x": 296,
       "y": 82
     },
     {
       "name": "Monaco",
       "junction": false,
-      "x": "417",
+      "x": 417,
       "y": 105
     },
     {
       "name": "Milan",
       "junction": false,
-      "x": "485",
+      "x": 485,
       "y": 161
     },
     {
       "name": "Vaduz",
       "junction": true,
-      "x": "480",
+      "x": 480,
       "y": 216
     },
     {
       "name": "Frankfurt",
       "junction": false,
-      "x": "461",
+      "x": 461,
       "y": 313
     },
     {
       "name": "Copenhagen",
       "junction": false,
-      "x": "508",
+      "x": 508,
       "y": 473
     },
     {
       "name": "Warsaw",
       "junction": false,
-      "x": "700",
+      "x": 700,
       "y": 399
     },
     {
       "name": "Krakow",
       "junction": false,
-      "x": "702",
+      "x": 702,
       "y": 323
     },
     {
       "name": "Prague",
       "junction": false,
-      "x": "592",
+      "x": 592,
       "y": 306
     },
     {
       "name": "Budapest",
       "junction": false,
-      "x": "693",
+      "x": 693,
       "y": 234
     },
     {
       "name": "Poznan",
       "junction": true,
-      "x": "639",
+      "x": 639,
       "y": 379
     },
     {
       "name": "Tirana",
       "junction": false,
-      "x": "735",
+      "x": 735,
       "y": 40
     },
     {
       "name": "Sarajevo",
       "junction": false,
-      "x": "685",
+      "x": 685,
       "y": 128
     },
     {
       "name": "Zagreb",
       "junction": false,
-      "x": "640",
+      "x": 640,
       "y": 179
     },
     {
       "name": "Vienna",
       "junction": false,
-      "x": "621",
+      "x": 621,
       "y": 259
     },
     {
       "name": "Graz",
       "junction": true,
-      "x": "592",
+      "x": 592,
       "y": 220
     },
     {
       "name": "Belgrade",
       "junction": false,
-      "x": "738",
+      "x": 738,
       "y": 148
     },
     {
       "name": "Sofia",
       "junction": false,
-      "x": "816",
+      "x": 816,
       "y": 97
     },
     {
       "name": "Thessaloniki",
       "junction": false,
-      "x": "814",
+      "x": 814,
       "y": 38
     },
     {
       "name": "Istanbul",
       "junction": false,
-      "x": "951",
+      "x": 951,
       "y": 79
     },
     {
       "name": "Bucharest",
       "junction": false,
-      "x": "860",
+      "x": 860,
       "y": 185
     },
     {
       "name": "Kiev",
       "junction": false,
-      "x": "912",
+      "x": 912,
       "y": 376
     },
     {
       "name": "Lviv",
       "junction": false,
-      "x": "801",
+      "x": 801,
       "y": 324
     },
     {
       "name": "Minsk",
       "junction": false,
-      "x": "831",
+      "x": 831,
       "y": 474
     },
     {
       "name": "Riga",
       "junction": false,
-      "x": "742",
+      "x": 742,
       "y": 555
     },
     {
       "name": "Cluj",
       "junction": true,
-      "x": "784",
+      "x": 784,
       "y": 231
     },
     {
       "name": "Kaunas",
       "junction": false,
-      "x": "747",
+      "x": 747,
       "y": 500
     },
     {
       "name": "Stockholm",
       "junction": false,
-      "x": "614",
+      "x": 614,
       "y": 610
     },
     {
       "name": "York",
       "junction": false,
-      "x": "290",
+      "x": 290,
       "y": 452
     }
   ],
