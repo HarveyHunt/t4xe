@@ -78,7 +78,8 @@ public class GameScreen extends ScreenAdapter {
         gameLogic.subscribeStateChanged(new GameStateListener() {
             @Override
             public void changed(GameState state) {
-                if ((gameLogic.getPlayerManager().getTurnNumber() == gameLogic.TOTAL_TURNS || gameLogic.getPlayerManager().getCurrentPlayer().getScore() >= gameLogic.MAX_POINTS) && state == GameState.NORMAL) {
+                if ((gameLogic.getPlayerManager().getTurnNumber() == gameLogic.TOTAL_TURNS
+                        || gameLogic.getPlayerManager().getCurrentPlayer().getScore() >= gameLogic.MAX_POINTS) && state == GameState.NORMAL) {
                     //If the game should end due to the turn number or points total then the appropriate dialog is displayed
                     DialogEndGame dia = new DialogEndGame(GameScreen.this.game, gameLogic.getPlayerManager(), skin);
                     dia.show(stage);
@@ -114,7 +115,8 @@ public class GameScreen extends ScreenAdapter {
             stationController.renderConnections(map.getDisabledConnections(), Color.CYAN);
         }
 
-        if (gameLogic.getState() == GameState.PLACING_TRAIN || gameLogic.getState() == GameState.ROUTING) {
+        if (gameLogic.getState() == GameState.PLACING_TRAIN
+                || gameLogic.getState() == GameState.ROUTING) {
             stationController.renderStationGoalHighlights();
             //This colours the start and end nodes of each goal to allow the player to easily see where they need to route
         }
@@ -133,7 +135,8 @@ public class GameScreen extends ScreenAdapter {
             }
 
         //Draw the number of trains at each station
-        if (gameLogic.getState() == GameState.NORMAL || gameLogic.getState() == GameState.PLACING_TRAIN) {
+        if (gameLogic.getState() == GameState.NORMAL
+                || gameLogic.getState() == GameState.PLACING_TRAIN) {
             stationController.displayNumberOfTrainsAtStations();
         }
 

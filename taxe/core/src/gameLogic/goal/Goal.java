@@ -68,8 +68,8 @@ public class Goal {
         boolean passedOrigin = false;
         for (Tuple<Station, Integer> history : train.getHistory()) {
             //Checks whether or not the station is the origin and if it was visited after the goal was issued
-            if (history.getFirst().getName().equals(origin.getName()) && history.getSecond() >=
-                    turnIssued) {
+            if (history.getFirst().getName().equals(origin.getName()) && history.getSecond()
+                    >= turnIssued) {
                 passedOrigin = true;
             }
         }

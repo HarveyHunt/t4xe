@@ -53,7 +53,9 @@ public class GoalManager {
                 //Generates a suitable intermediary station (i.e not equal to the other two nodes and not in the shortest path
                 intermediary = map.getRandomStation();
             }
-            while (intermediary == origin || intermediary == destination || intermediary instanceof CollisionStation || map.inShortestPath(origin, destination, intermediary));
+            while (intermediary == origin || intermediary == destination
+                    || intermediary instanceof CollisionStation
+                    || map.inShortestPath(origin, destination, intermediary));
             //Calculates the bonus to be equal to the two distances between origin/intermediary and intermediary/destination added together
             bonus = (int) (map.getShortestDistance(origin, intermediary) + map.getShortestDistance(intermediary, destination));
             if (bonus < (score + (30 * Math.pow(1.0001, shortestDist)))) {

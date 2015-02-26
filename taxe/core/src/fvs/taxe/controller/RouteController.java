@@ -92,7 +92,8 @@ public class RouteController {
                 } else {
                     Station lastStation = train.getLastStation();
                     Station nextStation = train.getNextStation();
-                    if (station.getName().equals(lastStation.getName()) || nextStation.getName().equals(station.getName())) {
+                    if (station.getName().equals(lastStation.getName())
+                            || nextStation.getName().equals(station.getName())) {
                         //If the connection exists then the station passed to the method is added to the route
                         positions.add(station.getLocation());
 
