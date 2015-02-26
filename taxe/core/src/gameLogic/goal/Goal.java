@@ -76,11 +76,7 @@ public class Goal {
             }
         }
         //This checks whether or not the final destination is the destination of the goal, if it has then returns true
-        if (train.getFinalDestination() == destination && passedOrigin) {
-            return true;
-        } else {
-            return false;
-        }
+        return train.getFinalDestination() == destination && passedOrigin;
     }
 
     public boolean isBonusCompleted(Train train) {
@@ -123,10 +119,7 @@ public class Goal {
 
     public boolean completedWithTrain(Train train) {
         //Checks whether the train passed to it has the same name as the train required by the goal's bonus
-        if (this.train.getName().equals(train.getName())) {
-            return true;
-        }
-        return false;
+        return this.train.getName().equals(train.getName());
     }
 
     public String baseGoalString() {
