@@ -15,8 +15,8 @@ import java.text.DecimalFormat;
 
 public class GoalController {
     //This class is in control of drawing all the goals
-    private Context context;
-    private Group goalButtons = new Group();
+    private final Context context;
+    private final Group goalButtons = new Group();
     private Color[] colours = new Color[3];
 
     public GoalController(Context context) {

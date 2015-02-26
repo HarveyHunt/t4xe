@@ -6,7 +6,7 @@ import gameLogic.map.Station;
 
 public class Obstacle extends Resource {
 
-    private int forTurns;
+    private final int forTurns;
     private Station station1;
     private Station station2;
 

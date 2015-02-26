@@ -36,15 +36,15 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class StationController {
     public final static int CONNECTION_LINE_WIDTH = 5;
 
-    private Context context;
-    private Tooltip tooltip;
+    private final Context context;
+    private final Tooltip tooltip;
     /*
     have to use CopyOnWriteArrayList because when we iterate through our listeners and execute
     their handler's method, one case unsubscribes from the event removing itself from this list
     and this list implementation supports removing elements whilst iterating through it
     */
-    private static List<StationClickListener> stationClickListeners = new CopyOnWriteArrayList<StationClickListener>();
-    private Color translucentBlack = new Color(0, 0, 0, 0.8f);
+    private static final List<StationClickListener> stationClickListeners = new CopyOnWriteArrayList<StationClickListener>();
+    private final Color translucentBlack = new Color(0, 0, 0, 0.8f);
     private static final Texture[] blockageTextures = new Texture[5];
 
     public StationController(Context context, Tooltip tooltip) {
@@ -154,7 +154,7 @@ public class StationController {
         context.getStage().addActor(collisionStationActor);
     }
 
-    public static Color[] colours = {Color.ORANGE, Color.GREEN, Color.PURPLE};
+    public static final Color[] colours = {Color.ORANGE, Color.GREEN, Color.PURPLE};
 
     public void renderStationGoalHighlights() {
         //This method is responsible for rendering the colours around the goal nodes

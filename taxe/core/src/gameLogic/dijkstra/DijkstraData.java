@@ -4,10 +4,10 @@ import java.util.ArrayList;
 
 public class DijkstraData {
     //This class is an abstract data structure used to be easily searchable and contain the results of running dijkstra's algorithm on the graph
-    private Vertex source;
-    private Vertex target;
-    private double distance;
-    private ArrayList<Vertex> shortestPath;
+    private final Vertex source;
+    private final Vertex target;
+    private final double distance;
+    private final ArrayList<Vertex> shortestPath;
 
     public DijkstraData(Vertex source, Vertex target, double distance, ArrayList<Vertex> shortestPath) {
         this.source = source;

@@ -7,17 +7,17 @@ import gameLogic.resource.Train;
 import java.util.ArrayList;
 
 public class Goal {
-    private Station origin;
-    private Station destination;
-    private int turnIssued;
+    private final Station origin;
+    private final Station destination;
+    private final int turnIssued;
     private boolean complete = false;
     private boolean goingThrough = false;
     private boolean inTurns = false;
     private int turnsTime;
-    private int score;
-    private int bonus;
+    private final int score;
+    private final int bonus;
     private boolean withTrain;
-    private Station intermediary;
+    private final Station intermediary;
     private Train train = null;
 
     public int getScore() {

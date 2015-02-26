@@ -6,7 +6,7 @@ import com.badlogic.gdx.files.FileHandle;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class MockFileHandler implements Files {
-    private String assets;
+    private final String assets;
 
     public MockFileHandler(String assets) {
         this.assets = assets;

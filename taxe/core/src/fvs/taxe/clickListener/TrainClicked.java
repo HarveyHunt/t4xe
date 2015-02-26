@@ -19,8 +19,8 @@ import java.util.ArrayList;
 
 //Responsible for checking whether the train is clicked.
 public class TrainClicked extends ClickListener {
-    private Context context;
-    private Train train;
+    private final Context context;
+    private final Train train;
     private boolean displayingMessage;
 
     public TrainClicked(Context context, Train train) {

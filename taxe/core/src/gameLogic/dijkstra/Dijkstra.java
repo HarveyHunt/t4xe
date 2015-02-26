@@ -9,7 +9,7 @@ import java.util.PriorityQueue;
 
 public class Dijkstra {
     ArrayList<Vertex> vertices;
-    ArrayList<DijkstraData> dijkstras = new ArrayList<DijkstraData>();
+    final ArrayList<DijkstraData> dijkstras = new ArrayList<DijkstraData>();
 
     public void computePaths(Vertex source) {
         for (Vertex v : vertices) {

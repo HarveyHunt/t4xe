@@ -11,13 +11,13 @@ import java.util.List;
 import java.util.Random;
 
 public class Map {
-    private List<Station> stations;
+    private final List<Station> stations;
 
-    private List<Connection> enabledConnections;
-    private List<Connection> disabledConnections;
+    private final List<Connection> enabledConnections;
+    private final List<Connection> disabledConnections;
 
-    private Random random = new Random();
-    private Dijkstra dijkstra;
+    private final Random random = new Random();
+    private final Dijkstra dijkstra;
 
     public Map() {
         stations = new ArrayList<Station>();

@@ -15,16 +15,16 @@ import gameLogic.player.Player;
 import gameLogic.resource.Train;
 
 public class TrainActor extends Image {
-    public static int width = 36;
-    public static int height = 36;
-    public Train train;
+    public static final int width = 36;
+    public static final int height = 36;
+    public final Train train;
 
-    private Rectangle bounds;
+    private final Rectangle bounds;
     public boolean facingLeft;
     private float previousX;
-    private Drawable leftDrawable;
-    private Drawable rightDrawable;
-    private Context context;
+    private final Drawable leftDrawable;
+    private final Drawable rightDrawable;
+    private final Context context;
     private boolean paused;
     private boolean recentlyPaused;
 

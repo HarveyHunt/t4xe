@@ -9,11 +9,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Train extends Resource {
-    private String leftImage;
-    private String rightImage;
+    private final String leftImage;
+    private final String rightImage;
     private IPositionable position;
     private TrainActor actor;
-    private int speed;
+    private final int speed;
     // Final destination should be set to null after firing the arrival event
     private Station finalDestination;
 
@@ -21,7 +21,7 @@ public class Train extends Resource {
     private List<Station> route;
 
     //Station name and turn number
-    private List<Tuple<Station, Integer>> history;
+    private final List<Tuple<Station, Integer>> history;
 
 
     public Train(String name, String leftImage, String rightImage, int speed) {

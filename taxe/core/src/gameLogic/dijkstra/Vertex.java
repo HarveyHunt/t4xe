@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Vertex implements Comparable<Vertex> {
     private final String name;
     //Stores the list of all vertices connected to it and their weights
-    private ArrayList<Edge> adjacencies = new ArrayList<Edge>();
+    private final ArrayList<Edge> adjacencies = new ArrayList<Edge>();
     private double minDistance = Double.POSITIVE_INFINITY;
     private Vertex previous;
 

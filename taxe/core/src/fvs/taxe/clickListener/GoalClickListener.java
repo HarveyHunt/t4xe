@@ -15,8 +15,8 @@ import gameLogic.player.Player;
 
 //Responsible for checking whether the goal is clicked
 public class GoalClickListener extends ClickListener {
-    private Context context;
-    private Goal goal;
+    private final Context context;
+    private final Goal goal;
     private Tooltip tooltip1;
     private Tooltip tooltip2;
     private Tooltip tooltip3;

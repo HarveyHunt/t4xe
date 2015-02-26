@@ -12,13 +12,13 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
 public class MainMenuScreen extends ScreenAdapter {
-    TaxeGame game;
-    OrthographicCamera camera;
-    Rectangle playBounds;
-    Rectangle exitBounds;
-    Vector3 touchPoint;
-    Texture mapTexture;
-    Image mapImage;
+    final TaxeGame game;
+    final OrthographicCamera camera;
+    final Rectangle playBounds;
+    final Rectangle exitBounds;
+    final Vector3 touchPoint;
+    final Texture mapTexture;
+    final Image mapImage;
 
     public MainMenuScreen(TaxeGame game) {
         //This sets all the relevant variables for the menu screen

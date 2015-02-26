@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DialogResourceTrain extends Dialog {
-    private List<ResourceDialogClickListener> clickListeners = new ArrayList<ResourceDialogClickListener>();
+    private final List<ResourceDialogClickListener> clickListeners = new ArrayList<ResourceDialogClickListener>();
 
     public DialogResourceTrain(Train train, Skin skin, boolean trainPlaced) {
         super(train.toString(), skin);

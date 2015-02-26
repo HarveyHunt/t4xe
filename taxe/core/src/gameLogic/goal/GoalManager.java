@@ -13,7 +13,7 @@ import java.util.Random;
 
 public class GoalManager {
     public final static int CONFIG_MAX_PLAYER_GOALS = 3;
-    private ResourceManager resourceManager;
+    private final ResourceManager resourceManager;
 
     public GoalManager(ResourceManager resourceManager) {
         this.resourceManager = resourceManager;

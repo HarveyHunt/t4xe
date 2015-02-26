@@ -8,7 +8,7 @@ import gameLogic.map.IPositionable;
 import gameLogic.map.Station;
 
 public class StationActor extends Image {
-    private Rectangle bounds;
+    private final Rectangle bounds;
     private static Station station;
 
     public StationActor(IPositionable location, Station station) {
