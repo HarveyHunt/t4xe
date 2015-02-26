@@ -40,9 +40,9 @@ public class Station {
         //Allows stations to be compared to each other, to check if they are the same station
         if (o instanceof Station) {
             Station s = (Station) o;
-            return getName().equals(s.getName()) &&
-                    getLocation().getX() == s.getLocation().getX() &&
-                    getLocation().getY() == s.getLocation().getY();
+            return getName().equals(s.getName())
+                    && getLocation().getX() == s.getLocation().getX()
+                    && getLocation().getY() == s.getLocation().getY();
         } else {
             return false;
         }

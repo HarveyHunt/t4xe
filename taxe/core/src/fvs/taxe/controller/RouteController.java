@@ -217,8 +217,8 @@ public class RouteController {
                 // check to see if the connection between to 2 positions is one that has been
                 // visited, and if it has been visited then change the colour of the connection line
                 for (int j = i; j < history.size(); j++) {
-                    if (history.get(j).getLocation().equals(positions.get(i)) &&
-                            history.get(j - 1).getLocation().equals(previousPosition)) {
+                    if (history.get(j).getLocation().equals(positions.get(i))
+                            && history.get(j - 1).getLocation().equals(previousPosition)) {
                         game.shapeRenderer.setColor(Color.RED);
                         b = true;
                         break;

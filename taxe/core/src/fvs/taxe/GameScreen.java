@@ -79,7 +79,8 @@ public class GameScreen extends ScreenAdapter {
             @Override
             public void changed(GameState state) {
                 if ((gameLogic.getPlayerManager().getTurnNumber() == gameLogic.TOTAL_TURNS
-                        || gameLogic.getPlayerManager().getCurrentPlayer().getScore() >= gameLogic.MAX_POINTS) && state == GameState.NORMAL) {
+                        || gameLogic.getPlayerManager().getCurrentPlayer().getScore() >= gameLogic.MAX_POINTS)
+                        && state == GameState.NORMAL) {
                     //If the game should end due to the turn number or points total then the appropriate dialog is displayed
                     DialogEndGame dia = new DialogEndGame(GameScreen.this.game, gameLogic.getPlayerManager(), skin);
                     dia.show(stage);

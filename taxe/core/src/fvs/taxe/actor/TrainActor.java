@@ -50,7 +50,8 @@ public class TrainActor extends Image {
 
     @Override
     public void act(float delta) {
-        if ((Game.getInstance().getState() == GameState.ANIMATING) && (!this.paused)) {
+        if ((Game.getInstance().getState() == GameState.ANIMATING)
+                && (!this.paused)) {
             //This function moves the train actors along their routes.
             //It renders everything every 1/delta seconds
             super.act(delta);
@@ -145,17 +146,21 @@ public class TrainActor extends Image {
                         //don't check if collided with self
                         if (otherTrain.getPosition() != null) {
                             //Checks if the other train has been placed on the map
-                            if (otherTrain.getPosition().getX() == -1 && !otherTrain.getActor().getPaused()) {
+                            if (otherTrain.getPosition().getX() == -1
+                                    && !otherTrain.getActor().getPaused()) {
                                 //if other train moving
                                 //This is because the position of the train when it is in motion (i.e travelling along its route) is (-1,-1) as that is how FVS decided to implement it
                                 //It is necessary to check whether this is true as if the train is not in motion then it does not have an actor, hence otherTrain.getActor() would cause a null point exception.
 
-                                if ((otherTrain.getNextStation() == next && otherTrain.getLastStation() == last)
-                                        || (otherTrain.getNextStation() == last && otherTrain.getLastStation() == next)) {
+                                if ((otherTrain.getNextStation() == next
+                                        && otherTrain.getLastStation() == last)
+                                        || (otherTrain.getNextStation() == last
+                                        && otherTrain.getLastStation() == next)) {
                                     //check if trains on same connection
 
 
-                                    if ((this.bounds.overlaps(otherTrain.getActor().getBounds())) && !((this.recentlyPaused) || (otherTrain.getActor().isRecentlyPaused()))) {
+                                    if ((this.bounds.overlaps(otherTrain.getActor().getBounds()))
+                                            && !((this.recentlyPaused) || (otherTrain.getActor().isRecentlyPaused()))) {
                                         //Checks whether the two trains are recently paused, if either of them are then no collision should occur
                                         //This prevents the issue of two paused trains crashing when they shouldn't
                                         //There is still the potential issue of two blocked trains colliding when they shouldn't, as it is impossible to know which connection a blocked train will occupy. i.e when one train is rerouted but not the other
