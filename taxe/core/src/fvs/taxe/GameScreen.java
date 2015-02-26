@@ -25,7 +25,6 @@ public class GameScreen extends ScreenAdapter {
     private Map map;
     private float timeAnimated = 0;
     public static final int ANIMATION_TIME = 2;
-    private Tooltip tooltip;
     private Context context;
 
     private StationController stationController;
@@ -50,7 +49,7 @@ public class GameScreen extends ScreenAdapter {
         mapTexture = new Texture(Gdx.files.internal("gamemap.png"));
         map = gameLogic.getMap();
 
-        tooltip = new Tooltip(skin);
+        Tooltip tooltip = new Tooltip(skin);
         stage.addActor(tooltip);
 
         //Initialises all of the controllers for the UI

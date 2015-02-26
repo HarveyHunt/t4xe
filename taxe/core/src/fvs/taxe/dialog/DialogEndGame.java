@@ -9,11 +9,10 @@ import gameLogic.player.Player;
 import gameLogic.player.PlayerManager;
 
 public class DialogEndGame extends Dialog {
-    private TaxeGame game;
 
     public DialogEndGame(TaxeGame game, PlayerManager pm, Skin skin) {
         super("GAME OVER", skin);
-        this.game = game;
+        TaxeGame game1 = game;
 
         double highScore = 0;
         int playerNum = 0;

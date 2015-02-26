@@ -6,8 +6,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import gameLogic.map.IPositionable;
 
 public class CollisionStationActor extends Image {
-    private static int width = 16;
-    private static int height = 16;
+    private static final int width = 16;
+    private static final int height = 16;
 
     public CollisionStationActor(IPositionable location) {
         //Places the actor

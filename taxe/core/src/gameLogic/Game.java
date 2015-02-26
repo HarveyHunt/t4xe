@@ -22,9 +22,6 @@ public class Game {
     private GameState state;
     private List<GameStateListener> gameStateListeners = new ArrayList<GameStateListener>();
 
-    //Number of players, not sure how much impact this has on the game at the moment but if you wanted to add more players you would use this attributes
-    private final int CONFIG_PLAYERS = 2;
-
     //This
     public final int TOTAL_TURNS = 30;
     public final int MAX_POINTS = 10000;
@@ -32,6 +29,7 @@ public class Game {
     private Game() {
         //Creates players
         playerManager = new PlayerManager();
+        int CONFIG_PLAYERS = 2;
         playerManager.createPlayers(CONFIG_PLAYERS);
 
         //Give them starting resources and goals

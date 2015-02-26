@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DialogGoal extends Dialog {
-    private List<ResourceDialogClickListener> clickListeners = new ArrayList<ResourceDialogClickListener>();
+    private final List<ResourceDialogClickListener> clickListeners = new ArrayList<ResourceDialogClickListener>();
 
     public DialogGoal(Goal goal, Skin skin) {
         //Generates a dialog allowing the player to select what they want to do with the goal

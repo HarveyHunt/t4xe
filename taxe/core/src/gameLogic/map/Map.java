@@ -18,7 +18,6 @@ public class Map {
 
     private Random random = new Random();
     private Dijkstra dijkstra;
-    private JSONImporter jsonImporter;
 
     public Map() {
         stations = new ArrayList<Station>();
@@ -27,7 +26,7 @@ public class Map {
         disabledConnections = new ArrayList<Connection>();
 
         //Imports all values from the JSON file using the JSONImporter
-        jsonImporter = new JSONImporter(this);
+        JSONImporter jsonImporter = new JSONImporter(this);
 
         //Analyses the graph using Dijkstra's algorithm
         dijkstra = new Dijkstra(this);
