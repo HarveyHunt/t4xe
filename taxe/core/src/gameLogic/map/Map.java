@@ -146,12 +146,26 @@ public class Map {
     }
 
 
-    public Connection addConnection(Station station1, Station station2) {
+    public Connection addConnection(Station station1, Station station2 , ConnectionType t) {
         //Adds a new connection the map
+
+        // Determine which list of connections to use
+        List<Connection> connections;
+
+        if (t == ConnectionType.ENABLED)
+            connections = enabledConnections;
+        else
+            connections = disabledConnections;
+
         //This addConnection adds a connection based on stations
         Connection newConnection = new Connection(station1, station2);
-        enabledConnections.add(newConnection);
+        connections.add(newConnection);
         return newConnection;
+    }
+
+    public Connection addConnection(Station station1, Station station2) {
+        // If no connection type is specified, operate on the enabled list
+        return addConnection(station1, station2, ConnectionType.ENABLED);
     }
 
     //Add Connection by Names
