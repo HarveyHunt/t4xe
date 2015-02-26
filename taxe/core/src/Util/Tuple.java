@@ -28,11 +28,4 @@ public class Tuple<T, U> {
         return al;
     }
 
-    public static <T, U> ArrayList<U> getSecondsFromList(List<Tuple<T, U>> list) {
-        ArrayList<U> al = new ArrayList<U>();
-        for (Tuple<T, U> t : list) {
-            al.add(t.getSecond());
-        }
-        return al;
-    }
 }

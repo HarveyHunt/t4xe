@@ -21,9 +21,7 @@ public class GoalTest extends TestCase {
 
     private final Station intermediary = new Station("station3", new Position(5, 5));
     private final Train train = new Train("RedTrain", "RedTrain.png", "RedTrainRight.png", 250);
-    private final Train train2 = new Train("RedTrain", "RedTrain.png", "RedTrainRight.png", 250);
     private final Goal goal = new Goal(origin, destination, intermediary, 0, 4, 50, 20, train);
-    Goal goal2 = new Goal(origin, destination, intermediary, 0, 4, 50, 20, train2);
 
 
     public void testIsComplete() throws Exception {

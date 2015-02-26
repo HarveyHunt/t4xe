@@ -55,16 +55,6 @@ public class Connection {
             }
 
             @Override
-            public void setX(int x) {
-
-            }
-
-            @Override
-            public void setY(int y) {
-
-            }
-
-            @Override
             public boolean equals(Object o) {
                 return false;
             }

@@ -16,16 +16,8 @@ public class Station {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public IPositionable getLocation() {
         return location;
-    }
-
-    public void setLocation(IPositionable location) {
-        this.location = location;
     }
 
     public void setActor(StationActor actor) {

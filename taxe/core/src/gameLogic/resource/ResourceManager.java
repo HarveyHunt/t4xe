@@ -17,10 +17,6 @@ public class ResourceManager {
         JSONImporter jsonImporter = new JSONImporter(this);
     }
 
-    public ArrayList<Tuple<String, Integer>> getTrains() {
-        return trains;
-    }
-
     public void setTrains(ArrayList<Tuple<String, Integer>> trains) {
         this.trains = trains;
 
