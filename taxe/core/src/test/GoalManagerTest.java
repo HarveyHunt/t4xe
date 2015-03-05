@@ -17,7 +17,7 @@ public class GoalManagerTest extends TestCase {
 
 
     //  playerManager.createPlayers(2);
-    //  Player player1 = playerManager.getCurrentPlayer();
+    //  Player player1 = playerManager.getActivePlayer();
 
     private final Train train = new Train("Green", "", "", 100);
 
@@ -44,7 +44,7 @@ public class GoalManagerTest extends TestCase {
 
     public void testAddRandomGoalToPlayer() throws Exception {
         playerManager.createPlayers(2);
-        Player player1 = playerManager.getCurrentPlayer();
+        Player player1 = playerManager.getActivePlayer();
         assertEquals(0, player1.getGoals().size());
 
         goalManager.addRandomGoalToPlayer(player1);

@@ -35,7 +35,7 @@ public class TrainClicked extends ClickListener {
         if (Game.getInstance().getState() == GameState.NORMAL) {
 
             // current player can't be passed in as it changes so find out current player at this instant
-            Player currentPlayer = Game.getInstance().getPlayerManager().getCurrentPlayer();
+            Player currentPlayer = Game.getInstance().getPlayerManager().getActivePlayer();
 
             //This checks whether or not the train is already in motion and has an actor
             if (train.getActor() != null && x != -1) {
@@ -124,7 +124,7 @@ public class TrainClicked extends ClickListener {
             if (Game.getInstance().getState() == GameState.NORMAL) {
 
                 // current player can't be passed in as it changes so find out current player at this instant
-                Player currentPlayer = Game.getInstance().getPlayerManager().getCurrentPlayer();
+                Player currentPlayer = Game.getInstance().getPlayerManager().getActivePlayer();
 
                 if (!train.isOwnedBy(currentPlayer)) {
                     //If the train isn't owned by the current player then basic information is displayed about it

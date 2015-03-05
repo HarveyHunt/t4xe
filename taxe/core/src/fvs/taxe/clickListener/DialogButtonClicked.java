@@ -293,11 +293,7 @@ public class DialogButtonClicked implements ResourceDialogClickListener {
                 break;
 
             case SKIP_RESOURCE:
-                //If SKIP_RESOURCE is pressed then this finds the other player's playerNumber and sets their skipped boolean to true
-                int p = context.getGameLogic().getPlayerManager().getCurrentPlayer().getPlayerNumber() - 1;
-                p = p == 0 ? 1 : 0;
-
-                context.getGameLogic().getPlayerManager().getAllPlayers().get(p).setSkip(true);
+                context.getGameLogic().getPlayerManager().getInactivePlayer().setSkip(true);
                 currentPlayer.removeResource(skip);
                 break;
 

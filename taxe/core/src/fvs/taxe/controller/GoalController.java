@@ -61,7 +61,7 @@ public class GoalController {
         goalButtons.clear();
 
         PlayerManager pm = context.getGameLogic().getPlayerManager();
-        Player currentPlayer = pm.getCurrentPlayer();
+        Player currentPlayer = pm.getActivePlayer();
 
         float top = (float) TaxeGame.HEIGHT;
         float x = 10.0f;
@@ -104,8 +104,8 @@ public class GoalController {
         //It was necessary to apply a decimal format to the score as it is stored a double which by default is "0.0", however that is not intuitive for scoring as it should only be integer values.
         DecimalFormat integer = new DecimalFormat("0");
         return "Player " +
-                context.getGameLogic().getPlayerManager().getCurrentPlayer().getPlayerNumber() +
+                context.getGameLogic().getPlayerManager().getActivePlayer().getPlayerNumber() +
                 ": " + integer.format(
-                context.getGameLogic().getPlayerManager().getCurrentPlayer().getScore());
+                context.getGameLogic().getPlayerManager().getActivePlayer().getScore());
     }
 }

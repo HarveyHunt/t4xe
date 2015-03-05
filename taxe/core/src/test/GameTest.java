@@ -20,7 +20,7 @@ public class GameTest extends LibGdxTest {
 
     @Test
     public void testInitialisePlayers() {
-        Player currentPlayer = pm.getCurrentPlayer();
+        Player currentPlayer = pm.getActivePlayer();
 
         // fresh players should start with at least 1 goal and resource
         assertTrue(currentPlayer.getResources().size() > 0);
@@ -29,7 +29,7 @@ public class GameTest extends LibGdxTest {
 
     @Test
     public void testPlayerChanged() throws Exception {
-        Player p1 = pm.getCurrentPlayer();
+        Player p1 = pm.getActivePlayer();
         int resourceCount = p1.getResources().size();
         int goalCount = p1.getGoals().size();
 

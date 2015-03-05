@@ -77,7 +77,7 @@ class GameScreen extends ScreenAdapter {
             @Override
             public void changed(GameState state) {
                 if ((gameLogic.getPlayerManager().getTurnNumber() == gameLogic.TOTAL_TURNS
-                        || gameLogic.getPlayerManager().getCurrentPlayer().getScore() >= gameLogic.MAX_POINTS)
+                        || gameLogic.getPlayerManager().getActivePlayer().getScore() >= gameLogic.MAX_POINTS)
                         && state == GameState.NORMAL) {
                     //If the game should end due to the turn number or points total then the appropriate dialog is displayed
                     DialogEndGame dia = new DialogEndGame(GameScreen.this.game, gameLogic.getPlayerManager(), skin);
@@ -162,7 +162,7 @@ class GameScreen extends ScreenAdapter {
         stationController.renderStations();
         topBarController.addEndTurnButton();
         goalController.showCurrentPlayerGoals();
-        resourceController.drawPlayerResources(gameLogic.getPlayerManager().getCurrentPlayer());
+        resourceController.drawPlayerResources(gameLogic.getPlayerManager().getActivePlayer());
     }
 
 

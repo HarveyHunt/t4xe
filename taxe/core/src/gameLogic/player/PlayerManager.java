@@ -23,8 +23,12 @@ public class PlayerManager {
         }
     }
 
-    public Player getCurrentPlayer() {
+    public Player getActivePlayer() {
         return players.get(currentTurn);
+    }
+
+    public Player getInactivePlayer() {
+        return players.get(currentTurn == 1 ? 0 : 1);
     }
 
     public List<Player> getAllPlayers() {
@@ -41,10 +45,10 @@ public class PlayerManager {
         playerChanged();
 
         //Checks whether or not the turn is being skipped, if it is then it informs the player
-        if (this.getCurrentPlayer().getSkip()) {
+        if (this.getActivePlayer().getSkip()) {
             DialogTurnSkipped dia = new DialogTurnSkipped(context.getSkin());
             dia.show(context.getStage());
-            this.getCurrentPlayer().setSkip(false);
+            this.getActivePlayer().setSkip(false);
         }
     }
 

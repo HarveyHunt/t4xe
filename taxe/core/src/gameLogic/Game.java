@@ -45,7 +45,7 @@ public class Game {
         playerManager.subscribeTurnChanged(new TurnListener() {
             @Override
             public void changed() {
-                Player currentPlayer = playerManager.getCurrentPlayer();
+                Player currentPlayer = playerManager.getActivePlayer();
                 goalManager.addRandomGoalToPlayer(currentPlayer);
                 resourceManager.addRandomResourceToPlayer(currentPlayer);
                 resourceManager.addRandomResourceToPlayer(currentPlayer);

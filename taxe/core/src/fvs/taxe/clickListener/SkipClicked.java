@@ -30,7 +30,7 @@ public class SkipClicked extends ClickListener {
         if (Game.getInstance().getState() == GameState.NORMAL) {
 
             // current player can't be passed in as it changes so find out current player at this instant
-            Player currentPlayer = Game.getInstance().getPlayerManager().getCurrentPlayer();
+            Player currentPlayer = Game.getInstance().getPlayerManager().getActivePlayer();
 
             //Creates a dialog when skip is clicked allowing the user to select what they want to do with the resource
             DialogButtonClicked listener = new DialogButtonClicked(context, currentPlayer, skip);

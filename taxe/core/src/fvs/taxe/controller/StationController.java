@@ -163,7 +163,7 @@ public class StationController {
                 int index = 0;
                 //Creates a new hashmap which stores the maximum radius of each station
                 HashMap<String, Integer> map = new HashMap<String, Integer>();
-                for (Goal goal : Game.getInstance().getPlayerManager().getCurrentPlayer()
+                for (Goal goal : Game.getInstance().getPlayerManager().getActivePlayer()
                         .getGoals()) {
                     if (!goal.getComplete()) {
                         if (goal.getOrigin().equals(station)
