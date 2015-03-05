@@ -65,7 +65,9 @@ public class GoalController {
 
         float top = (float) TaxeGame.HEIGHT;
         float x = 10.0f;
-        //This value is set by subtracting the total height of the player header and the goal header, change this if you want to adjust the position of the goals or other elements in the GUI
+        //This value is set by subtracting the total height of the player header
+        // and the goal header, change this if you want to adjust the position
+        // of the goals or other elements in the GUI
         float y = top - 60.0f - TopBarController.CONTROLS_HEIGHT;
 
         int index = 0;

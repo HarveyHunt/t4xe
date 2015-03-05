@@ -32,7 +32,7 @@ public class Map {
         dijkstra = new Dijkstra(this);
     }
 
-    public boolean doesConnectionExist(String stationName, String anotherStationName, ConnectionType t) {
+    private boolean doesConnectionExist(String stationName, String anotherStationName, ConnectionType t) {
         // Determine which list of connections to use
         List<Connection> connections;
 
