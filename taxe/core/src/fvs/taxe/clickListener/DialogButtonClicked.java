@@ -195,7 +195,7 @@ public class DialogButtonClicked implements ResourceDialogClickListener {
                                 obstacle.setStation1(null);
                                 obstacle.setStation2(null);
                             }
-                            context.getTopBarController().displayFlashMessage("", Color.BLACK);
+                            context.getTopBarController().clearMessage();
                             StationController.unsubscribeStationClick(this);
 
                             Gdx.input.setCursorImage(null, 0, 0);
