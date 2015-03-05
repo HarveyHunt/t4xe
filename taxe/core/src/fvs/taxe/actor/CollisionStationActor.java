@@ -10,7 +10,6 @@ public class CollisionStationActor extends Image {
     private static final int height = 16;
 
     public CollisionStationActor(IPositionable location) {
-        //Places the actor
         super(new Texture(Gdx.files.internal("junction_dot.png")));
         setSize(width, height);
         setPosition(location.getX() - width / 2, location.getY() - height / 2);
