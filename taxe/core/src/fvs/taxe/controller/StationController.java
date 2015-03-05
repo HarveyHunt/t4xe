@@ -40,6 +40,9 @@ public class StationController {
     have to use CopyOnWriteArrayList because when we iterate through our listeners and execute
     their handler's method, one case unsubscribes from the event removing itself from this list
     and this list implementation supports removing elements whilst iterating through it
+
+    TODO: Removing elements as we iterate over a collection is stupid - this needs fixing.
+    TODO: One way to fix this is to iterate over things backwards.
     */
     private static final List<StationClickListener> stationClickListeners = new CopyOnWriteArrayList<StationClickListener>();
     private static final Texture[] blockageTextures = new Texture[5];
@@ -50,9 +53,8 @@ public class StationController {
     public StationController(Context context, Tooltip tooltip) {
         this.context = context;
         this.tooltip = tooltip;
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 5; i++)
             blockageTextures[i] = new Texture(Gdx.files.internal("blockage" + (i + 1) + ".png"));
-        }
     }
 
     public static void subscribeStationClick(StationClickListener listener) {
@@ -64,41 +66,35 @@ public class StationController {
     }
 
     private static void stationClicked(Station station) {
-        for (StationClickListener listener : stationClickListeners) {
+        for (StationClickListener listener : stationClickListeners)
             listener.clicked(station);
-        }
     }
 
     private void renderStation(final Station station) {
-        //This method renders the station passed to the method
         final StationActor stationActor = new StationActor(station.getLocation(), station);
 
-        //Creates new click listener for that station
         stationActor.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                //This routine finds all trains located at this station by iterating through every one and checking if the location equals the station location
                 if (Game.getInstance().getState() == GameState.NORMAL) {
                     ArrayList<Train> trains = new ArrayList<Train>();
-                    for (Player player : context.getGameLogic().getPlayerManager()
-                            .getAllPlayers()) {
+                    for (Player player : context.getGameLogic().getPlayerManager().getAllPlayers()) {
                         for (Resource resource : player.getResources()) {
-                            if (resource instanceof Train) {
-                                if (((Train) resource).getPosition() == station.getLocation()) {
-                                    trains.add((Train) resource);
-                                }
+                            if (!(resource instanceof Train)
+                                    || ((Train) resource).getPosition() != station.getLocation())
+                                continue;
+                            trains.add((Train) resource);
                             }
                         }
-                    }
                     if (trains.size() == 1) {
-                        //If there is only one train here it immediately simulates the train click
                         TrainClicked clicker = new TrainClicked(context, trains.get(0));
                         clicker.clicked(null, -1, 0);
-                    } else if (trains.size() > 1) {
-                        //If there is more than one of a particular train then the multitrain dialog is called using the list of trains
-                        DialogStationMultitrain dia = new DialogStationMultitrain(trains,
+                    } else {
+                        //If there is more than one of a particular train then
+                        //the multitrain dialog is called using the list of trains
+                        DialogStationMultitrain dialog = new DialogStationMultitrain(trains,
                                 context.getSkin(), context);
-                        dia.show(context.getStage());
+                        dialog.show(context.getStage());
                     }
                 }
                 stationClicked(station);
@@ -106,29 +102,26 @@ public class StationController {
 
             @Override
             public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
-                //When the mouse enters the station the tooltip is generated and shown for that station
                 tooltip.setPosition(stationActor.getX() + 20, stationActor.getY() + 20);
                 tooltip.show(station.getName());
             }
 
             @Override
             public void exit(InputEvent event, float x, float y, int pointer, Actor toActor) {
-                //When the mouse exits the station the tooltip is hidden
                 tooltip.hide();
             }
         });
 
         station.setActor(stationActor);
-
         context.getStage().addActor(stationActor);
     }
 
     private void renderCollisionStation(final Station collisionStation) {
-        //Carries out the same code but this time as a collision station
         final CollisionStationActor collisionStationActor = new CollisionStationActor(
                 collisionStation.getLocation());
 
-        //No need for a thorough clicked routine in the collision station unlike the standard station as trains cannot be located on a collision station
+        //No need for a thorough clicked routine in the collision station unlike
+        //the standard station as trains cannot be located on a collision station
         collisionStationActor.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -137,19 +130,15 @@ public class StationController {
 
             @Override
             public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
-                //Shows tooltip indicating the station's name
-                tooltip.setPosition(collisionStationActor.getX() + 10,
-                        collisionStationActor.getY() + 10);
+                tooltip.setPosition(collisionStationActor.getX() + 10, collisionStationActor.getY() + 10);
                 tooltip.show("Junction");
             }
 
             @Override
             public void exit(InputEvent event, float x, float y, int pointer, Actor toActor) {
-                //Hides tooltip when the mouse leaves the station
                 tooltip.hide();
             }
         });
-
         context.getStage().addActor(collisionStationActor);
     }
 
