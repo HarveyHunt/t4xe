@@ -20,11 +20,11 @@ public class TrainActor extends Image {
     public final Train train;
 
     private final Rectangle bounds;
-    private boolean facingLeft;
-    private float previousX;
     private final Drawable leftDrawable;
     private final Drawable rightDrawable;
     private final Context context;
+    private boolean facingLeft;
+    private float previousX;
     private boolean paused;
     private boolean recentlyPaused;
 
@@ -113,16 +113,16 @@ public class TrainActor extends Image {
         return bounds;
     }
 
-    public void setPaused(boolean paused) {
-        this.paused = paused;
-    }
-
     public boolean isPaused() {
         return this.paused;
     }
 
     public boolean getPaused() {
         return this.paused;
+    }
+
+    public void setPaused(boolean paused) {
+        this.paused = paused;
     }
 
     boolean isRecentlyPaused() {

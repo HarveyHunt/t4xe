@@ -26,6 +26,10 @@ public class Connection {
         return this.blocked > 0;
     }
 
+    public void setBlocked(int turns) {
+        this.blocked = turns;
+    }
+
     public void decrementBlocked() {
         //This is run every turn to decrement the turns blocked on the connection if it is greater than 0
         if (this.blocked > 0) {
@@ -35,10 +39,6 @@ public class Connection {
 
     public int getTurnsBlocked() {
         return blocked;
-    }
-
-    public void setBlocked(int turns) {
-        this.blocked = turns;
     }
 
     public IPositionable getMidpoint() {

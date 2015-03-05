@@ -35,17 +35,17 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 public class StationController {
     public final static int CONNECTION_LINE_WIDTH = 5;
-
-    private final Context context;
-    private final Tooltip tooltip;
+    public static final Color[] colours = {Color.ORANGE, Color.GREEN, Color.PURPLE};
     /*
     have to use CopyOnWriteArrayList because when we iterate through our listeners and execute
     their handler's method, one case unsubscribes from the event removing itself from this list
     and this list implementation supports removing elements whilst iterating through it
     */
     private static final List<StationClickListener> stationClickListeners = new CopyOnWriteArrayList<StationClickListener>();
-    private final Color translucentBlack = new Color(0, 0, 0, 0.8f);
     private static final Texture[] blockageTextures = new Texture[5];
+    private final Context context;
+    private final Tooltip tooltip;
+    private final Color translucentBlack = new Color(0, 0, 0, 0.8f);
 
     public StationController(Context context, Tooltip tooltip) {
         this.context = context;
@@ -68,7 +68,6 @@ public class StationController {
             listener.clicked(station);
         }
     }
-
 
     private void renderStation(final Station station) {
         //This method renders the station passed to the method
@@ -154,8 +153,6 @@ public class StationController {
         context.getStage().addActor(collisionStationActor);
     }
 
-    public static final Color[] colours = {Color.ORANGE, Color.GREEN, Color.PURPLE};
-
     public void renderStationGoalHighlights() {
         //This method is responsible for rendering the colours around the goal nodes
         List<Station> stations = context.getGameLogic().getMap().getStations();
@@ -202,36 +199,6 @@ public class StationController {
             game.shapeRenderer.circle(sh.getStation().getLocation().getX(),
                     sh.getStation().getLocation().getY(), sh.getRadius());
             game.shapeRenderer.end();
-        }
-    }
-
-    class StationHighlight implements Comparable<StationHighlight> {
-        //This class stores the station, radius and colour of each highlight
-        private final Station station;
-        private final int radius;
-        private final Color colour;
-
-        StationHighlight(Station station, int radius, Color colour) {
-            this.station = station;
-            this.radius = radius;
-            this.colour = colour;
-        }
-
-        @Override
-        public int compareTo(StationHighlight o) {
-            return radius - o.radius;
-        }
-
-        public Color getColour() {
-            return colour;
-        }
-
-        public int getRadius() {
-            return radius;
-        }
-
-        public Station getStation() {
-            return station;
         }
     }
 
@@ -340,5 +307,35 @@ public class StationController {
             }
         }
         return count;
+    }
+
+    class StationHighlight implements Comparable<StationHighlight> {
+        //This class stores the station, radius and colour of each highlight
+        private final Station station;
+        private final int radius;
+        private final Color colour;
+
+        StationHighlight(Station station, int radius, Color colour) {
+            this.station = station;
+            this.radius = radius;
+            this.colour = colour;
+        }
+
+        @Override
+        public int compareTo(StationHighlight o) {
+            return radius - o.radius;
+        }
+
+        public Color getColour() {
+            return colour;
+        }
+
+        public int getRadius() {
+            return radius;
+        }
+
+        public Station getStation() {
+            return station;
+        }
     }
 }

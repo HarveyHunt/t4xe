@@ -11,17 +11,15 @@ import java.util.List;
 public class Train extends Resource {
     private final String leftImage;
     private final String rightImage;
-    private IPositionable position;
-    private TrainActor actor;
     private final int speed;
-    // Final destination should be set to null after firing the arrival event
-    private Station finalDestination;
-
-    // Should NOT contain current position!
-    private List<Station> route;
-
     //Station name and turn number
     private final List<Tuple<Station, Integer>> history;
+    private IPositionable position;
+    private TrainActor actor;
+    // Final destination should be set to null after firing the arrival event
+    private Station finalDestination;
+    // Should NOT contain current position!
+    private List<Station> route;
 
 
     public Train(String name, String leftImage, String rightImage, int speed) {
@@ -49,11 +47,6 @@ public class Train extends Resource {
         return "trains/cursor/" + leftImage;
     }
 
-    public void setPosition(IPositionable position) {
-        this.position = position;
-        changed();
-    }
-
     public boolean routeContains(Station station) {
         //Returns whether or not the route contains the station passed to the method
         return this.route.contains(station);
@@ -63,20 +56,17 @@ public class Train extends Resource {
         return position;
     }
 
-    public void setActor(TrainActor actor) {
-        this.actor = actor;
+    public void setPosition(IPositionable position) {
+        this.position = position;
+        changed();
     }
 
     public TrainActor getActor() {
         return actor;
     }
 
-    public void setRoute(List<Station> route) {
-        // Final destination should be set to null after firing the arrival event
-        if (route != null && route.size() > 0)
-            finalDestination = route.get(route.size() - 1);
-
-        this.route = route;
+    public void setActor(TrainActor actor) {
+        this.actor = actor;
     }
 
     public boolean isMoving() {
@@ -85,6 +75,14 @@ public class Train extends Resource {
 
     public List<Station> getRoute() {
         return route;
+    }
+
+    public void setRoute(List<Station> route) {
+        // Final destination should be set to null after firing the arrival event
+        if (route != null && route.size() > 0)
+            finalDestination = route.get(route.size() - 1);
+
+        this.route = route;
     }
 
     public Station getFinalDestination() {

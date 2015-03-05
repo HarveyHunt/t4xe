@@ -11,10 +11,10 @@ import java.util.List;
 
 public class PlayerManager {
     private final ArrayList<Player> players = new ArrayList<Player>();
-    private int currentTurn = 0;
-    private int turnNumber = 0;
     private final List<TurnListener> turnListeners = new ArrayList<TurnListener>();
     private final List<PlayerChangedListener> playerListeners = new ArrayList<PlayerChangedListener>();
+    private int currentTurn = 0;
+    private int turnNumber = 0;
 
     public void createPlayers(int count) {
         //Initialises all players (set by count)

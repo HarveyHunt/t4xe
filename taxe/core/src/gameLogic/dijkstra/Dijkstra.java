@@ -8,8 +8,39 @@ import java.util.Collections;
 import java.util.PriorityQueue;
 
 public class Dijkstra {
-    private ArrayList<Vertex> vertices;
     private final ArrayList<DijkstraData> dijkstras = new ArrayList<DijkstraData>();
+    private ArrayList<Vertex> vertices;
+
+    public Dijkstra(Map map) {
+        //Convert the current stations to vertices
+        convertToVertices(map);
+
+        //Add the edges to all the vertices
+        for (Station s : map.getStations()) {
+            addEdges(map, s);
+        }
+
+        for (Vertex vSource : vertices) {
+            //This sets every node as a source for the algorithm
+            computePaths(vSource);
+            for (Vertex vDestination : vertices) {
+                //This sets every node as a destination for every source for the algorithm. These two for loops cover all combinations of stations
+                DijkstraData tempDijkstra = new DijkstraData(vSource, vDestination, vDestination.getMinDistance(), getShortestPathTo(vDestination));
+                dijkstras.add(tempDijkstra);
+
+            }
+        }
+    }
+
+    private static ArrayList<Vertex> getShortestPathTo(Vertex target) {
+        //Returns the shortest path from the source node to the target node
+        ArrayList<Vertex> path = new ArrayList<Vertex>();
+        for (Vertex vertex = target; vertex != null; vertex = vertex.getPrevious()) {
+            path.add(vertex);
+        }
+        Collections.reverse(path);
+        return path;
+    }
 
     void computePaths(Vertex source) {
         for (Vertex v : vertices) {
@@ -38,38 +69,6 @@ public class Dijkstra {
                     v.setPrevious(u);
                     vertexQueue.add(v);
                 }
-            }
-        }
-    }
-
-    private static ArrayList<Vertex> getShortestPathTo(Vertex target) {
-        //Returns the shortest path from the source node to the target node
-        ArrayList<Vertex> path = new ArrayList<Vertex>();
-        for (Vertex vertex = target; vertex != null; vertex = vertex.getPrevious()) {
-            path.add(vertex);
-        }
-        Collections.reverse(path);
-        return path;
-    }
-
-
-    public Dijkstra(Map map) {
-        //Convert the current stations to vertices
-        convertToVertices(map);
-
-        //Add the edges to all the vertices
-        for (Station s : map.getStations()) {
-            addEdges(map, s);
-        }
-
-        for (Vertex vSource : vertices) {
-            //This sets every node as a source for the algorithm
-            computePaths(vSource);
-            for (Vertex vDestination : vertices) {
-                //This sets every node as a destination for every source for the algorithm. These two for loops cover all combinations of stations
-                DijkstraData tempDijkstra = new DijkstraData(vSource, vDestination, vDestination.getMinDistance(), getShortestPathTo(vDestination));
-                dijkstras.add(tempDijkstra);
-
             }
         }
     }

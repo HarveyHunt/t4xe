@@ -10,23 +10,15 @@ public class Goal {
     private final Station origin;
     private final Station destination;
     private final int turnIssued;
+    private final int score;
+    private final int bonus;
+    private final Station intermediary;
     private boolean complete = false;
     private boolean goingThrough = false;
     private boolean inTurns = false;
     private int turnsTime;
-    private final int score;
-    private final int bonus;
     private boolean withTrain;
-    private final Station intermediary;
     private Train train = null;
-
-    public int getScore() {
-        return this.score;
-    }
-
-    public int getBonus() {
-        return this.bonus;
-    }
 
     public Goal(Station origin, Station destination, Station intermediary, int turn, int turnsTime, int score, int bonus, Train train) {
         //If a train is passed to the constructor then the appropriate flag is set as well as the train variable.
@@ -59,6 +51,14 @@ public class Goal {
             this.inTurns = true;
             this.turnsTime = turnsTime;
         }
+    }
+
+    public int getScore() {
+        return this.score;
+    }
+
+    public int getBonus() {
+        return this.bonus;
     }
 
     public boolean isComplete(Train train) {

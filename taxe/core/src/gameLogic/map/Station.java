@@ -20,12 +20,12 @@ public class Station {
         return location;
     }
 
-    public void setActor(StationActor actor) {
-        this.actor = actor;
-    }
-
     public StationActor getActor() {
         return actor;
+    }
+
+    public void setActor(StationActor actor) {
+        this.actor = actor;
     }
 
     public boolean equals(Object o) {

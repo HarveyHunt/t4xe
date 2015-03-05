@@ -8,8 +8,8 @@ import gameLogic.map.IPositionable;
 import gameLogic.map.Station;
 
 public class StationActor extends Image {
-    private final Rectangle bounds;
     private static Station station;
+    private final Rectangle bounds;
 
     public StationActor(IPositionable location, Station stat) {
         super(new Texture(Gdx.files.internal("station_dot.png")));

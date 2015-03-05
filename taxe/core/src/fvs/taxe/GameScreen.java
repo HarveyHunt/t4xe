@@ -17,21 +17,20 @@ import gameLogic.map.Map;
 
 
 class GameScreen extends ScreenAdapter {
+    private static final int ANIMATION_TIME = 2;
     final private TaxeGame game;
     private final Stage stage;
     private final Texture mapTexture;
     private final Game gameLogic;
     private final Skin skin;
     private final Map map;
-    private float timeAnimated = 0;
-    private static final int ANIMATION_TIME = 2;
     private final Context context;
-
     private final StationController stationController;
     private final TopBarController topBarController;
     private final ResourceController resourceController;
     private final GoalController goalController;
     private final RouteController routeController;
+    private float timeAnimated = 0;
 
     public GameScreen(TaxeGame game) {
         this.game = game;
