@@ -388,28 +388,13 @@ public class DialogButtonClicked implements ResourceDialogClickListener {
                         } else {
                             //If the station is the second one clicked then it sets it to station2
                             engineer.setStation2(station);
-
-                            //Checks whether a connection exists between the two selected stations
-                            if (context.getGameLogic().getMap().doesConnectionExist(engineer.getStation1().getName(), engineer.getStation2().getName())) {
-                                //If a connection exists then it checks whether the connection is blocked
-                                if (context.getGameLogic().getMap().getConnection(engineer.getStation1(), engineer.getStation2()) != null) {
-                                    //If the connection is blocked then it removes the blockage
-                                    //engineer.use(context.getGameLogic().getMap().getConnection(engineer.getStation1(), engineer.getStation2()));
-
-                                    context.getGameLogic().getMap().disableConnection(context.getGameLogic().getMap().getConnection(engineer.getStation1(), engineer.getStation2()));
-                                    currentPlayer.removeResource(engineer);
-                                } else {
-                                    //If the connection is not blocked then placement is cancelled and the user is informed
-                                    Dialog dia = new Dialog("Invalid Selection", context.getSkin());
-                                    dia.text("You have selected two stations which are not connected." +
-                                            "\nPlease use the engineer again.").align(Align.center);
-                                    dia.button("OK", "OK");
-                                    dia.show(context.getStage());
-                                    engineer.setStation1(null);
-                                    engineer.setStation2(null);
-                                }
+                            Connection connection = context.getGameLogic().getMap().getConnection(engineer.getStation1(),
+                                    engineer.getStation2());
+                            if (connection != null) {
+                                context.getGameLogic().getMap().disableConnection(connection);
+                                currentPlayer.removeResource(engineer);
                             } else {
-                                //If the connection does not exist then placement is cancelled and the user is informed of this
+                                //If the connection is not blocked then placement is cancelled and the user is informed
                                 Dialog dia = new Dialog("Invalid Selection", context.getSkin());
                                 dia.text("You have selected two stations which are not connected." +
                                         "\nPlease use the engineer again.").align(Align.center);
@@ -418,7 +403,6 @@ public class DialogButtonClicked implements ResourceDialogClickListener {
                                 engineer.setStation1(null);
                                 engineer.setStation2(null);
                             }
-                            //This resets all relevant values and unsubscribes from the listeners created for placing engineers
                             context.getTopBarController().clearMessage();
                             StationController.unsubscribeStationClick(this);
                             Gdx.input.setCursorImage(null, 0, 0);
@@ -432,7 +416,6 @@ public class DialogButtonClicked implements ResourceDialogClickListener {
                 StationController.subscribeStationClick(stationListener);
                 final InputListener keyListener = escPressedHandler(stationListener);
                 this.context.getStage().addListener(keyListener);
-
                 break;
             }
         }
@@ -443,21 +426,14 @@ public class DialogButtonClicked implements ResourceDialogClickListener {
             @Override
             public boolean keyDown(InputEvent event, int keycode) {
                 if (keycode == Input.Keys.ESCAPE) {
-                    //Makes all trains visible
                     TrainController trainController = new TrainController(context);
                     trainController.setTrainsVisible(null, true);
 
-                    //Resets cursor
                     Gdx.input.setCursorImage(null, 0, 0);
 
-                    //Unsubscribes from the StationClickListener as this would cause a lot of errors and unexpected behaviour is not called from the correct context
                     StationController.unsubscribeStationClick(stationListener);
                     Game.getInstance().setState(GameState.NORMAL);
-
-                    //Resets the topBar
                     context.getTopBarController().clearMessage();
-
-                    //Removes itself from the keylisteners of the game as otherwise there would be a lot of null pointer exceptions and unintended behaviour
                     context.getStage().removeListener(this);
                 }
                 return true;
