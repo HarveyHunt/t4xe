@@ -28,7 +28,6 @@ public class ResourceController {
     }
 
     public void drawHeaderText() {
-        //This draws the header text for the resources, alter this method if you want to change what is displayed
         TaxeGame game = context.getTaxeGame();
 
         game.batch.begin();
@@ -38,25 +37,22 @@ public class ResourceController {
     }
 
     public void drawPlayerResources(Player player) {
-        //This method draws the buttons representing the player's resources, alter this method if you want to change how resources are represented.
         float top = (float) TaxeGame.HEIGHT;
         float x = 10.0f;
-        //The value of y is set based on how much space the header texts and goals have taken up (assumed that 3 goals are always present for a consistent interface)
+        //The value of y is set based on how much space the header texts and
+        //goals have taken up (assumed that 3 goals are always present for a
+        //consistent interface)
         float y = top - 250.0f;
         y -= 50;
-
-        //Clears the resource buttons so that the other player's resources are not displayed
         resourceButtons.remove();
         resourceButtons.clear();
 
         for (final Resource resource : player.getResources()) {
-            //This if statement is used to determine what type of resource is being drawn. This is necessary as each resource needs to have a different click listener assigned to its button.
             if (resource instanceof Train) {
                 Train train = (Train) resource;
-
                 // Don't show a button for trains that have been placed, trains placed are still part of the 7 total upgrades
                 //If a train is not placed then its position is null so this is used to check
-                if (train.getPosition() == null) {
+                if (!train.isPlaced()) {
                     //Creates a clickListener for the button and adds it to the list of buttons
                     TrainClicked listener = new TrainClicked(context, train);
                     TextButton button = new TextButton(resource.toString(), context.getSkin());

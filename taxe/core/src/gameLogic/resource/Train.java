@@ -140,8 +140,12 @@ public class Train extends Resource {
 
     public boolean isCollidable() {
         // Have we met the criteria for a collision (placed on map, moving and not paused).
-        return this.getPosition() != null
+        return this.isPlaced()
                 && this.getPosition().getX() == -1
                 && !this.getActor().getPaused();
+    }
+
+    public boolean isPlaced() {
+        return getPosition() != null;
     }
 }
