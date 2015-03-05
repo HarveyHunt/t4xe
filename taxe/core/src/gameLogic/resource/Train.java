@@ -132,17 +132,17 @@ public class Train extends Resource {
     }
 
     public boolean isOnCollisionCourse(Station next, Station last) {
-        return (this.getNextStation() == next
-                && this.getLastStation() == last)
-                || (this.getNextStation() == last
-                && this.getLastStation() == next);
+        return (getNextStation() == next
+                && getLastStation() == last)
+                || (getNextStation() == last
+                && getLastStation() == next);
     }
 
     public boolean isCollidable() {
         // Have we met the criteria for a collision (placed on map, moving and not paused).
-        return this.isPlaced()
-                && this.isMoving()
-                && !this.getActor().getPaused();
+        return isPlaced()
+                && isMoving()
+                && !getActor().getPaused();
     }
 
     public boolean isPlaced() {
