@@ -26,13 +26,9 @@ public class SkipClicked extends ClickListener {
 
 
     public void clicked(InputEvent event, float x, float y) {
-        //When skip is clicked it checks whether the game is in the normal state
         if (Game.getInstance().getState() == GameState.NORMAL) {
-
-            // current player can't be passed in as it changes so find out current player at this instant
             Player currentPlayer = Game.getInstance().getPlayerManager().getActivePlayer();
 
-            //Creates a dialog when skip is clicked allowing the user to select what they want to do with the resource
             DialogButtonClicked listener = new DialogButtonClicked(context, currentPlayer, skip);
             DialogResourceSkipped dia = new DialogResourceSkipped(context);
             dia.show(context.getStage());
@@ -42,15 +38,10 @@ public class SkipClicked extends ClickListener {
 
     @Override
     public void enter(InputEvent event, float x, float y, int pointer, Actor trainActor) {
-        //This is used for mouseover events for Skips
-        //This shows the message if there is not one currently being displayed
         if (!displayingMessage) {
             displayingMessage = true;
-            if (Game.getInstance().getState() == GameState.NORMAL) {
+            if (Game.getInstance().getState() == GameState.NORMAL)
                 context.getTopBarController().displayMessage("Force your opponent to skip a turn.", Color.BLACK);
-
-
-            }
         }
     }
 
@@ -60,10 +51,8 @@ public class SkipClicked extends ClickListener {
         //This hides the message currently in the topBar if one is being displayed
         if (displayingMessage) {
             displayingMessage = false;
-            if (Game.getInstance().getState() == GameState.NORMAL) {
-                //If the game state is normal then the topBar is cleared by passing it an empty string to display for 0 seconds
+            if (Game.getInstance().getState() == GameState.NORMAL)
                 context.getTopBarController().clearMessage();
-            }
         }
     }
 }
