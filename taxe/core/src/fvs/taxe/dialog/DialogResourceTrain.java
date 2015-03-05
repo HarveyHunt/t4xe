@@ -22,7 +22,7 @@ public class DialogResourceTrain extends Dialog {
             //If the train is not placed, generate button allowing placement
             button("Place at a station", "PLACE");
 
-        } else if (!train.isMoving()) {
+        } else if (!train.isDeparted()) {
             //If the train is not moving then generate button to specify a route
             button("Choose a route", "ROUTE");
 

@@ -104,10 +104,7 @@ class TrainMoveController {
         SequenceAction actions = Actions.sequence();
         IPositionable current = train.getPosition();
 
-        //If the train is moving then the position is (-1,-1), this led to very high durations for small distances in edited routes
-        //Instead this is checked and if the train is found to be moving then instead the location of the trainActor is used.
-        //It is not possible to always use the train actor as if a train is not moving then trainActor is null.
-        if (train.getPosition().getX() == -1) {
+        if (train.isMoving()) {
             current = new Position((int) train.getActor().getBounds().getX(), (int) train.getActor().getBounds().getY());
         }
         actions.addAction(beforeAction());

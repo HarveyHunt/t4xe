@@ -37,7 +37,7 @@ public class TrainClicked extends ClickListener {
         Player currentPlayer = Game.getInstance().getPlayerManager().getActivePlayer();
 
         //This checks whether or not the train is already in motion and has an actor
-        if (train.getActor() != null && x != -1) {
+        if (train.getActor() != null && !train.isMoving()) {
             if (train.getActor().getPaused()) {
                 //This generates a list of trains located on the same spot as the clicked train
                 //This was necessary as when trains are blocked at a station they stack on top of the station and only the uppermost train is clickable

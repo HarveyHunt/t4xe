@@ -69,7 +69,7 @@ public class Train extends Resource {
         this.actor = actor;
     }
 
-    public boolean isMoving() {
+    public boolean isDeparted() {
         return finalDestination != null;
     }
 
@@ -141,11 +141,16 @@ public class Train extends Resource {
     public boolean isCollidable() {
         // Have we met the criteria for a collision (placed on map, moving and not paused).
         return this.isPlaced()
-                && this.getPosition().getX() == -1
+                && this.isMoving()
                 && !this.getActor().getPaused();
     }
 
     public boolean isPlaced() {
         return getPosition() != null;
     }
+
+    public boolean isMoving() {
+        return getPosition().getX() == -1;
+    }
+
 }

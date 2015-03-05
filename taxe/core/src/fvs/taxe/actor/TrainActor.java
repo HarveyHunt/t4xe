@@ -126,8 +126,7 @@ public class TrainActor extends Image {
 
         if (paused)
             return null;
-        // If the train's location is -1, -1 then it is moving. Whoever designed this is an architectural genius...
-        if (train.getPosition().getX() == -1) {
+        if (train.isMoving()) {
             for (Player player : Game.getInstance().getPlayerManager().getAllPlayers()) {
                 // I wish java had filter...
                 for (Train otherTrain : player.getTrains()) {

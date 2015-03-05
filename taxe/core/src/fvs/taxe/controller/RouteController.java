@@ -55,9 +55,7 @@ public class RouteController {
         positions = new ArrayList<IPositionable>();
 
         //When a train has been placed at a station its position is equal to that of the station that it is located.
-        //When a train already has a route and is moving, the position of train is (-1,-1).
-        //This is checked here as we do not wish to route the train from its position to (-1,-1), hence this is only done when the train is at a station
-        if (train.getPosition().getX() != -1) {
+        if (!train.isMoving()) {
             positions.add(train.getPosition());
         } else {
             editingRoute = true;
@@ -194,9 +192,7 @@ public class RouteController {
         TrainController trainController = new TrainController(context);
         trainController.setTrainsVisible(train, true);
 
-        //Again using the principle that (-1,-1) is a moving train, this sets the train being routed to invisible if not already on a route, but makes it visible if it already had a route previously
-        //This was necessary to add as without it, when editing a route and then cancelling, the train would become invisible for the duration of its original journey
-        if (train.getPosition().getX() != -1) {
+        if (!train.isMoving()) {
             train.getActor().setVisible(false);
         }
     }
