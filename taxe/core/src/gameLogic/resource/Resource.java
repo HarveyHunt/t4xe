@@ -7,10 +7,6 @@ public abstract class Resource implements Disposable {
     String name;
     private Player player;
 
-    public void setPlayer(Player player) {
-        this.player = player;
-    }
-
     public boolean isOwnedBy(Player player) {
         //Returns whether a given resource is owned by the player passed to the method
         return player == this.player;
@@ -27,5 +23,9 @@ public abstract class Resource implements Disposable {
 
     public Player getPlayer() {
         return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
     }
 }

@@ -15,16 +15,15 @@ public class Game {
     //This is sort of a super-class that can be accessed throughout the system as many of its methods are static
     //This is a useful tool to exploit to make implementing certain features easier
     private static Game instance;
+    //This
+    public final int TOTAL_TURNS = 30;
+    public final int MAX_POINTS = 10000;
     private final PlayerManager playerManager;
     private final GoalManager goalManager;
     private final ResourceManager resourceManager;
     private final Map map;
-    private GameState state;
     private final List<GameStateListener> gameStateListeners = new ArrayList<GameStateListener>();
-
-    //This
-    public final int TOTAL_TURNS = 30;
-    public final int MAX_POINTS = 10000;
+    private GameState state;
 
     private Game() {
         //Creates players
@@ -46,7 +45,7 @@ public class Game {
         playerManager.subscribeTurnChanged(new TurnListener() {
             @Override
             public void changed() {
-                Player currentPlayer = playerManager.getCurrentPlayer();
+                Player currentPlayer = playerManager.getActivePlayer();
                 goalManager.addRandomGoalToPlayer(currentPlayer);
                 resourceManager.addRandomResourceToPlayer(currentPlayer);
                 resourceManager.addRandomResourceToPlayer(currentPlayer);

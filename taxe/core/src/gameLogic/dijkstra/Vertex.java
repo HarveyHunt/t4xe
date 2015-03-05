@@ -35,12 +35,12 @@ public class Vertex implements Comparable<Vertex> {
         return this.name;
     }
 
-    public void setPrevious(Vertex previous) {
-        this.previous = previous;
-    }
-
     public Vertex getPrevious() {
         return previous;
+    }
+
+    public void setPrevious(Vertex previous) {
+        this.previous = previous;
     }
 
     public double getMinDistance() {

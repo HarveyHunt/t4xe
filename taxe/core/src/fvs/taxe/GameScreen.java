@@ -17,21 +17,20 @@ import gameLogic.map.Map;
 
 
 class GameScreen extends ScreenAdapter {
+    private static final int ANIMATION_TIME = 2;
     final private TaxeGame game;
     private final Stage stage;
     private final Texture mapTexture;
     private final Game gameLogic;
     private final Skin skin;
     private final Map map;
-    private float timeAnimated = 0;
-    private static final int ANIMATION_TIME = 2;
     private final Context context;
-
     private final StationController stationController;
     private final TopBarController topBarController;
     private final ResourceController resourceController;
     private final GoalController goalController;
     private final RouteController routeController;
+    private float timeAnimated = 0;
 
     public GameScreen(TaxeGame game) {
         this.game = game;
@@ -78,7 +77,7 @@ class GameScreen extends ScreenAdapter {
             @Override
             public void changed(GameState state) {
                 if ((gameLogic.getPlayerManager().getTurnNumber() == gameLogic.TOTAL_TURNS
-                        || gameLogic.getPlayerManager().getCurrentPlayer().getScore() >= gameLogic.MAX_POINTS)
+                        || gameLogic.getPlayerManager().getActivePlayer().getScore() >= gameLogic.MAX_POINTS)
                         && state == GameState.NORMAL) {
                     //If the game should end due to the turn number or points total then the appropriate dialog is displayed
                     DialogEndGame dia = new DialogEndGame(GameScreen.this.game, gameLogic.getPlayerManager(), skin);
@@ -163,7 +162,7 @@ class GameScreen extends ScreenAdapter {
         stationController.renderStations();
         topBarController.addEndTurnButton();
         goalController.showCurrentPlayerGoals();
-        resourceController.drawPlayerResources(gameLogic.getPlayerManager().getCurrentPlayer());
+        resourceController.drawPlayerResources(gameLogic.getPlayerManager().getActivePlayer());
     }
 
 

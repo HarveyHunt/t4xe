@@ -25,12 +25,12 @@ public class Player {
         score = 0;
     }
 
-    public void setSkip(boolean skip) {
-        this.skip = skip;
-    }
-
     public boolean getSkip() {
         return skip;
+    }
+
+    public void setSkip(boolean skip) {
+        this.skip = skip;
     }
 
     public List<Resource> getResources() {

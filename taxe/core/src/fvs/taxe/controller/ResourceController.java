@@ -22,7 +22,7 @@ public class ResourceController {
         context.getGameLogic().getPlayerManager().subscribePlayerChanged(new PlayerChangedListener() {
             @Override
             public void changed() {
-                drawPlayerResources(context.getGameLogic().getPlayerManager().getCurrentPlayer());
+                drawPlayerResources(context.getGameLogic().getPlayerManager().getActivePlayer());
             }
         });
     }
