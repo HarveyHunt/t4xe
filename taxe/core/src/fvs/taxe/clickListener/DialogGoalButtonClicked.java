@@ -18,8 +18,7 @@ public class DialogGoalButtonClicked implements ResourceDialogClickListener {
         switch (button) {
             case GOAL_DROP:
                 currentPlayer.removeGoal(goal);
-                //simulate mouse exiting goal button to remove tooltips
-
+                // TODO: simulate mouse exiting goal button to remove tooltips
                 break;
         }
     }
