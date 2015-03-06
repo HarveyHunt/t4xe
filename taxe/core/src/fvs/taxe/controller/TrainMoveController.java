@@ -24,8 +24,6 @@ class TrainMoveController {
     public TrainMoveController(Context context, Train train) {
         this.context = context;
         this.train = train;
-
-        //This adds the movement for the train
         addMoveActions();
     }
 
@@ -35,48 +33,40 @@ class TrainMoveController {
             public void run() {
                 train.getActor().setVisible(true);
 
-                //This is where the (-1,-1) principle comes from as it is set to (-1,-1) before every action.
-                //I don't understand exactly why this is, but it is how it was initially implemented and we did not understand enough to change it
-                //Instead we now exploit this fact to determine whether a train is already in motion
-                //A+ programming FVS!
+                // If a train's location is (-1, -1) it's moving....
                 train.setPosition(new Position(-1, -1));
             }
         };
     }
 
-    // this action will run every time the train reaches a station within a route
     private RunnableAction perStationAction(final Station station) {
         return new RunnableAction() {
             public void run() {
-                if (!train.getRoute().get(0).equals(station)) {
+                if (!train.getRoute().get(0).equals(station))
                     train.getActor().setRecentlyPaused(false);
-                }
 
                 train.addHistory(station, context.getGameLogic().getPlayerManager().getTurnNumber());
-
                 int stationIndex = train.getRoute().indexOf(station); //find this station in route
                 int nextIndex = stationIndex + 1;
 
-                //This checks whether or not the train is at its final destination by checking whether the index is still less than the list size
+                //This checks whether or not the train is at its final
+                //destination by checking whether the index is still less than the list size
                 if (nextIndex < train.getRoute().size()) {
-                    Station nextStation = train.getRoute().get(nextIndex);
-
                     //Checks whether the next connection is blocked, if so the train is paused, if not the train is unpaused.
-                    if (Game.getInstance().getMap().isConnectionBlocked(station, nextStation)) {
+                    if (Game.getInstance().getMap().isConnectionBlocked(station,
+                            train.getRoute().get(nextIndex))) {
                         train.getActor().setPaused(true);
                         train.getActor().setRecentlyPaused(false);
-                    } else {
-                        if (train.getActor().isPaused()) {
-                            train.getActor().setPaused(false);
-                            train.getActor().setRecentlyPaused(true);
-                        }
+                    } else if (train.getActor().isPaused()) {
+                        train.getActor().setPaused(false);
+                        train.getActor().setRecentlyPaused(true);
                     }
                 } else {
-                    //If the train is at its final destination then the train is set to unpaused so that it does not cause issues elsewhere in the program.
+                    //If the train is at its final destination then the train
+                    //is set to unpaused so that it does not cause issues
+                    //elsewhere in the program.
                     train.getActor().setPaused(false);
                 }
-
-
             }
         };
     }
@@ -87,11 +77,11 @@ class TrainMoveController {
             public void run() {
                 //This informs the user that their train has completed a goal, if it has
                 ArrayList<String> completedGoals = context.getGameLogic().getGoalManager().trainArrived(train, train.getPlayer());
-                for (String message : completedGoals) {
+                for (String message : completedGoals)
                     context.getTopBarController().displayFlashMessage(message, Color.WHITE, 2);
-                }
 
-                //Sets the train's position to be equal to its final destination's position so that it is appropriately hidden and linked to the station
+                //Sets the train's position to be equal to its final destination's
+                //position so that it is appropriately hidden and linked to the station
                 train.setPosition(train.getFinalDestination().getLocation());
                 train.getActor().setVisible(false);
                 train.setFinalDestination(null);
@@ -99,14 +89,12 @@ class TrainMoveController {
         };
     }
 
-    //Adds the relevant movement actions to the train's actor
     void addMoveActions() {
         SequenceAction actions = Actions.sequence();
         IPositionable current = train.getPosition();
 
-        if (train.isMoving()) {
+        if (train.isMoving())
             current = new Position((int) train.getActor().getBounds().getX(), (int) train.getActor().getBounds().getY());
-        }
         actions.addAction(beforeAction());
 
         for (final Station station : train.getRoute()) {
@@ -119,13 +107,8 @@ class TrainMoveController {
             actions.addAction(perStationAction(station));
             current = next;
         }
-
         actions.addAction(afterAction());
-
-        //Remove all previous actions from the actor so that it does not travel along its original path before the new path
         train.getActor().clearActions();
-
-        //Adds the new actions to the actor
         train.getActor().addAction(actions);
     }
 
@@ -133,6 +116,4 @@ class TrainMoveController {
         //This method returns the absolute distance from point A to point B in pixels
         return Vector2.dst(a.getX(), a.getY(), b.getX(), b.getY());
     }
-
-    //We removed collisions from here as it was more appropriate for how we wanted collisions to work to test it every time the trains were rendered
 }

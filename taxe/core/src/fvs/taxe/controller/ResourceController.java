@@ -13,8 +13,6 @@ import gameLogic.listeners.PlayerChangedListener;
 import gameLogic.player.Player;
 import gameLogic.resource.*;
 
-import javax.xml.soap.Text;
-
 public class ResourceController {
     private final Context context;
     private final Group resourceButtons = new Group();
