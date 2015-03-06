@@ -17,7 +17,6 @@ public class DialogResourceSkipped extends Dialog {
         super("Skip", context.getSkin());
 
         text("What do you want to do with this resource?");
-        //Generates all the buttons required to allow the user to interact with the dialog
         button("Use", "USE");
         button("Drop", "DROP");
         button("Cancel", "CLOSE");
@@ -25,41 +24,33 @@ public class DialogResourceSkipped extends Dialog {
 
     @Override
     public Dialog show(Stage stage) {
-        //Shows the dialog
         show(stage, null);
-        setPosition(Math.round((stage.getWidth() - getWidth()) / 2), Math.round((stage.getHeight() - getHeight()) / 2));
+        setPosition(Math.round((stage.getWidth() - getWidth()) / 2),
+                Math.round((stage.getHeight() - getHeight()) / 2));
         return this;
     }
 
     @Override
     public void hide() {
-        //Hides the dialog
         hide(null);
     }
 
     public void subscribeClick(ResourceDialogClickListener listener) {
-        //Adds listeners to the result of the dialog
         clickListeners.add(listener);
     }
 
     private void clicked(Button button) {
-        //Informs all listeners what the result of the dialog is
-        for (ResourceDialogClickListener listener : clickListeners) {
+        for (ResourceDialogClickListener listener : clickListeners)
             listener.clicked(button);
-        }
     }
-
 
     @Override
     protected void result(Object obj) {
-        //Calls the clicked routine and passes it the button that the user clicked
-        if (obj == "EXIT") {
+        if (obj == "EXIT")
             Gdx.app.exit();
-        } else if (obj == "DROP") {
+        else if (obj == "DROP")
             clicked(Button.SKIP_DROP);
-        } else if (obj == "USE") {
+        else if (obj == "USE")
             clicked(Button.SKIP_RESOURCE);
-        }
     }
-
 }
