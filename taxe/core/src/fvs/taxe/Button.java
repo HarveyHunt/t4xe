@@ -1,6 +1,5 @@
 package fvs.taxe;
 
-//Enum used to indicate what kind of button has been pressed
 public enum Button {
     TRAIN_DROP,
     TRAIN_PLACE,
