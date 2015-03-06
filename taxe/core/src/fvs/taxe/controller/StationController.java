@@ -84,8 +84,8 @@ public class StationController {
                                     || ((Train) resource).getPosition() != station.getLocation())
                                 continue;
                             trains.add((Train) resource);
-                            }
                         }
+                    }
                     if (trains.size() == 1) {
                         TrainClicked clicker = new TrainClicked(context, trains.get(0));
                         clicker.clicked(null, -1, 0);
@@ -147,47 +147,41 @@ public class StationController {
         List<Station> stations = context.getGameLogic().getMap().getStations();
         ArrayList<StationHighlight> list = new ArrayList<StationHighlight>();
         for (Station station : stations) {
-            if (Game.getInstance().getState() == GameState.PLACING_TRAIN
-                    || Game.getInstance().getState() == GameState.ROUTING) {
-                int index = 0;
-                //Creates a new hashmap which stores the maximum radius of each station
-                HashMap<String, Integer> map = new HashMap<String, Integer>();
-                for (Goal goal : Game.getInstance().getPlayerManager().getActivePlayer()
-                        .getGoals()) {
-                    if (!goal.getComplete()) {
-                        if (goal.getOrigin().equals(station)
-                                || goal.getDestination().equals(station)
-                                || goal.getIntermediary().equals(station)) {
-                            //If the station matches a node in the goal then the radius is calculated
-                            int radius;
-                            if (map.containsKey(station.getName())) {
-                                //If the station already has a value in the hashmap then the value for this coloured circle is set to that value + 5
-                                radius = map.get(station.getName()) + 5;
-                            } else {
-                                //Otherwise the radius is set to 15
-                                radius = 15;
-                            }
-                            //The value of the radius in the hashmap is updated
-                            map.put(station.getName(), radius);
+            if (Game.getInstance().getState() != GameState.PLACING_TRAIN
+                    || Game.getInstance().getState() != GameState.ROUTING)
+                continue;
 
-                            //The StationHighlight is added to the list to be drawn later
-                            list.add(new StationHighlight(station, radius, colours[index]));
-                        }
-                        index++;
+            int index = 0;
+            HashMap<String, Integer> map = new HashMap<String, Integer>();
+
+            for (Goal goal : Game.getInstance().getPlayerManager().getActivePlayer().getGoals()) {
+                if (!goal.getComplete()) {
+                    if (goal.getOrigin().equals(station)
+                            || goal.getDestination().equals(station)
+                            || goal.getIntermediary().equals(station)) {
+                        int radius;
+                        if (map.containsKey(station.getName()))
+                            radius = map.get(station.getName()) + 5;
+                        else
+                            radius = 15;
+                        map.put(station.getName(), radius);
+                        //The StationHighlight is added to the list to be drawn later
+                        list.add(new StationHighlight(station, radius, colours[index]));
                     }
+                    index++;
                 }
             }
         }
         Collections.sort(list);
         Collections.reverse(list);
-        TaxeGame game = context.getTaxeGame();
+
         for (StationHighlight sh : list) {
             //Iterates through the list of StationHighlights and draws circles based on the values stored in the data structure
-            game.shapeRenderer.begin(ShapeType.Filled);
-            game.shapeRenderer.setColor(sh.getColour());
-            game.shapeRenderer.circle(sh.getStation().getLocation().getX(),
+            context.getTaxeGame().shapeRenderer.begin(ShapeType.Filled);
+            context.getTaxeGame().shapeRenderer.setColor(sh.getColour());
+            context.getTaxeGame().shapeRenderer.circle(sh.getStation().getLocation().getX(),
                     sh.getStation().getLocation().getY(), sh.getRadius());
-            game.shapeRenderer.end();
+            context.getTaxeGame().shapeRenderer.end();
         }
     }
 
@@ -197,17 +191,15 @@ public class StationController {
 
         //Iterates through every station and renders them on the GUI
         for (Station station : stations) {
-            if (station instanceof CollisionStation) {
+            if (station instanceof CollisionStation)
                 renderCollisionStation(station);
-            } else {
+            else
                 renderStation(station);
-            }
         }
         renderStationGoalHighlights();
     }
 
     public void renderConnections(List<Connection> connections, Color color) {
-        //Renders all of the connections between each station
         TaxeGame game = context.getTaxeGame();
 
         game.shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
@@ -245,7 +237,6 @@ public class StationController {
         game.shapeRenderer.end();
         Gdx.gl.glDisable(GL20.GL_BLEND);
 
-
         // if the game is in routing mode, then the length of the connection is displayed
         for (Connection connection : connections) {
             if (Game.getInstance().getState() == GameState.ROUTING) {
@@ -264,7 +255,6 @@ public class StationController {
     }
 
     public void displayNumberOfTrainsAtStations() {
-        //This renders the number next to each station of how many trains are located there
         TaxeGame game = context.getTaxeGame();
         game.batch.begin();
         game.fontSmall.setColor(Color.BLACK);
@@ -277,20 +267,20 @@ public class StationController {
                         (float) station.getLocation().getY() + 26);
             }
         }
-
         game.batch.end();
     }
 
     private int trainsAtStation(Station station) {
         int count = 0;
-//This method iterates through every train and checks whether or not the location of the train matches the location of the station. Returns the number of trains at that station
+        //This method iterates through every train and checks whether or not the
+        //location of the train matches the location of the station. Returns the
+        //number of trains at that station
         for (Player player : context.getGameLogic().getPlayerManager().getAllPlayers()) {
             for (Resource resource : player.getResources()) {
                 if (resource instanceof Train) {
-                    if (((Train) resource).getActor() != null) {
-                        if (((Train) resource).getPosition().equals(station.getLocation())) {
-                            count++;
-                        }
+                    if (((Train) resource).getActor() != null
+                            && ((Train) resource).getPosition().equals(station.getLocation())) {
+                        count++;
                     }
                 }
             }
