@@ -29,12 +29,10 @@ public class DialogEndGame extends Dialog {
 
         //Declares the winner based on who received the highest score
         //If adding multiple players then this would need to be changed to reflect that
-        if (playerNum != 0) {
+        if (playerNum != 0)
             text("PLAYER " + playerNum + " WINS!");
-        } else {
-            //If no player has the high score then a tie is declared
+        else
             text("IT'S A TIE!");
-        }
 
         button("Exit", "EXIT");
     }
@@ -42,7 +40,8 @@ public class DialogEndGame extends Dialog {
     @Override
     public Dialog show(Stage stage) {
         show(stage, null);
-        setPosition(Math.round((stage.getWidth() - getWidth()) / 2), Math.round((stage.getHeight() - getHeight()) / 2));
+        setPosition(Math.round((stage.getWidth() - getWidth()) / 2),
+                Math.round((stage.getHeight() - getHeight()) / 2));
         return this;
     }
 
@@ -53,9 +52,7 @@ public class DialogEndGame extends Dialog {
 
     @Override
     protected void result(Object obj) {
-        if (obj == "EXIT") {
-            //Closes the app and disposes any machine resources used
+        if (obj == "EXIT")
             Gdx.app.exit();
-        }
     }
 }

@@ -15,7 +15,6 @@ import gameLogic.listeners.GameStateListener;
 import gameLogic.listeners.TurnListener;
 import gameLogic.map.Map;
 
-
 class GameScreen extends ScreenAdapter {
     private static final int ANIMATION_TIME = 2;
     final private TaxeGame game;
@@ -36,10 +35,8 @@ class GameScreen extends ScreenAdapter {
         this.game = game;
         stage = new Stage();
 
-        //Sets the skin
         skin = new Skin(Gdx.files.internal("data/uiskin.json"));
 
-        //Initialises the game
         gameLogic = Game.getInstance();
         context = new Context(stage, skin, game, gameLogic);
         Gdx.input.setInputProcessor(stage);
@@ -60,11 +57,12 @@ class GameScreen extends ScreenAdapter {
         context.setRouteController(routeController);
         context.setTopBarController(topBarController);
 
-        //Adds a listener that displays a flash message whenever the turn ends
         gameLogic.getPlayerManager().subscribeTurnChanged(new TurnListener() {
             @Override
             public void changed() {
-                //The game will not be set into the animating state for the first turn to prevent player 1 from gaining an inherent advantage by gaining an extra turn of movement.
+                //The game will not be set into the animating state for the first
+                //turn to prevent player 1 from gaining an inherent advantage
+                //by gaining an extra turn of movement.
                 if (context.getGameLogic().getPlayerManager().getTurnNumber() != 1) {
                     gameLogic.setState(GameState.ANIMATING);
                     topBarController.displayFlashMessage("Time is passing...", Color.BLACK);
@@ -93,8 +91,6 @@ class GameScreen extends ScreenAdapter {
         });
     }
 
-
-    // called every frame
     @Override
     public void render(float delta) {
         Gdx.gl.glClearColor(0, 0, 0, 1);
@@ -102,28 +98,22 @@ class GameScreen extends ScreenAdapter {
 
         game.batch.begin();
 
-        //Draws the map background
         game.batch.draw(mapTexture, 0, 0);
         game.batch.end();
 
         topBarController.drawBackground();
-
         stationController.renderConnections(map.getEnabledConnections(), Color.GRAY);
 
-        if (gameLogic.getState() == GameState.ADDING_TRACK) {
+        if (gameLogic.getState() == GameState.ADDING_TRACK)
             stationController.renderConnections(map.getDisabledConnections(), Color.CYAN);
-        }
 
         if (gameLogic.getState() == GameState.PLACING_TRAIN
-                || gameLogic.getState() == GameState.ROUTING) {
+                || gameLogic.getState() == GameState.ROUTING)
             stationController.renderStationGoalHighlights();
-            //This colours the start and end nodes of each goal to allow the player to easily see where they need to route
-        }
 
-        //Draw routing
         if (gameLogic.getState() == GameState.ROUTING) {
             routeController.drawRoute(Color.BLACK);
-        } else
+        } else {
             //Draw train moving
             if (gameLogic.getState() == GameState.ANIMATING) {
                 timeAnimated += delta;
@@ -132,21 +122,22 @@ class GameScreen extends ScreenAdapter {
                     timeAnimated = 0;
                 }
             }
+        }
 
         //Draw the number of trains at each station
         if (gameLogic.getState() == GameState.NORMAL
-                || gameLogic.getState() == GameState.PLACING_TRAIN) {
+                || gameLogic.getState() == GameState.PLACING_TRAIN)
             stationController.displayNumberOfTrainsAtStations();
-        }
 
-        //Causes all the actors to perform their actions (i.e trains to move)
         stage.act(Gdx.graphics.getDeltaTime());
-
         stage.draw();
-
         game.batch.begin();
         //If statement checks whether the turn is above 30, if it is then display 30 anyway
-        game.fontSmall.draw(game.batch, "Turn " + ((gameLogic.getPlayerManager().getTurnNumber() + 1 < gameLogic.TOTAL_TURNS) ? gameLogic.getPlayerManager().getTurnNumber() + 1 : gameLogic.TOTAL_TURNS) + "/" + gameLogic.TOTAL_TURNS, (float) TaxeGame.WIDTH - 90.0f, 20.0f);
+        game.fontSmall.draw(game.batch,
+                "Turn " + ((gameLogic.getPlayerManager().getTurnNumber() +
+                        1 < gameLogic.TOTAL_TURNS) ? gameLogic.getPlayerManager().getTurnNumber()
+                        + 1 : gameLogic.TOTAL_TURNS) + "/" + gameLogic.TOTAL_TURNS,
+                        (float) TaxeGame.WIDTH - 90.0f, 20.0f);
         game.batch.end();
 
         resourceController.drawHeaderText();
@@ -157,19 +148,20 @@ class GameScreen extends ScreenAdapter {
     // Called when GameScreen becomes current screen of the game
     public void show() {
         //We only render this once a turn, this allows the buttons generated to be clickable.
-        //Initially some of this functionality was in the draw() routine, but it was found that when the player clicked on a button a new one was rendered before the input could be handled
-        //This is why the header texts and the buttons are rendered separately, to prevent these issues from occuring
+        //Initially some of this functionality was in the draw() routine, but
+        //it was found that when the player clicked on a button a new one was
+        //rendered before the input could be handled This is why the header
+        // texts and the buttons are rendered separately, to prevent these
+        // issues from occuring
         stationController.renderStations();
         topBarController.addEndTurnButton();
         goalController.showCurrentPlayerGoals();
         resourceController.drawPlayerResources(gameLogic.getPlayerManager().getActivePlayer());
     }
 
-
     @Override
     public void dispose() {
         mapTexture.dispose();
         stage.dispose();
     }
-
 }

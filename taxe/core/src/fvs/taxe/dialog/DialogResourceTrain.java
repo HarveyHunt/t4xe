@@ -17,32 +17,24 @@ public class DialogResourceTrain extends Dialog {
         super(train.toString(), skin);
         text("What do you want to do with this train?");
 
-        //Generates the buttons required to allow the user to interact with the dialog
         if (!trainPlaced) {
-            //If the train is not placed, generate button allowing placement
             button("Place at a station", "PLACE");
-
-        } else if (!train.isMoving()) {
-            //If the train is not moving then generate button to specify a route
+        } else if (!train.isDeparted()) {
             button("Choose a route", "ROUTE");
-
         } else if (train.getRoute() != null) {
-            //If the train has a route then generate button to change the route
             button("Change route", "CHANGE_ROUTE");
-
-            //Generate button to view the route
             button("View Route", "VIEWROUTE");
         }
 
         button("Drop", "DROP");
-
         button("Cancel", "CLOSE");
     }
 
     @Override
     public Dialog show(Stage stage) {
         show(stage, null);
-        setPosition(Math.round((stage.getWidth() - getWidth()) / 2), Math.round((stage.getHeight() - getHeight()) / 2));
+        setPosition(Math.round((stage.getWidth() - getWidth()) / 2),
+                Math.round((stage.getHeight() - getHeight()) / 2));
         return this;
     }
 
@@ -52,9 +44,8 @@ public class DialogResourceTrain extends Dialog {
     }
 
     private void clicked(Button button) {
-        for (ResourceDialogClickListener listener : clickListeners) {
+        for (ResourceDialogClickListener listener : clickListeners)
             listener.clicked(button);
-        }
     }
 
     public void subscribeClick(ResourceDialogClickListener listener) {
@@ -63,18 +54,17 @@ public class DialogResourceTrain extends Dialog {
 
     @Override
     protected void result(Object obj) {
-        if (obj == "CLOSE") {
+        if (obj == "CLOSE")
             this.remove();
-        } else if (obj == "DROP") {
+        else if (obj == "DROP")
             clicked(Button.TRAIN_DROP);
-        } else if (obj == "PLACE") {
+        else if (obj == "PLACE")
             clicked(Button.TRAIN_PLACE);
-        } else if (obj == "ROUTE") {
+        else if (obj == "ROUTE")
             clicked(Button.TRAIN_ROUTE);
-        } else if (obj == "VIEWROUTE") {
+        else if (obj == "VIEWROUTE")
             clicked(Button.VIEW_ROUTE);
-        } else if (obj == "CHANGE_ROUTE") {
+        else if (obj == "CHANGE_ROUTE")
             clicked(Button.TRAIN_CHANGE_ROUTE);
-        }
     }
 }

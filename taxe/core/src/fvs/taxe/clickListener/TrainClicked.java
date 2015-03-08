@@ -37,7 +37,7 @@ public class TrainClicked extends ClickListener {
         Player currentPlayer = Game.getInstance().getPlayerManager().getActivePlayer();
 
         //This checks whether or not the train is already in motion and has an actor
-        if (train.getActor() != null && x != -1) {
+        if (train.getActor() != null && !train.isMoving()) {
             if (train.getActor().getPaused()) {
                 //This generates a list of trains located on the same spot as the clicked train
                 //This was necessary as when trains are blocked at a station they stack on top of the station and only the uppermost train is clickable
@@ -78,7 +78,7 @@ public class TrainClicked extends ClickListener {
             } else {
                 if (train.isOwnedBy(currentPlayer)) {
                     DialogButtonClicked listener = new DialogButtonClicked(context, currentPlayer, train);
-                    DialogResourceTrain dialog = new DialogResourceTrain(train, context.getSkin(), train.getPosition() != null);
+                    DialogResourceTrain dialog = new DialogResourceTrain(train, context.getSkin(), train.isPlaced());
                     dialog.show(context.getStage());
                     dialog.subscribeClick(listener);
                 }
@@ -91,7 +91,7 @@ public class TrainClicked extends ClickListener {
         } else {
             //If the train is owned by the player and has a final destination then a dialog is displayed allowing the user to interact with the train
             DialogButtonClicked listener = new DialogButtonClicked(context, currentPlayer, train);
-            DialogResourceTrain dialog = new DialogResourceTrain(train, context.getSkin(), train.getPosition() != null);
+            DialogResourceTrain dialog = new DialogResourceTrain(train, context.getSkin(), train.isPlaced());
             dialog.show(context.getStage());
             dialog.subscribeClick(listener);
         }

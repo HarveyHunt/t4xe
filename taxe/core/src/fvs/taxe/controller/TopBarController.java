@@ -28,18 +28,12 @@ public class TopBarController {
         context.getGameLogic().subscribeStateChanged(new GameStateListener() {
             @Override
             public void changed(GameState state) {
-                switch (state) {
-                    case ANIMATING:
-                        controlsColor = Color.GREEN;
-                        break;
-
-                    default:
-                        controlsColor = Color.LIGHT_GRAY;
-                        break;
-                }
+                if (state == GameState.ANIMATING)
+                    controlsColor = Color.GREEN;
+                else
+                    controlsColor = Color.LIGHT_GRAY;
             }
         });
-
         createFlashActor();
     }
 
@@ -49,27 +43,22 @@ public class TopBarController {
         context.getStage().addActor(flashMessage);
     }
 
-
     public void displayFlashMessage(String message, Color color) {
-        //This method displays a message in the topBar for the default 1.75 seconds
         displayFlashMessage(message, color, 1.75f);
     }
 
     public void displayFlashMessage(String message, Color color, float time) {
-        //This method also displays a message in the topBar, but for the amount of time specified in the parameters
         flashMessage.setText(message);
         flashMessage.setColor(color);
         flashMessage.addAction(sequence(delay(time), fadeOut(0.25f)));
     }
 
     public void displayMessage(String message, Color color) {
-        //This method sets a permanent message until it is overwritten
         flashMessage.setText(message);
         flashMessage.setColor(color);
     }
 
     public void clearMessage() {
-        //This method clears the current message
         flashMessage.setText("");
         flashMessage.setColor(Color.LIGHT_GRAY);
     }
@@ -86,7 +75,6 @@ public class TopBarController {
     }
 
     public void addEndTurnButton() {
-        //This method adds an endTurn button to the topBar which allows the user to end their turn
         endTurnButton = new TextButton("End Turn", context.getSkin());
         endTurnButton.setPosition(TaxeGame.WIDTH - 100.0f, TaxeGame.HEIGHT - 33.0f);
         endTurnButton.addListener(new ClickListener() {
@@ -102,14 +90,12 @@ public class TopBarController {
             public void changed(GameState state) {
                 //This sets whether or not the endTurn button is displayed based on the state of the game
                 //This is important as it prevents players from ending their turn mid placement or mid routing
-                if (state == GameState.NORMAL) {
+                if (state == GameState.NORMAL)
                     endTurnButton.setVisible(true);
-                } else {
+                else
                     endTurnButton.setVisible(false);
-                }
             }
         });
-
         context.getStage().addActor(endTurnButton);
     }
 }

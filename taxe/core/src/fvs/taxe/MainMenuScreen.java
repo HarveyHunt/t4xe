@@ -21,8 +21,6 @@ class MainMenuScreen extends ScreenAdapter {
     private final Image mapImage;
 
     public MainMenuScreen(TaxeGame game) {
-        //This sets all the relevant variables for the menu screen
-        //Did not understand this fully so did not change anything
         this.game = game;
         camera = new OrthographicCamera(TaxeGame.WIDTH, TaxeGame.HEIGHT);
         camera.setToOrtho(false);
@@ -44,15 +42,13 @@ class MainMenuScreen extends ScreenAdapter {
                 game.setScreen(new GameScreen(game));
                 return;
             }
-            if (exitBounds.contains(touchPoint.x, touchPoint.y)) {
+
+            if (exitBounds.contains(touchPoint.x, touchPoint.y))
                 Gdx.app.exit();
-            }
         }
     }
 
     void draw() {
-        //This method draws the menu
-
         GL20 gl = Gdx.gl;
         gl.glClearColor(1, 1, 1, 1);
         gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -79,11 +75,13 @@ class MainMenuScreen extends ScreenAdapter {
         //Draw text into rectangles
         game.batch.begin();
         String startGameString = "Start Game";
-        game.font.draw(game.batch, startGameString, playBounds.getX() + playBounds.getWidth() / 2 - game.font.getBounds(startGameString).width / 2,
-                playBounds.getY() + playBounds.getHeight() / 2 + game.font.getBounds(startGameString).height / 2); // center the text
+        game.font.draw(game.batch, startGameString,
+                playBounds.getX() + playBounds.getWidth() / 2 - game.font.getBounds(startGameString).width / 2,
+                playBounds.getY() + playBounds.getHeight() / 2 + game.font.getBounds(startGameString).height / 2);
         String exitGameString = "Exit";
-        game.font.draw(game.batch, exitGameString, exitBounds.getX() + exitBounds.getWidth() / 2 - game.font.getBounds(exitGameString).width / 2,
-                exitBounds.getY() + exitBounds.getHeight() / 2 + game.font.getBounds(exitGameString).height / 2); // center the text
+        game.font.draw(game.batch, exitGameString,
+                exitBounds.getX() + exitBounds.getWidth() / 2 - game.font.getBounds(exitGameString).width / 2,
+                exitBounds.getY() + exitBounds.getHeight() / 2 + game.font.getBounds(exitGameString).height / 2);
 
         game.batch.end();
     }

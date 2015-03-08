@@ -26,7 +26,6 @@ public class DialogResourceEngineer extends Dialog {
 
     @Override
     public Dialog show(Stage stage) {
-        //Displays the dialog on screen
         show(stage, null);
         setPosition(Math.round((stage.getWidth() - getWidth()) / 2), Math.round((stage.getHeight() - getHeight()) / 2));
         return this;
@@ -34,35 +33,29 @@ public class DialogResourceEngineer extends Dialog {
 
     @Override
     public void hide() {
-        //Hides the dialog
         hide(null);
     }
 
     private void clicked(Button button) {
-        //Informs all listeners which button has been clicked
-        for (ResourceDialogClickListener listener : clickListeners) {
+        for (ResourceDialogClickListener listener : clickListeners)
             listener.clicked(button);
-        }
     }
 
     public void subscribeClick(ResourceDialogClickListener listener) {
-        //Adds an external listener to the result of the dialog
         clickListeners.add(listener);
     }
 
     @Override
     protected void result(Object obj) {
-        //Does things based on which button the user presses
-        if (obj == "CLOSE") {
+        if (obj == "CLOSE")
             this.remove();
-        } else if (obj == "DROP") {
+        else if (obj == "DROP")
             clicked(Button.ENGINEER_DROP);
-        } else if (obj == "PLACE") {
+        else if (obj == "PLACE")
             clicked(Button.ENGINEER_REPAIR_TRACK);
-        } else if (obj == "REM_TRACK") {
+        else if (obj == "REM_TRACK")
             clicked(Button.ENGINEER_REMOVE_TRACK);
-        } else if (obj == "ADD_TRACK") {
+        else if (obj == "ADD_TRACK")
             clicked(Button.ENGINEER_ADD_TRACK);
-        }
     }
 }

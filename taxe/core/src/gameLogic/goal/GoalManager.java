@@ -38,7 +38,8 @@ public class GoalManager {
         do {
             //This generates a suitable random station to be the destination node of the goal (i.e not equal to the origin)
             destination = map.getRandomStation();
-        } while (destination == origin || destination instanceof CollisionStation);
+        }
+        while (destination == origin || destination instanceof CollisionStation);
 
         double shortestDist = map.getShortestDistance(origin, destination); //Stores the shortest distance between two points
         int score = (int) (shortestDist * (Math.pow(1.0001, shortestDist))); //Score by default = shortestDist*1.0001^shortestDist.
@@ -87,7 +88,6 @@ public class GoalManager {
             //Higher speeds will result in lower bonus, lower speeds result in higher bonus. Rewards for difficulty
             bonus = (int) ((((100 - (float) train.getSpeed()) / 100) * shortestDist) + score);
         }
-
         return new Goal(origin, destination, intermediary, turn, forTurns, score, bonus, train);
     }
 
