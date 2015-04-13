@@ -3,6 +3,7 @@ package fvs.taxe.controller;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import fvs.taxe.TaxeGame;
+import fvs.taxe.replay.ReplayStage;
 import gameLogic.Game;
 
 public class Context {
@@ -10,13 +11,13 @@ public class Context {
     // logically shouldn't have access to. While this is a bit of a workaround to make implementation easier,
     // it does weaken encapsulation somewhat, however a full system overhaul would be unfeasible to remedy this.
     private final TaxeGame taxeGame;
-    private final Stage stage;
+    private final ReplayStage stage;
     private final Skin skin;
     private final Game gameLogic;
     private RouteController routeController;
     private TopBarController topBarController;
 
-    public Context(Stage stage, Skin skin, TaxeGame taxeGame, Game gameLogic) {
+    public Context(ReplayStage stage, Skin skin, TaxeGame taxeGame, Game gameLogic) {
         this.stage = stage;
         this.skin = skin;
         this.taxeGame = taxeGame;
@@ -24,7 +25,7 @@ public class Context {
     }
 
     //Getters and setters: pretty self-explanatory
-    public Stage getStage() {
+    public ReplayStage getStage() {
         return stage;
     }
 

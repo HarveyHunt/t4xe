@@ -19,7 +19,7 @@ import gameLogic.map.Map;
 class GameScreen extends ScreenAdapter {
     private static final int ANIMATION_TIME = 2;
     final private TaxeGame game;
-    private final Stage stage;
+    private final ReplayStage stage;
     private final Texture mapTexture;
     private final Game gameLogic;
     private final Skin skin;
@@ -156,6 +156,7 @@ class GameScreen extends ScreenAdapter {
         // issues from occuring
         stationController.renderStations();
         topBarController.addEndTurnButton();
+        topBarController.addReplayButton();
         goalController.showCurrentPlayerGoals();
         resourceController.drawPlayerResources(gameLogic.getPlayerManager().getActivePlayer());
     }

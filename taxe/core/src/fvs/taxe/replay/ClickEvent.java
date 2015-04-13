@@ -12,4 +12,14 @@ public class ClickEvent {
         this.pointer = pointer;
         this.button = button;
     }
+
+    @Override
+    public String toString() {
+        return "ClickEvent{" +
+                "screenX=" + screenX +
+                ", screenY=" + screenY +
+                ", pointer=" + pointer +
+                ", button=" + button +
+                '}';
+    }
 }
