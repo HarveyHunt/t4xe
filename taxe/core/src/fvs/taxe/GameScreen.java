@@ -9,6 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import fvs.taxe.controller.*;
 import fvs.taxe.dialog.DialogEndGame;
+import fvs.taxe.replay.ReplayStage;
 import gameLogic.Game;
 import gameLogic.GameState;
 import gameLogic.listeners.GameStateListener;
@@ -33,7 +34,7 @@ class GameScreen extends ScreenAdapter {
 
     public GameScreen(TaxeGame game) {
         this.game = game;
-        stage = new Stage();
+        stage = new ReplayStage();
 
         skin = new Skin(Gdx.files.internal("data/uiskin.json"));
 
