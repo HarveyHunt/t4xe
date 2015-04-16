@@ -1,7 +1,6 @@
 package fvs.taxe.replay;
 
 import com.badlogic.gdx.scenes.scene2d.Stage;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,10 +23,11 @@ public class ReplayStage extends Stage {
     }
 
     public void replay() {
-        // Don't process the last event as that will be the use clicking the
-        // replay button.
         replaying = true;
-        for (ClickEvent c : clickEvents) {
+        // Don't replay the final replay click as we could end up in a loop.
+        for (ClickEvent c : clickEvents.subList(0, clickEvents.size() - 1)) {
+            // We can get away with reusing the same ClickEvent as we can assume
+            // that a click up and down occur at the same location.
             touchDown(c.screenX, c.screenY, c.pointer, c.button);
             touchUp(c.screenX, c.screenY, c.pointer, c.button);
             System.out.println(c);
