@@ -47,7 +47,7 @@ public class Map {
             //Checks whether or not the connection has station 1 and station 2 in its attributes, if so returns true, if not returns false
             if (s1.equals(stationName) && s2.equals(anotherStationName)
                     || s1.equals(anotherStationName) && s2.equals(stationName))
-                return true
+                return true;
         }
 
         return false;
