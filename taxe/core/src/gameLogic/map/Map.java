@@ -46,9 +46,8 @@ public class Map {
 
             //Checks whether or not the connection has station 1 and station 2 in its attributes, if so returns true, if not returns false
             if (s1.equals(stationName) && s2.equals(anotherStationName)
-                    || s1.equals(anotherStationName) && s2.equals(stationName)) {
-                return true;
-            }
+                    || s1.equals(anotherStationName) && s2.equals(stationName))
+                return true
         }
 
         return false;
@@ -128,18 +127,16 @@ public class Map {
         // Attempt to move the connection from an enabled to a disabled state
         int i = enabledConnections.indexOf(target);
 
-        if (i > -1) {
+        if (i > -1)
             disabledConnections.add(enabledConnections.remove(i));
-        }
     }
 
     public void enableConnection(Connection target) {
         // Attempt to move the connection from a disabled to an enabled state
         int i = disabledConnections.indexOf(target);
 
-        if (i > -1) {
+        if (i > -1)
             enabledConnections.add(disabledConnections.remove(i));
-        }
     }
 
 
@@ -177,11 +174,10 @@ public class Map {
         //Returns the station whose name matches the string passed to the method
         int i = 0;
         while (i < stations.size()) {
-            if (stations.get(i).getName().equals(name)) {
+            if (stations.get(i).getName().equals(name))
                 return stations.get(i);
-            } else {
+            else
                 i++;
-            }
         }
         return null;
     }
@@ -189,9 +185,8 @@ public class Map {
     public Station getStationFromPosition(IPositionable position) {
         //Returns the station located at the position passed to the method
         for (Station station : stations) {
-            if (station.getLocation().equals(position)) {
+            if (station.getLocation().equals(position))
                 return station;
-            }
         }
 
         return null;
@@ -202,9 +197,8 @@ public class Map {
         //These stations are then added to a list which acts as the route
         List<Station> route = new ArrayList<Station>();
 
-        for (IPositionable position : positions) {
+        for (IPositionable position : positions)
             route.add(getStationFromPosition(position));
-        }
 
         return route;
     }
