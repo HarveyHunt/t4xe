@@ -1,6 +1,7 @@
 package fvs.taxe.replay;
 
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import gameLogic.Game;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +24,7 @@ public class ReplayStage extends Stage {
     }
 
     public void replay() {
+        Game.getInstance().resetGameState();
         replaying = true;
         // Don't replay the final replay click as we could end up in a loop.
         for (ClickEvent c : clickEvents.subList(0, clickEvents.size() - 1)) {

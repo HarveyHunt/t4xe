@@ -19,18 +19,19 @@ public class Game {
     //This
     public final int TOTAL_TURNS = 30;
     public final int MAX_POINTS = 10000;
-    private final PlayerManager playerManager;
-    private final GoalManager goalManager;
-    private final ResourceManager resourceManager;
+    private PlayerManager playerManager;
+    private GoalManager goalManager;
+    private ResourceManager resourceManager;
     private final Map map;
+    private final int CONFIG_PLAYERS = 2;
     private final List<GameStateListener> gameStateListeners = new ArrayList<GameStateListener>();
-    public static final Random consistentRandom = new Random(System.currentTimeMillis());
+    private static final long seed = System.currentTimeMillis();
+    public static Random consistentRandom = new Random(seed);
     private GameState state;
 
     private Game() {
         //Creates players
         playerManager = new PlayerManager();
-        int CONFIG_PLAYERS = 2;
         playerManager.createPlayers(CONFIG_PLAYERS);
 
         //Give them starting resources and goals
@@ -106,5 +107,34 @@ public class Game {
         for (GameStateListener listener : gameStateListeners) {
             listener.changed(state);
         }
+    }
+
+    public void resetGameState() {
+        consistentRandom = new Random(seed);
+
+        //Creates players
+        playerManager = new PlayerManager();
+        playerManager.createPlayers(CONFIG_PLAYERS);
+
+        //Give them starting resources and goals
+        resourceManager = new ResourceManager();
+        goalManager = new GoalManager(resourceManager);
+
+        state = GameState.NORMAL;
+
+        //Adds all the subscriptions to the game which gives players resources and goals at the start of each turn.
+        //Also decrements all connections and blocks a random one
+        //The checking for whether a turn is being skipped is handled inside the methods, this just always calls them
+        playerManager.subscribeTurnChanged(new TurnListener() {
+            @Override
+            public void changed() {
+                Player currentPlayer = playerManager.getActivePlayer();
+                goalManager.addRandomGoalToPlayer(currentPlayer);
+                resourceManager.addRandomResourceToPlayer(currentPlayer);
+                resourceManager.addRandomResourceToPlayer(currentPlayer);
+                map.decrementBlockedConnections();
+                map.blockRandomConnection();
+            }
+        });
     }
 }
