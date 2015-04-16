@@ -1,6 +1,5 @@
 package gameLogic;
 
-import fvs.taxe.replay.ClickEvent;
 import gameLogic.goal.GoalManager;
 import gameLogic.listeners.GameStateListener;
 import gameLogic.listeners.TurnListener;
@@ -11,6 +10,7 @@ import gameLogic.resource.ResourceManager;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Game {
     //This is sort of a super-class that can be accessed throughout the system as many of its methods are static
@@ -24,6 +24,7 @@ public class Game {
     private final ResourceManager resourceManager;
     private final Map map;
     private final List<GameStateListener> gameStateListeners = new ArrayList<GameStateListener>();
+    public static final Random consistentRandom = new Random(System.currentTimeMillis());
     private GameState state;
 
     private Game() {
@@ -63,7 +64,6 @@ public class Game {
             // method can't be called in the constructor
             instance.initialisePlayers();
         }
-
         return instance;
     }
 

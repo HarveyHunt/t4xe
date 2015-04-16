@@ -21,7 +21,6 @@ public class GoalManager {
 
     public Goal generateRandom(int turn) {
         //This routine generates a random goal and calculates the points that should be awarded for completion of the goal
-
         Map map = Game.getInstance().getMap();
         Station origin;
         Station intermediary;
@@ -45,8 +44,7 @@ public class GoalManager {
         int score = (int) (shortestDist * (Math.pow(1.0001, shortestDist))); //Score by default = shortestDist*1.0001^shortestDist.
         // This rewards players for completing longer goals, but not too much. If the scaling value was too large then it would be unfair to players that only receive shorter goals.
 
-        Random random = new Random();
-        int rand = random.nextInt(3);
+        int rand = Game.consistentRandom.nextInt(3);
         if (rand == 0) {
             //decide if goal has intermediary station; if not, initiate  the intermediary station as origin
             do {
@@ -72,7 +70,7 @@ public class GoalManager {
             double upperBound = Math.ceil(1.25 * expectedTurns);
             //By creating these bounds it adds an element of randomisation to the goals which SHOULD increase the enjoyment of the game
             do {
-                forTurns = random.nextInt((int) upperBound + 1);
+                forTurns = Game.consistentRandom.nextInt((int) upperBound + 1);
                 //Continuously generates a new value until it fits within the bounds
             } while (forTurns < lowerBound);
             double diffFromExpected = forTurns - expectedTurns; //Difference between the expected and actual value
@@ -96,11 +94,6 @@ public class GoalManager {
         if (!player.getSkip()) {
             player.addGoal(generateRandom(player.getPlayerManager().getTurnNumber()));
         }
-
-		/* Uncomment to test the appropriateness of the generated points for the goals
-        for (int i = 0; i<20;i++){
-			generateRandom(player.getPlayerManager().getTurnNumber());
-		}*/
     }
 
     public ArrayList<String> trainArrived(Train train, Player player) {

@@ -15,8 +15,6 @@ public class Map {
 
     private final List<Connection> enabledConnections;
     private final List<Connection> disabledConnections;
-
-    private final Random random = new Random();
     private final Dijkstra dijkstra;
 
     public Map() {
@@ -97,7 +95,7 @@ public class Map {
 
     public Station getRandomStation() {
         //Returns a random station
-        return stations.get(random.nextInt(stations.size()));
+        return stations.get(Game.consistentRandom.nextInt(stations.size()));
     }
 
     public Station addStation(String name, Position location) {
@@ -220,13 +218,13 @@ public class Map {
 
     Connection getRandomConnection() {
         //Returns a random connection, used for blocking a random connection
-        int index = random.nextInt(enabledConnections.size());
+        int index = Game.consistentRandom.nextInt(enabledConnections.size());
         return enabledConnections.get(index);
     }
 
     public void blockRandomConnection() {
         //This blocks a random connection
-        int rand = random.nextInt(2);
+        int rand = Game.consistentRandom.nextInt(2);
         if (rand > 0) {
             //50% chance of connection being blocked
             Connection toBlock;
@@ -250,11 +248,8 @@ public class Map {
                     }
                 }
             } while (!canBlock);
-
             toBlock.setBlocked(5);
-
         }
-
     }
 
     public void blockConnection(Station station1, Station station2, int turnsBlocked) {
