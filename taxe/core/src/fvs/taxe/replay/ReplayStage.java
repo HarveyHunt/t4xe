@@ -11,10 +11,15 @@ public class ReplayStage extends Stage {
     private boolean replaying = false;
 
     @Override
-    public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+    public boolean touchDown(int screenX, int screenY, int pointer, int button) {
         if (!replaying)
             clickEvents.add(new ClickEvent(screenX, screenY, pointer, button));
 
+        return super.touchDown(screenX, screenY, pointer, button);
+    }
+
+    @Override
+    public boolean touchUp(int screenX, int screenY, int pointer, int button) {
         return super.touchUp(screenX, screenY, pointer, button);
     }
 
@@ -23,6 +28,7 @@ public class ReplayStage extends Stage {
         // replay button.
         replaying = true;
         for (ClickEvent c : clickEvents) {
+            touchDown(c.screenX, c.screenY, c.pointer, c.button);
             touchUp(c.screenX, c.screenY, c.pointer, c.button);
             System.out.println(c);
         }
