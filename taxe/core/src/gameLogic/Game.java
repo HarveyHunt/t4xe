@@ -42,6 +42,10 @@ public class Game {
 
         state = GameState.NORMAL;
 
+        setupTurnChangeSubscriptions();
+    }
+
+    private void setupTurnChangeSubscriptions() {
         //Adds all the subscriptions to the game which gives players resources and goals at the start of each turn.
         //Also decrements all connections and blocks a random one
         //The checking for whether a turn is being skipped is handled inside the methods, this just always calls them
@@ -122,19 +126,6 @@ public class Game {
 
         state = GameState.NORMAL;
 
-        //Adds all the subscriptions to the game which gives players resources and goals at the start of each turn.
-        //Also decrements all connections and blocks a random one
-        //The checking for whether a turn is being skipped is handled inside the methods, this just always calls them
-        playerManager.subscribeTurnChanged(new TurnListener() {
-            @Override
-            public void changed() {
-                Player currentPlayer = playerManager.getActivePlayer();
-                goalManager.addRandomGoalToPlayer(currentPlayer);
-                resourceManager.addRandomResourceToPlayer(currentPlayer);
-                resourceManager.addRandomResourceToPlayer(currentPlayer);
-                map.decrementBlockedConnections();
-                map.blockRandomConnection();
-            }
-        });
+        setupTurnChangeSubscriptions();
     }
 }

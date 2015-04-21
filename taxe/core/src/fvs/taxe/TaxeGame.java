@@ -35,7 +35,6 @@ public class TaxeGame extends Game {
         parameter.size = 14;
         fontTiny = generator.generateFont(parameter);
 
-
         generator.dispose();
 
         setScreen(new MainMenuScreen(this));
