@@ -29,26 +29,10 @@ public class GoalManagerTest extends TestCase {
 
     public void testGenerateRandom() throws Exception {
 
-        System.out.println(goal.toString());
-        //player1.addGoal(goal);
-        //player1.addResource(train);
-
         Goal newGoal1 = goalManager.generateRandom(1);
-        System.out.println(newGoal1.toString());
+        assertNotNull(newGoal1.toString());
         Goal newGoal2 = goalManager.generateRandom(3);
-        System.out.println(newGoal2.toString());
-        Goal newGoal3 = goalManager.generateRandom(5);
-        System.out.println(newGoal3.toString());
-        Goal newGoal4 = goalManager.generateRandom(7);
-        System.out.println(newGoal4.toString());
-        Goal newGoal5 = goalManager.generateRandom(9);
-        System.out.println(newGoal5.toString());
-        Goal newGoal6 = goalManager.generateRandom(11);
-        System.out.println(newGoal6.toString());
-        Goal newGoal7 = goalManager.generateRandom(13);
-        System.out.println(newGoal7.toString());
-
-
+        assertNotNull(newGoal2.toString());
     }
 
     public void testAddRandomGoalToPlayer() throws Exception {
