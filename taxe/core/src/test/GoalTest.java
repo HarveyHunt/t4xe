@@ -58,9 +58,9 @@ public class GoalTest extends TestCase {
     }
 
     public void testCompletedWithTrain() throws Exception {
-        assertEquals(true, goal.getTrain().getName() == train.getName());
+        assertEquals(goal.getTrain().getName(), train.getName());
         Train timeOfMyLife = new Train("I just love testing", "RedTrain.png", "RedTrainRight.png", 250);
-        assertEquals(false, goal.getTrain().getName() == timeOfMyLife.getName());
+        assertFalse(goal.getTrain().getName().equals(timeOfMyLife.getName()));
 
     }
 
