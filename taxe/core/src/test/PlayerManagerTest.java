@@ -31,7 +31,7 @@ public class PlayerManagerTest {
         int previous = pm.getTurnNumber();
         pm.turnOver(null);
 
-        assertTrue("Turn number did not change", previous < pm.getTurnNumber());
+        assertTrue("Turn number did not change", previous == pm.getTurnNumber() - 1);
     }
 
 
