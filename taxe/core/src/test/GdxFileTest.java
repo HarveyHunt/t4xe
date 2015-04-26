@@ -8,7 +8,7 @@ import static org.junit.Assert.assertTrue;
 
 public class GdxFileTest extends LibGdxTest {
     @Test
-    public void canReadFile() {
+    public void testReadFile() {
         FileHandle file = Gdx.files.internal("stations.json");
         assertTrue(file.length() > 10);
     }

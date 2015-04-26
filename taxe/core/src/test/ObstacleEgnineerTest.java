@@ -9,7 +9,7 @@ import junit.framework.TestCase;
 
 public class ObstacleEgnineerTest extends TestCase {
 
-    public void testUse() throws Exception {
+    public void testObstacleAndEngineer() throws Exception {
 
         Station station1 = new Station("station1", new Position(6, 2));
         Station station2 = new Station("station2", new Position(4, 2));

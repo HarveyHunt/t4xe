@@ -16,7 +16,7 @@ public class MapTest extends LibGdxTest {
     }
 
     @Test
-    public void addStationAndConnectionTest() throws Exception {
+    public void testAddStationAndConnection() throws Exception {
         String name1 = "station1";
         String name2 = "station2";
 
