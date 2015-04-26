@@ -23,7 +23,7 @@ public class PlayerManagerTest {
         pm.turnOver(null);
 
         // player should change after PlayerManager.turnOver() is called
-        assertFalse(p1.equals(pm.getCurrentPlayer()));
+        assertFalse("Active Player did not change", p1.equals(pm.getCurrentPlayer()));
     }
 
     @Test

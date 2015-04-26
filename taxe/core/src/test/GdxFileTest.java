@@ -10,6 +10,6 @@ public class GdxFileTest extends LibGdxTest {
     @Test
     public void testReadFile() {
         FileHandle file = Gdx.files.internal("stations.json");
-        assertTrue(file.length() > 10);
+        assertTrue("File not being read correctly", file.length() > 10);
     }
 }

@@ -22,9 +22,8 @@ public class GameTest extends LibGdxTest {
     public void testInitialisePlayers() {
         Player currentPlayer = pm.getCurrentPlayer();
 
-        // fresh players should start with at least 1 goal and resource
-        assertTrue(currentPlayer.getResources().size() > 0);
-        assertTrue(currentPlayer.getGoals().size() > 0);
+        assertTrue("Player starting with more than 0 resources", currentPlayer.getResources().size() == 0);
+        assertTrue("Player starting with more than 0 goals", currentPlayer.getGoals().size() == 0);
     }
 
     @Test
@@ -36,8 +35,7 @@ public class GameTest extends LibGdxTest {
         pm.turnOver(null);
         pm.turnOver(null);
 
-        // resource count should increase when p1 has another turn
-        assertTrue(p1.getResources().size() > resourceCount);
-        assertTrue(p1.getGoals().size() > goalCount);
+        assertTrue("No. resources did not increase", p1.getResources().size() > resourceCount);
+        assertTrue("No. goals did not increase", p1.getGoals().size() > goalCount);
     }
 }

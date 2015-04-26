@@ -26,9 +26,9 @@ public class GoalManagerTest extends TestCase {
     public void testGenerateRandom() throws Exception {
 
         Goal newGoal1 = goalManager.generateRandom(1);
-        assertNotNull(newGoal1.toString());
+        assertNotNull("Goals not generating correctly", newGoal1.toString());
         Goal newGoal2 = goalManager.generateRandom(3);
-        assertNotNull(newGoal2.toString());
+        assertNotNull("Goals not generating correctly", newGoal2.toString());
     }
 
     public void testAddRandomGoalToPlayer() throws Exception {
@@ -41,7 +41,7 @@ public class GoalManagerTest extends TestCase {
         goalManager.addRandomGoalToPlayer(player1);
 
 
-        assertEquals(3, player1.getGoals().size());
+        assertEquals("Goals not being added correctly", 3, player1.getGoals().size());
 
 
     }
