@@ -23,29 +23,18 @@ public class ReplayStage extends Stage {
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+        // If we are replaying and get a click from pointer 0 the user has
+        // clicked something - ignore them so we don't break the replay.
+        if (replaying && pointer == 0)
+            return false;
+
         if (!replaying)
-            clickEvents.add(new ClickEvent(screenX, screenY, pointer, button, System.currentTimeMillis()));
+            // Set the pointer to 100 so that we know which clicks are from a
+            // replay.
+            clickEvents.add(new ClickEvent(screenX, screenY,
+                    100, button, System.currentTimeMillis()));
 
         return super.touchDown(screenX, screenY, pointer, button);
-    }
-
-    @Override
-    public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-        return super.touchUp(screenX, screenY, pointer, button);
-    }
-
-    public void replay() {
-        Game.getInstance().resetGameState();
-        replaying = true;
-        // Don't replay the final replay click as we could end up in a loop.
-        for (ClickEvent c : clickEvents.subList(0, clickEvents.size() - 1)) {
-            // We can get away with reusing the same ClickEvent as we can assume
-            // that a click up and down occur at the same location.
-            touchDown(c.screenX, c.screenY, c.pointer, c.button);
-            touchUp(c.screenX, c.screenY, c.pointer, c.button);
-            System.out.println(c);
-        }
-        replaying = false;
     }
 
     public void saveReplay() {
@@ -65,15 +54,43 @@ public class ReplayStage extends Stage {
         }
     }
 
-    public void loadReplay(String filepath) {
+    private Replay loadReplay(String filepath) {
         Json json = new Json();
         Path path = Paths.get(filepath);
 
         try {
             String text = new String(Files.readAllBytes(path));
-            Replay rep = json.fromJson(Replay.class, text);
+            return json.fromJson(Replay.class, text);
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    public void replay(String filepath) {
+        Replay rep = loadReplay(filepath);
+
+        // TODO: Make Game have nice getters / setters
+        Game.seed = rep.seed;
+        Game.consistentRandom.setSeed(rep.seed);
+
+        replaying = true;
+        // Don't replay the final replay click as we could end up in a loop.
+        for (ClickEvent c : rep.clicks.subList(0, rep.clicks.size() - 1)) {
+            // We can get away with reusing the same ClickEvent as we can assume
+            // that a click up and down occur at the same location.
+            touchDown(c.screenX, c.screenY, c.pointer, c.button);
+            touchUp(c.screenX, c.screenY, c.pointer, c.button);
+
+            try {
+                /*
+                rep.seed is the time the replay was recorded at. Taking this
+                away from the timestamp gives us an offset we can use for replay.
+                */
+                Thread.sleep(c.timestamp - rep.seed);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+        }
+        replaying = false;
     }
 }

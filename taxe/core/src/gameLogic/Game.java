@@ -25,7 +25,7 @@ public class Game {
     private final Map map;
     private final int CONFIG_PLAYERS = 2;
     private final List<GameStateListener> gameStateListeners = new ArrayList<GameStateListener>();
-    public static final long seed = System.currentTimeMillis();
+    public static long seed = System.currentTimeMillis();
     public static Random consistentRandom = new Random(seed);
     private GameState state;
 
