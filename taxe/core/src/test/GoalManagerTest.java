@@ -15,10 +15,6 @@ public class GoalManagerTest extends TestCase {
     GoalManager goalManager = new GoalManager(rs);
     PlayerManager playerManager = new PlayerManager();
 
-
-    //  playerManager.createPlayers(2);
-    //  Player player1 = playerManager.getCurrentPlayer();
-
     Train train = new Train("Green", "", "", 100);
 
     Station station1 = new Station("station1", new Position(5, 5));
