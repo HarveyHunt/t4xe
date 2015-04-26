@@ -11,24 +11,10 @@ public class ResourceManagerTest extends TestCase {
 
     public void testGetRandomTrain() throws Exception {
         Train train1 = rm.getRandomTrain();
-        System.out.println(train1.toString());
+        assertNotNull(train1.toString());
 
         Train train2 = rm.getRandomTrain();
-        System.out.println(train2.toString());
-
-        Train train3 = rm.getRandomTrain();
-        System.out.println(train3.toString());
-
-        Train train4 = rm.getRandomTrain();
-        System.out.println(train4.toString());
-
-        Train train5 = rm.getRandomTrain();
-        System.out.println(train5.toString());
-
-        Train train6 = rm.getRandomTrain();
-        System.out.println(train6.toString());
-
-
+        assertNotNull(train2.toString());
     }
 
     public void testAddRandomResourceToPlayer() throws Exception {
