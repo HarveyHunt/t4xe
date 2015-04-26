@@ -27,7 +27,7 @@ public class ReplayStage extends Stage {
             return true;
 
         if (!replaying)
-            // Set the pointer to 100 so that we know which clicks are from a
+            // Set the pointer to 1 so that we know which clicks are from a
             // replay.
             rep.events.add(new ClickEvent(screenX, screenY,
                     1, button, System.currentTimeMillis()));

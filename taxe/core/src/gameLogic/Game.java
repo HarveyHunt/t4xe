@@ -125,20 +125,4 @@ public class Game {
             listener.changed(state);
         }
     }
-
-    public void resetGameState() {
-        consistentRandom = new Random(seed);
-
-        //Creates players
-        playerManager = new PlayerManager();
-        playerManager.createPlayers(CONFIG_PLAYERS);
-
-        //Give them starting resources and goals
-        resourceManager = new ResourceManager();
-        goalManager = new GoalManager(resourceManager);
-
-        state = GameState.NORMAL;
-
-        setupTurnChangeSubscriptions();
-    }
 }
