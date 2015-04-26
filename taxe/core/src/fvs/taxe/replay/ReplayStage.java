@@ -1,8 +1,16 @@
 package fvs.taxe.replay;
 
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.utils.Json;
 import gameLogic.Game;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class ReplayStage extends Stage {
@@ -39,5 +47,19 @@ public class ReplayStage extends Stage {
 
     public void saveReplay() {
         Replay rep = new Replay(Game.seed, clickEvents);
+        Json json = new Json();
+        // TODO: Consider a better place to put this.
+        String filename = new SimpleDateFormat("HH:mm:ss.SSS yyyy-MM-dd").format(new Date()) + ".rep";
+        File file = new File(filename);
+
+        try {
+            FileWriter writer = new FileWriter(file, true);
+            PrintWriter output = new PrintWriter(writer);
+            output.print(json.prettyPrint(rep));
+            output.close();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+
     }
 }
