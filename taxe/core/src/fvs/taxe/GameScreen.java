@@ -5,7 +5,6 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import fvs.taxe.controller.*;
 import fvs.taxe.dialog.DialogEndGame;
@@ -157,7 +156,6 @@ class GameScreen extends ScreenAdapter {
         // issues from occuring
         stationController.renderStations();
         topBarController.addEndTurnButton();
-        topBarController.addReplayButton();
         goalController.showCurrentPlayerGoals();
         resourceController.drawPlayerResources(gameLogic.getPlayerManager().getActivePlayer());
     }

@@ -20,7 +20,6 @@ public class TopBarController {
     private final Context context;
     private Color controlsColor = Color.LIGHT_GRAY;
     private TextButton endTurnButton;
-    private TextButton replayButton;
     private Label flashMessage;
 
     public TopBarController(Context context) {
@@ -98,30 +97,5 @@ public class TopBarController {
             }
         });
         context.getStage().addActor(endTurnButton);
-    }
-
-    public void addReplayButton() {
-        replayButton = new TextButton("Replay", context.getSkin());
-        replayButton.setPosition(TaxeGame.WIDTH - 200.0f, TaxeGame.HEIGHT - 33.0f);
-        replayButton.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                //This sets the turn to be over in the backend
-                context.getStage().replay();
-            }
-        });
-
-        context.getGameLogic().subscribeStateChanged(new GameStateListener() {
-            @Override
-            public void changed(GameState state) {
-                //This sets whether or not the endTurn button is displayed based on the state of the game
-                //This is important as it prevents players from ending their turn mid placement or mid routing
-                if (state == GameState.NORMAL)
-                    replayButton.setVisible(true);
-                else
-                    replayButton.setVisible(false);
-            }
-        });
-        context.getStage().addActor(replayButton);
     }
 }
