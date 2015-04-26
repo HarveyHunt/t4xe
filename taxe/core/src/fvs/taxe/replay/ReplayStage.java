@@ -12,14 +12,11 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 public class ReplayStage extends Stage {
-
-    private final List<ClickEvent> clickEvents = new ArrayList<ClickEvent>();
     private boolean replaying = false;
+    private Replay rep = new Replay(Game.getSeed());
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
@@ -31,17 +28,16 @@ public class ReplayStage extends Stage {
         if (!replaying)
             // Set the pointer to 100 so that we know which clicks are from a
             // replay.
-            clickEvents.add(new ClickEvent(screenX, screenY,
-                    100, button, System.currentTimeMillis()));
+            rep.events.add(new ClickEvent(screenX, screenY,
+                    1, button, System.currentTimeMillis()));
 
         return super.touchDown(screenX, screenY, pointer, button);
     }
 
     public void saveReplay() {
-        Replay rep = new Replay(Game.getSeed(), clickEvents);
         Json json = new Json();
         // TODO: Consider a better place to put this.
-        String filename = new SimpleDateFormat("HH:mm:ss.SSS yyyy-MM-dd").format(new Date()) + ".rep";
+        String filename = new SimpleDateFormat("yyyy-MM-dd-HH:mm:ss").format(new Date()) + ".json";
         File file = new File(filename);
 
         try {
@@ -68,17 +64,12 @@ public class ReplayStage extends Stage {
     }
 
     public void replay(String filepath) {
-        Replay rep = loadReplay(filepath);
-        if (rep == null) {
-            System.out.println("Invalid replay: " + filepath);
-            return;
-        }
-
+        rep = loadReplay(filepath);
         Game.setSeed(rep.seed);
 
         replaying = true;
         // Don't replay the final replay click as we could end up in a loop.
-        for (ClickEvent c : rep.clicks.subList(0, rep.clicks.size() - 1)) {
+        for (ClickEvent c : rep.events.subList(0, rep.events.size() - 1)) {
             // We can get away with reusing the same ClickEvent as we can assume
             // that a click up and down occur at the same location.
             touchDown(c.screenX, c.screenY, c.pointer, c.button);

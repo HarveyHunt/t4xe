@@ -51,11 +51,10 @@ class MainMenuScreen extends ScreenAdapter {
             if (replayBounds.contains(touchPoint.x, touchPoint.y)) {
                 // TODO: Add error handling for when the user fucks up.
                 JFileChooser chooser = new JFileChooser();
-                FileNameExtensionFilter filter = new FileNameExtensionFilter("Replay files", "rep");
+                FileNameExtensionFilter filter = new FileNameExtensionFilter("Replay files", "json");
                 chooser.setFileFilter(filter);
-                int ret = chooser.showOpenDialog(null);
-                if (ret == JFileChooser.APPROVE_OPTION)
-                    System.out.println(chooser.getSelectedFile().getAbsolutePath());
+                if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION)
+                    game.setScreen(new ReplayGameScreen(game, chooser.getSelectedFile().getAbsolutePath()));
             }
 
             if (exitBounds.contains(touchPoint.x, touchPoint.y)) {

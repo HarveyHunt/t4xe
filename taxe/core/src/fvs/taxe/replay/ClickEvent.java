@@ -15,6 +15,14 @@ public class ClickEvent {
         this.timestamp = timestamp;
     }
 
+    public ClickEvent() {
+        screenX = 0;
+        screenY = 0;
+        pointer = 0;
+        button = 0;
+        timestamp = 0;
+    }
+
     @Override
     public String toString() {
         return "ClickEvent{" +

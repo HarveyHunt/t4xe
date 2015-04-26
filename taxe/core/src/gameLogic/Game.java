@@ -17,7 +17,7 @@ public class Game {
     //This is a useful tool to exploit to make implementing certain features easier
     private static Game instance;
     //This
-    public final int TOTAL_TURNS = 30;
+    public final int TOTAL_TURNS = 5;
     public final int MAX_POINTS = 10000;
     private PlayerManager playerManager;
     private GoalManager goalManager;

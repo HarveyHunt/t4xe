@@ -18,7 +18,7 @@ import gameLogic.map.Map;
 class GameScreen extends ScreenAdapter {
     private static final int ANIMATION_TIME = 2;
     final private TaxeGame game;
-    private final ReplayStage stage;
+    protected final ReplayStage stage;
     private final Texture mapTexture;
     private final Game gameLogic;
     private final Skin skin;
