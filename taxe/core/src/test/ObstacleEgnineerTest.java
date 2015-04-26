@@ -15,16 +15,16 @@ public class ObstacleEgnineerTest extends TestCase {
         Station station2 = new Station("station2", new Position(4, 2));
         Connection connection = new Connection(station1, station2);
 
-        assertEquals(false, connection.isBlocked());
+        assertFalse(connection.isBlocked());
 
         Obstacle obstacle = new Obstacle();
         obstacle.use(connection);
 
-        assertEquals(true, connection.isBlocked());
+        assertTrue(connection.isBlocked());
 
         Engineer engineer = new Engineer();
         engineer.use(connection);
 
-        assertEquals(false, connection.isBlocked());
+        assertFalse(connection.isBlocked());
     }
 }
