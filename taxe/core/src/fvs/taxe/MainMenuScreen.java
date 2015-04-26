@@ -41,7 +41,7 @@ class MainMenuScreen extends ScreenAdapter {
     }
 
     void update() {
-        //Begins the game or exits the application based on where the user presses
+        //Begins the game, loads a replay or exits the application based on where the user presses
         if (Gdx.input.justTouched()) {
             camera.unproject(touchPoint.set(Gdx.input.getX(), Gdx.input.getY(), 0));
             if (playBounds.contains(touchPoint.x, touchPoint.y)) {
@@ -49,12 +49,13 @@ class MainMenuScreen extends ScreenAdapter {
             }
 
             if (replayBounds.contains(touchPoint.x, touchPoint.y)) {
+                // TODO: Add error handling for when the user fucks up.
                 JFileChooser chooser = new JFileChooser();
                 FileNameExtensionFilter filter = new FileNameExtensionFilter("Replay files", "rep");
                 chooser.setFileFilter(filter);
                 int ret = chooser.showOpenDialog(null);
                 if (ret == JFileChooser.APPROVE_OPTION)
-                    System.out.println(chooser.getSelectedFile().getName());
+                    System.out.println(chooser.getSelectedFile().getAbsolutePath());
             }
 
             if (exitBounds.contains(touchPoint.x, touchPoint.y)) {
