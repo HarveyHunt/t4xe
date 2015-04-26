@@ -9,7 +9,6 @@ import gameLogic.resource.ResourceManager;
 import gameLogic.resource.Train;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 public class GoalManager {
     public final static int CONFIG_MAX_PLAYER_GOALS = 3;

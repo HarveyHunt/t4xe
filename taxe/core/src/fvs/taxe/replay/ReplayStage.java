@@ -35,6 +35,12 @@ public class ReplayStage extends Stage {
         return super.touchDown(screenX, screenY, pointer, button);
     }
 
+    /**
+     * Convert our Replay instance into a json string and fire it into a file.
+     * <p/>
+     * If Replay has no events, we have just finished replaying a demo and
+     * there is no need to save a replay...
+     */
     public void saveReplay() {
         if (rep.events.isEmpty())
             return;

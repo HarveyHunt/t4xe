@@ -6,7 +6,6 @@ import gameLogic.map.JSONImporter;
 import gameLogic.player.Player;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 public class ResourceManager {
     private final int CONFIG_MAX_RESOURCES = 7;

@@ -1,6 +1,5 @@
 package fvs.taxe.controller;
 
-import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import fvs.taxe.TaxeGame;
 import fvs.taxe.replay.ReplayStage;
