@@ -1,5 +1,6 @@
 package gameLogic;
 
+import fvs.taxe.replay.ReplayStage;
 import gameLogic.goal.GoalManager;
 import gameLogic.listeners.GameStateListener;
 import gameLogic.listeners.TurnListener;

@@ -36,4 +36,8 @@ public class ReplayStage extends Stage {
         }
         replaying = false;
     }
+
+    public void saveReplay() {
+
+    }
 }
