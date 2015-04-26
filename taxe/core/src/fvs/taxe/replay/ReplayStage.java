@@ -68,8 +68,7 @@ public class ReplayStage extends Stage {
         Game.setSeed(rep.seed);
 
         replaying = true;
-        // Don't replay the final replay click as we could end up in a loop.
-        for (ClickEvent c : rep.events.subList(0, rep.events.size() - 1)) {
+        for (ClickEvent c : rep.events) {
             // We can get away with reusing the same ClickEvent as we can assume
             // that a click up and down occur at the same location.
             touchDown(c.screenX, c.screenY, c.pointer, c.button);
@@ -80,7 +79,7 @@ public class ReplayStage extends Stage {
                 rep.seed is the time the replay was recorded at. Taking this
                 away from the timestamp gives us an offset we can use for replay.
                 */
-                Thread.sleep(c.timestamp - rep.seed);
+                Thread.sleep((c.timestamp - rep.seed) / 2);
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
             }

@@ -53,8 +53,11 @@ class MainMenuScreen extends ScreenAdapter {
                 JFileChooser chooser = new JFileChooser();
                 FileNameExtensionFilter filter = new FileNameExtensionFilter("Replay files", "json");
                 chooser.setFileFilter(filter);
-                if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION)
-                    game.setScreen(new ReplayGameScreen(game, chooser.getSelectedFile().getAbsolutePath()));
+                if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+                    ReplayGameScreen screen = new ReplayGameScreen(game, chooser.getSelectedFile().getAbsolutePath());
+                    game.setScreen(screen);
+                    screen.startReplay();
+                }
             }
 
             if (exitBounds.contains(touchPoint.x, touchPoint.y)) {
