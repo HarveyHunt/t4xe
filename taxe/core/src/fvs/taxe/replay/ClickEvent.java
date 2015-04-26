@@ -5,12 +5,14 @@ public class ClickEvent {
     public final int screenY;
     public final int pointer;
     public final int button;
+    public final long timestamp;
 
-    public ClickEvent(int screenX, int screenY, int pointer, int button) {
+    public ClickEvent(int screenX, int screenY, int pointer, int button, long timestamp) {
         this.screenX = screenX;
         this.screenY = screenY;
         this.pointer = pointer;
         this.button = button;
+        this.timestamp = timestamp;
     }
 
     @Override
@@ -20,6 +22,7 @@ public class ClickEvent {
                 ", screenY=" + screenY +
                 ", pointer=" + pointer +
                 ", button=" + button +
+                ", timestamp=" + timestamp +
                 '}';
     }
 }

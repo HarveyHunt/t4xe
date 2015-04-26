@@ -13,7 +13,7 @@ public class ReplayStage extends Stage {
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
         if (!replaying)
-            clickEvents.add(new ClickEvent(screenX, screenY, pointer, button));
+            clickEvents.add(new ClickEvent(screenX, screenY, pointer, button, System.currentTimeMillis()));
 
         return super.touchDown(screenX, screenY, pointer, button);
     }
