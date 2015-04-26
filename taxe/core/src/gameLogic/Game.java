@@ -1,6 +1,5 @@
 package gameLogic;
 
-import fvs.taxe.replay.ReplayStage;
 import gameLogic.goal.GoalManager;
 import gameLogic.listeners.GameStateListener;
 import gameLogic.listeners.TurnListener;
@@ -26,7 +25,7 @@ public class Game {
     private final Map map;
     private final int CONFIG_PLAYERS = 2;
     private final List<GameStateListener> gameStateListeners = new ArrayList<GameStateListener>();
-    private static final long seed = System.currentTimeMillis();
+    public static final long seed = System.currentTimeMillis();
     public static Random consistentRandom = new Random(seed);
     private GameState state;
 

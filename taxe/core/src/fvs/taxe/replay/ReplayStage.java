@@ -38,6 +38,6 @@ public class ReplayStage extends Stage {
     }
 
     public void saveReplay() {
-
+        Replay rep = new Replay(Game.seed, clickEvents);
     }
 }
