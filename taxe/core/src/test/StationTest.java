@@ -9,7 +9,7 @@ import static org.junit.Assert.assertTrue;
 
 public class StationTest {
     @Test
-    public void StationsTest() throws Exception {
+    public void testStationCreation() throws Exception {
         int x = 5000;
         int y = 7000;
         String name = "TestStation";
