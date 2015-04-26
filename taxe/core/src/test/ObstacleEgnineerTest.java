@@ -9,22 +9,22 @@ import junit.framework.TestCase;
 
 public class ObstacleEgnineerTest extends TestCase {
 
-    public void testUse() throws Exception {
+    public void testObstacleAndEngineer() throws Exception {
 
         Station station1 = new Station("station1", new Position(6, 2));
         Station station2 = new Station("station2", new Position(4, 2));
         Connection connection = new Connection(station1, station2);
 
-        assertEquals(false, connection.isBlocked());
+        assertFalse(connection.isBlocked());
 
         Obstacle obstacle = new Obstacle();
         obstacle.use(connection);
 
-        assertEquals(true, connection.isBlocked());
+        assertTrue(connection.isBlocked());
 
         Engineer engineer = new Engineer();
         engineer.use(connection);
 
-        assertEquals(false, connection.isBlocked());
+        assertFalse(connection.isBlocked());
     }
 }

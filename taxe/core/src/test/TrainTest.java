@@ -20,7 +20,7 @@ public class TrainTest {
     }
 
     @Test
-    public void finalDestinationTest() throws Error {
+    public void testFinalDestination() throws Error {
         Station station1 = new Station("station1", new Position(5, 5));
         Station station2 = new Station("station2", new Position(6, 6));
         ArrayList<Station> route = new ArrayList<Station>();
@@ -28,7 +28,7 @@ public class TrainTest {
         route.add(station2);
 
         train.setRoute(route);
-        assertTrue("Setting a train route was not succesful", train.getRoute().size() == 2);
+        assertTrue("Setting a train route was not successful", train.getRoute().size() == 2);
         assertTrue("Final destination wasn't set", train.getFinalDestination() == station2);
     }
 

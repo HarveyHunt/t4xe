@@ -11,40 +11,29 @@ import gameLogic.resource.Train;
 import junit.framework.TestCase;
 
 public class GoalManagerTest extends TestCase {
-    private final ResourceManager rs = new ResourceManager();
-    private final GoalManager goalManager = new GoalManager(rs);
-    private final PlayerManager playerManager = new PlayerManager();
+    ResourceManager rs = new ResourceManager();
+    GoalManager goalManager = new GoalManager(rs);
+    PlayerManager playerManager = new PlayerManager();
 
+    Train train = new Train("Green", "", "", 100);
 
-    //  playerManager.createPlayers(2);
-    //  Player player1 = playerManager.getActivePlayer();
+    Station station1 = new Station("station1", new Position(5, 5));
+    Station station2 = new Station("station2", new Position(2, 2));
+    Station station3 = new Station("station3", new Position(6, 2));
 
-    private final Train train = new Train("Green", "", "", 100);
-
-    private final Station station1 = new Station("station1", new Position(5, 5));
-    private final Station station2 = new Station("station2", new Position(2, 2));
-    private final Station station3 = new Station("station3", new Position(6, 2));
-
-    private final Goal goal = new Goal(station1, station2, station3, 0, 0, 0, 0, train);
+    Goal goal = new Goal(station1, station2, station3, 0, 0, 0, 0, train);
 
     public void testGenerateRandom() throws Exception {
 
-        System.out.println(goal.toString());
-        //player1.addGoal(goal);
-        //player1.addResource(train);
-
         Goal newGoal1 = goalManager.generateRandom(1);
+        assertNotNull("Goals not generating correctly", newGoal1.toString());
         Goal newGoal2 = goalManager.generateRandom(3);
-        Goal newGoal3 = goalManager.generateRandom(5);
-        Goal newGoal4 = goalManager.generateRandom(7);
-        Goal newGoal5 = goalManager.generateRandom(9);
-        Goal newGoal6 = goalManager.generateRandom(11);
-        Goal newGoal7 = goalManager.generateRandom(13);
+        assertNotNull("Goals not generating correctly", newGoal2.toString());
     }
 
     public void testAddRandomGoalToPlayer() throws Exception {
         playerManager.createPlayers(2);
-        Player player1 = playerManager.getActivePlayer();
+        Player player1 = playerManager.getCurrentPlayer();
         assertEquals(0, player1.getGoals().size());
 
         goalManager.addRandomGoalToPlayer(player1);
@@ -52,7 +41,7 @@ public class GoalManagerTest extends TestCase {
         goalManager.addRandomGoalToPlayer(player1);
 
 
-        assertEquals(3, player1.getGoals().size());
+        assertEquals("Goals not being added correctly", 3, player1.getGoals().size());
 
 
     }
