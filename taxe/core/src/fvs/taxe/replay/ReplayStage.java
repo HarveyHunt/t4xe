@@ -8,6 +8,9 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -60,6 +63,17 @@ public class ReplayStage extends Stage {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
+    }
 
+    public void loadReplay(String filepath) {
+        Json json = new Json();
+        Path path = Paths.get(filepath);
+
+        try {
+            String text = new String(Files.readAllBytes(path));
+            Replay rep = json.fromJson(Replay.class, text);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }
