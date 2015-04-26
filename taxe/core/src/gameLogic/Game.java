@@ -25,8 +25,8 @@ public class Game {
     private final Map map;
     private final int CONFIG_PLAYERS = 2;
     private final List<GameStateListener> gameStateListeners = new ArrayList<GameStateListener>();
-    public static long seed = System.currentTimeMillis();
-    public static Random consistentRandom = new Random(seed);
+    private static long seed = System.currentTimeMillis();
+    private static Random consistentRandom = new Random(seed);
     private GameState state;
 
     private Game() {
@@ -60,6 +60,19 @@ public class Game {
                 map.blockRandomConnection();
             }
         });
+    }
+
+    public static Random getConsistentRandom() {
+        return consistentRandom;
+    }
+
+    public static long getSeed() {
+        return seed;
+    }
+
+    public static void setSeed(long seed) {
+        Game.seed = seed;
+        consistentRandom.setSeed(seed);
     }
 
     public static Game getInstance() {

@@ -94,7 +94,7 @@ public class Map {
 
     public Station getRandomStation() {
         //Returns a random station
-        return stations.get(Game.consistentRandom.nextInt(stations.size()));
+        return stations.get(Game.getConsistentRandom().nextInt(stations.size()));
     }
 
     public Station addStation(String name, Position location) {
@@ -212,13 +212,13 @@ public class Map {
 
     Connection getRandomConnection() {
         //Returns a random connection, used for blocking a random connection
-        int index = Game.consistentRandom.nextInt(enabledConnections.size());
+        int index = Game.getConsistentRandom().nextInt(enabledConnections.size());
         return enabledConnections.get(index);
     }
 
     public void blockRandomConnection() {
         //This blocks a random connection
-        int rand = Game.consistentRandom.nextInt(2);
+        int rand = Game.getConsistentRandom().nextInt(2);
         if (rand > 0) {
             //50% chance of connection being blocked
             Connection toBlock;

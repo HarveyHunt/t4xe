@@ -23,7 +23,7 @@ public class ResourceManager {
 
     private Resource getRandomResource() {
         //Returns a random resource
-        int idx = Game.consistentRandom.nextInt(11);
+        int idx = Game.getConsistentRandom().nextInt(11);
         if (idx == 1)
             //1 in 10 chance to return an obstacle
             return new Obstacle();
@@ -44,7 +44,7 @@ public class ResourceManager {
 
     public Train getRandomTrain() {
         //Uses a random number generator to pick a random train and return the complete train class for that train.
-        int index = Game.consistentRandom.nextInt(trains.size());
+        int index = Game.getConsistentRandom().nextInt(trains.size());
         Tuple<String, Integer> train = trains.get(index);
         return new Train(train.getFirst(), train.getFirst().replaceAll(" ", "") + ".png", train.getFirst().replaceAll(" ", "") + "Right.png", train.getSecond());
     }

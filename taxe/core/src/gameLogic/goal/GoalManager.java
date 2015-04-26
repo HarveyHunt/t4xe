@@ -44,7 +44,7 @@ public class GoalManager {
         int score = (int) (shortestDist * (Math.pow(1.0001, shortestDist))); //Score by default = shortestDist*1.0001^shortestDist.
         // This rewards players for completing longer goals, but not too much. If the scaling value was too large then it would be unfair to players that only receive shorter goals.
 
-        int rand = Game.consistentRandom.nextInt(3);
+        int rand = Game.getConsistentRandom().nextInt(3);
         if (rand == 0) {
             //decide if goal has intermediary station; if not, initiate  the intermediary station as origin
             do {
@@ -70,7 +70,7 @@ public class GoalManager {
             double upperBound = Math.ceil(1.25 * expectedTurns);
             //By creating these bounds it adds an element of randomisation to the goals which SHOULD increase the enjoyment of the game
             do {
-                forTurns = Game.consistentRandom.nextInt((int) upperBound + 1);
+                forTurns = Game.getConsistentRandom().nextInt((int) upperBound + 1);
                 //Continuously generates a new value until it fits within the bounds
             } while (forTurns < lowerBound);
             double diffFromExpected = forTurns - expectedTurns; //Difference between the expected and actual value

@@ -38,7 +38,7 @@ public class ReplayStage extends Stage {
     }
 
     public void saveReplay() {
-        Replay rep = new Replay(Game.seed, clickEvents);
+        Replay rep = new Replay(Game.getSeed(), clickEvents);
         Json json = new Json();
         // TODO: Consider a better place to put this.
         String filename = new SimpleDateFormat("HH:mm:ss.SSS yyyy-MM-dd").format(new Date()) + ".rep";
@@ -64,14 +64,17 @@ public class ReplayStage extends Stage {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
+        return null;
     }
 
     public void replay(String filepath) {
         Replay rep = loadReplay(filepath);
+        if (rep == null) {
+            System.out.println("Invalid replay: " + filepath);
+            return;
+        }
 
-        // TODO: Make Game have nice getters / setters
-        Game.seed = rep.seed;
-        Game.consistentRandom.setSeed(rep.seed);
+        Game.setSeed(rep.seed);
 
         replaying = true;
         // Don't replay the final replay click as we could end up in a loop.
