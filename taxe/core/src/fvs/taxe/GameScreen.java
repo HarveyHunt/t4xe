@@ -123,7 +123,7 @@ class GameScreen extends ScreenAdapter {
      * systems within the game never get run.
      *
      * As a result, we set a timer that interrupts the game and initiates the
-     * mouse click.
+     * mouse click. The timer then schedules another timer to do the same again.
      */
     private void scheduleClickReplay() {
         stage.replaySingleClick();
