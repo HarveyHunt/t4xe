@@ -41,17 +41,13 @@ public class ReplayStage extends Stage {
      * If Replay has no events, we have just finished replaying a demo and
      * there is no need to save a replay...
      */
-    public void saveReplay() {
-        if (rep.events.isEmpty())
-            return;
-
+    public void saveReplay(String filepath) {
         Json json = new Json();
         // TODO: Consider a better place to put this.
-        String filename = new SimpleDateFormat("yyyy-MM-dd-HH:mm:ss").format(new Date()) + ".json";
-        File file = new File(filename);
+        File file = new File(filepath);
 
         try {
-            FileWriter writer = new FileWriter(file, true);
+            FileWriter writer = new FileWriter(file, false);
             PrintWriter output = new PrintWriter(writer);
             output.print(json.prettyPrint(rep));
             output.close();

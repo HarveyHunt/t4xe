@@ -40,4 +40,12 @@ public class ReplayGameScreen extends GameScreen {
             }
         }, stage.getNextClickTimeStamp());
     }
+
+    /**
+     * We don't want to save a replay after having just viewed one, so replace
+     * the saveReplay method with emptiness...
+     */
+    @Override
+    protected void saveReplay() {
+    }
 }

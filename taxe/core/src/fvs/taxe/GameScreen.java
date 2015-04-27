@@ -15,6 +15,9 @@ import gameLogic.listeners.GameStateListener;
 import gameLogic.listeners.TurnListener;
 import gameLogic.map.Map;
 
+import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 class GameScreen extends ScreenAdapter {
     private static final int ANIMATION_TIME = 2;
     final private TaxeGame game;
@@ -80,7 +83,7 @@ class GameScreen extends ScreenAdapter {
                     //If the game should end due to the turn number or points total then the appropriate dialog is displayed
                     DialogEndGame dia = new DialogEndGame(GameScreen.this.game, gameLogic.getPlayerManager(), skin);
                     dia.show(stage);
-                    stage.saveReplay();
+                    saveReplay();
                 } else if (gameLogic.getState() == GameState.ROUTING || gameLogic.getState() == GameState.PLACING_TRAIN) {
                     //If the player is routing or place a train then the goals and nodes are colour coded
                     goalController.setColours(StationController.colours);
@@ -164,5 +167,14 @@ class GameScreen extends ScreenAdapter {
     public void dispose() {
         mapTexture.dispose();
         stage.dispose();
+    }
+
+    protected void saveReplay() {
+        JFileChooser chooser = new JFileChooser();
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Replay files", "json");
+        chooser.setFileFilter(filter);
+        if (chooser.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
+            stage.saveReplay(chooser.getSelectedFile().getAbsolutePath());
+        }
     }
 }
