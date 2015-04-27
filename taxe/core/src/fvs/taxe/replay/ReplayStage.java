@@ -63,9 +63,7 @@ public class ReplayStage extends Stage {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-        System.out.println(Game.getSeed());
         Game.setSeed(rep.seed);
-        System.out.println(Game.getSeed());
         replaying = true;
     }
 
