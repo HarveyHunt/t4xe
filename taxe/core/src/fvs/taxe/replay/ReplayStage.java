@@ -14,6 +14,15 @@ import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * In LibGDX, a Stage is used for handling input and arranging actors to be
+ * drawn (http://libgdx.badlogicgames.com/nightlies/docs/api/com/badlogic/gdx/scenes/scene2d/Stage.html)
+ *
+ * We are only interested in messing with the input handling, so this class
+ * implements recording of mouse clicks, as well as replaying them. Also in this
+ * class is the code required to save a Replay to a json file and to load it
+ * once again.
+ */
 public class ReplayStage extends Stage {
     private final int REPLAY_TIME_MULTIPLIER = 2;
     private boolean replaying = false;
@@ -53,6 +62,13 @@ public class ReplayStage extends Stage {
         }
     }
 
+    /**
+     * Load a replay from a JSON file and (vitally) reseed Game's instance of
+     * Random so that the game's events are deterministic.
+     *
+     * Due to the reseeding of Random, this method needs to be called as early
+     * as possible.
+     */
     public void loadReplay(String filepath) {
         Json json = new Json();
         Path path = Paths.get(filepath);
@@ -67,6 +83,10 @@ public class ReplayStage extends Stage {
         replaying = true;
     }
 
+    /**
+     * Retrieve a single click from the replay and replay it. A single click event
+     * is replayed as a mouse down and a subsequent mouse up.
+     */
     public void replaySingleClick() {
         ClickEvent c = rep.events.get(0);
         // We can get away with reusing the same ClickEvent as we can assume

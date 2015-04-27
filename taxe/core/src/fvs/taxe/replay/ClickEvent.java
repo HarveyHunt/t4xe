@@ -1,5 +1,9 @@
 package fvs.taxe.replay;
 
+/**
+ * This class represents the data associated with a single click. A list of
+ * these is kept in a Replay.
+ */
 public class ClickEvent {
     public final int screenX;
     public final int screenY;
@@ -15,6 +19,10 @@ public class ClickEvent {
         this.timestamp = timestamp;
     }
 
+    /**
+     * This is necessary to keep LibGDX's JSON parser happy - without a noarg
+     * constructor it has no idea what it is doing...
+     */
     public ClickEvent() {
         screenX = 0;
         screenY = 0;
