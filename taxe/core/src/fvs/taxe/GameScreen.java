@@ -112,10 +112,6 @@ class GameScreen extends ScreenAdapter {
         scheduleClickReplay();
     }
 
-    public void endgame() {
-
-    }
-
     /**
      * We want to replay click events one at a time, with a time interval
      * between them. Due to the design of this game, sitting in a tight loop
