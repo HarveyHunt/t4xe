@@ -16,12 +16,14 @@ import gameLogic.listeners.TurnListener;
 import gameLogic.map.Map;
 
 import javax.swing.*;
+import javax.swing.Timer;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import java.util.*;
 
 class GameScreen extends ScreenAdapter {
     private static final int ANIMATION_TIME = 2;
     final private TaxeGame game;
-    protected final ReplayStage stage;
+    private final ReplayStage stage;
     private final Texture mapTexture;
     private final Game gameLogic;
     private final Skin skin;
@@ -33,10 +35,20 @@ class GameScreen extends ScreenAdapter {
     private final GoalController goalController;
     private final RouteController routeController;
     private float timeAnimated = 0;
+    private final boolean replaying;
 
-    public GameScreen(TaxeGame game) {
+    public GameScreen(TaxeGame game, String replayFilePath, boolean replaying) {
         this.game = game;
+        this.replaying = replaying;
         stage = new ReplayStage();
+
+        /**
+         * If we're replaying, we have to load the replay very early, so that
+         * any use of Random will use the replay's seed.
+         */
+        if (replaying)
+            stage.loadReplay(replayFilePath);
+
 
         skin = new Skin(Gdx.files.internal("data/uiskin.json"));
 
@@ -83,7 +95,12 @@ class GameScreen extends ScreenAdapter {
                     //If the game should end due to the turn number or points total then the appropriate dialog is displayed
                     DialogEndGame dia = new DialogEndGame(GameScreen.this.game, gameLogic.getPlayerManager(), skin);
                     dia.show(stage);
-                    saveReplay();
+                    /**
+                     *
+                     *
+                     *
+                     */
+                    //saveReplay();
                 } else if (gameLogic.getState() == GameState.ROUTING || gameLogic.getState() == GameState.PLACING_TRAIN) {
                     //If the player is routing or place a train then the goals and nodes are colour coded
                     goalController.setColours(StationController.colours);
@@ -93,6 +110,35 @@ class GameScreen extends ScreenAdapter {
                 }
             }
         });
+    }
+
+    public void startReplay() {
+        assert replaying;
+        scheduleClickReplay();
+    }
+
+    /**
+     * We want to replay click events one at a time, with a time interval
+     * between them. Due to the design of this game, sitting in a tight loop
+     * that iterates over each ClickEvent and then sleeps means that a lot of
+     * systems within the game never get run.
+     *
+     * As a result, we set a timer that interrupts the game and initiates the
+     * mouse click.
+     */
+    private void scheduleClickReplay() {
+        stage.replaySingleClick();
+
+        if (!stage.hasMoreClicks())
+            return;
+
+        java.util.Timer timer = new java.util.Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                scheduleClickReplay();
+            }
+        }, stage.getNextClickTimeStamp());
     }
 
     @Override

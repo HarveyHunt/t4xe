@@ -45,7 +45,7 @@ class MainMenuScreen extends ScreenAdapter {
         if (Gdx.input.justTouched()) {
             camera.unproject(touchPoint.set(Gdx.input.getX(), Gdx.input.getY(), 0));
             if (playBounds.contains(touchPoint.x, touchPoint.y)) {
-                game.setScreen(new GameScreen(game));
+                game.setScreen(new GameScreen(game, null, false));
             }
 
             if (replayBounds.contains(touchPoint.x, touchPoint.y)) {
@@ -54,7 +54,7 @@ class MainMenuScreen extends ScreenAdapter {
                 FileNameExtensionFilter filter = new FileNameExtensionFilter("Replay files", "json");
                 chooser.setFileFilter(filter);
                 if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
-                    ReplayGameScreen screen = new ReplayGameScreen(game, chooser.getSelectedFile().getAbsolutePath());
+                    GameScreen screen = new GameScreen(game, chooser.getSelectedFile().getAbsolutePath(), true);
                     game.setScreen(screen);
                     screen.startReplay();
                 }

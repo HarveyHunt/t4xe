@@ -37,9 +37,6 @@ public class ReplayStage extends Stage {
 
     /**
      * Convert our Replay instance into a json string and fire it into a file.
-     * <p/>
-     * If Replay has no events, we have just finished replaying a demo and
-     * there is no need to save a replay...
      */
     public void saveReplay(String filepath) {
         Json json = new Json();
@@ -66,12 +63,13 @@ public class ReplayStage extends Stage {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-
+        System.out.println(Game.getSeed());
+        Game.setSeed(rep.seed);
+        System.out.println(Game.getSeed());
         replaying = true;
     }
 
     public void replaySingleClick() {
-        Game.setSeed(rep.seed);
         ClickEvent c = rep.events.get(0);
         // We can get away with reusing the same ClickEvent as we can assume
         // that a click up and down occur at the same location.
