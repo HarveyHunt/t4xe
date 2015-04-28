@@ -22,12 +22,19 @@ public class Position extends IPositionable {
 
     @Override
     public boolean equals(Object o) {
-        if (o instanceof Position) {
-            Position pos = (Position) o;
-            return (x == pos.getX() && y == pos.getY());
-        }
-        return false;
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
+        Position position = (Position) o;
+
+        return x == position.x && y == position.y;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = x;
+        result = 31 * result + y;
+        return result;
     }
 }
 
