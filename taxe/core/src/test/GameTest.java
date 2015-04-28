@@ -12,7 +12,6 @@ public class GameTest extends TestCase {
     @Before
     public void setUpGame() throws Exception {
         Game game = Game.getInstance();
-        game.getPlayerManager();
         pm = game.getPlayerManager();
     }
 
