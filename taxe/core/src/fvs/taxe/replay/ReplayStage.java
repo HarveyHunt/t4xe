@@ -26,6 +26,10 @@ public class ReplayStage extends Stage {
     private boolean replaying = false;
     private Replay rep = new Replay(Game.getSeed());
 
+    /**
+     * This is called when the user clicks something. When we're playing back a
+     * replay, we use super.touchDown/Up so as to simplify the logic in this method.
+     */
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
         // If we are replaying and get a click then the user has
