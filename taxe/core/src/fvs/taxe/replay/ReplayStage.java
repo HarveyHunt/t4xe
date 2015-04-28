@@ -28,16 +28,13 @@ public class ReplayStage extends Stage {
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-        // If we are replaying and get a click from pointer 0 the user has
+        // If we are replaying and get a click then the user has
         // clicked something - ignore them so we don't break the replay.
-        if (replaying && pointer == 0)
+        if (replaying)
             return true;
 
-        if (!replaying)
-            // Set the pointer to 1 so that we know which clicks are from a
-            // replay.
-            rep.events.add(new ClickEvent(screenX, screenY,
-                    1, button, System.currentTimeMillis()));
+        rep.events.add(new ClickEvent(screenX, screenY,
+                pointer, button, System.currentTimeMillis()));
 
         return super.touchDown(screenX, screenY, pointer, button);
     }
@@ -89,8 +86,8 @@ public class ReplayStage extends Stage {
         ClickEvent c = rep.events.get(0);
         // We can get away with reusing the same ClickEvent as we can assume
         // that a click up and down occur at the same location.
-        touchDown(c.screenX, c.screenY, c.pointer, c.button);
-        touchUp(c.screenX, c.screenY, c.pointer, c.button);
+        super.touchDown(c.screenX, c.screenY, c.pointer, c.button);
+        super.touchUp(c.screenX, c.screenY, c.pointer, c.button);
         rep.events.remove(0);
 
         // Give control back to the user so they can click the exit button.
