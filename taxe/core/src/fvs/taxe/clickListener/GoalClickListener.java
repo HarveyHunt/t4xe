@@ -27,6 +27,10 @@ public class GoalClickListener extends ClickListener {
         this.goal = goal;
         this.context = context;
         this.showingTooltips = false;
+
+        tooltip1 = new Tooltip(context.getSkin());
+        tooltip2 = new Tooltip(context.getSkin());
+        tooltip3 = new Tooltip(context.getSkin());
     }
 
     @Override
@@ -48,7 +52,6 @@ public class GoalClickListener extends ClickListener {
     public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
         if (!showingTooltips) {
             //Need to check whether tooltips are currently being shown as otherwise it redraws them instantly after the clicked routine has ended
-            tooltip1 = new Tooltip(context.getSkin());
             Station origin = goal.getOrigin();
             StationActor originActor = origin.getActor();
 
@@ -56,7 +59,6 @@ public class GoalClickListener extends ClickListener {
             tooltip1.show(origin.getName());
             context.getStage().addActor(tooltip1);
 
-            tooltip2 = new Tooltip(context.getSkin());
             Station destination = goal.getDestination();
             StationActor destinationActor = destination.getActor();
             context.getStage().addActor(tooltip2);
@@ -65,7 +67,6 @@ public class GoalClickListener extends ClickListener {
 
             Station intermediary = goal.getIntermediary();
             if (!intermediary.getName().equals(origin.getName())) {
-                tooltip3 = new Tooltip(context.getSkin());
                 StationActor intermediaryActor = intermediary.getActor();
                 context.getStage().addActor(tooltip3);
                 tooltip3.setPosition(intermediaryActor.getX() + 20, intermediaryActor.getY() + 20);
