@@ -18,7 +18,7 @@ public class JSONImporter {
         //Defines the file to parse
         JsonValue jsonVal = jsonReader.parse("");
         try {
-            jsonVal = jsonReader.parse(new FileInputStream("trains.json"));
+            jsonVal = jsonReader.parse(new FileInputStream("stations.json"));
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
