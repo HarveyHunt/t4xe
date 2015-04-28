@@ -160,6 +160,8 @@ public class DialogButtonClicked implements ResourceDialogClickListener {
                 break;
             }
 
+            // Duplicate code will be run, so fall through.
+            case TRAIN_CHANGE_ROUTE:
             case TRAIN_ROUTE:
                 context.getRouteController().begin(train);
                 break;
@@ -315,10 +317,6 @@ public class DialogButtonClicked implements ResourceDialogClickListener {
 
             case SKIP_DROP:
                 currentPlayer.removeResource(skip);
-                break;
-
-            case TRAIN_CHANGE_ROUTE:
-                context.getRouteController().begin(train);
                 break;
 
             case ENGINEER_ADD_TRACK: {
