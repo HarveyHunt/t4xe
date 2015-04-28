@@ -3,10 +3,10 @@ package test;
 
 import gameLogic.map.Position;
 import gameLogic.map.Station;
-import junit.framework.TestCase;
 import org.junit.Test;
+import org.junit.Assert;
 
-public class StationTest extends TestCase {
+public class StationTest {
 
     @Test
     public void testStationCreation() throws Exception {
@@ -16,8 +16,8 @@ public class StationTest extends TestCase {
 
         Station testStation = new Station(name, new Position(x, y));
 
-        assertTrue("Position is wrong", testStation.getLocation().getX() == x
+        Assert.assertTrue("Position is wrong", testStation.getLocation().getX() == x
                 && testStation.getLocation().getY() == y);
-        assertTrue("Name is wrong", testStation.getName().equals(name));
+        Assert.assertTrue("Name is wrong", testStation.getName().equals(name));
     }
 }

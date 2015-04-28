@@ -3,11 +3,11 @@ package test;
 import gameLogic.Game;
 import gameLogic.player.Player;
 import gameLogic.player.PlayerManager;
-import junit.framework.TestCase;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.Assert;
 
-public class GameTest extends TestCase {
+public class GameTest {
     private PlayerManager pm;
 
     @Before
@@ -20,8 +20,8 @@ public class GameTest extends TestCase {
     public void testInitialisePlayers() {
         Player currentPlayer = pm.getActivePlayer();
 
-        assertTrue("Player not starting with 2 resources", currentPlayer.getResources().size() == 0);
-        assertTrue("Player starting with more than 0 goals", currentPlayer.getGoals().size() == 0);
+        Assert.assertTrue("Player not starting with 2 resources", currentPlayer.getResources().size() == 0);
+        Assert.assertTrue("Player starting with more than 0 goals", currentPlayer.getGoals().size() == 0);
     }
 
     @Test
@@ -33,7 +33,7 @@ public class GameTest extends TestCase {
         pm.turnOver(null);
         pm.turnOver(null);
 
-        assertTrue("No. resources did not increase", p1.getResources().size() > resourceCount);
-        assertTrue("No. goals did not increase", p1.getGoals().size() > goalCount);
+        Assert.assertTrue("No. resources did not increase", p1.getResources().size() > resourceCount);
+        Assert.assertTrue("No. goals did not increase", p1.getGoals().size() > goalCount);
     }
 }

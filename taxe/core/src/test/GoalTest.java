@@ -4,10 +4,10 @@ import gameLogic.goal.Goal;
 import gameLogic.map.Position;
 import gameLogic.map.Station;
 import gameLogic.resource.Train;
-import junit.framework.TestCase;
 import org.junit.Test;
+import org.junit.Assert;
 
-public class GoalTest extends TestCase {
+public class GoalTest {
 
     Station origin = new Station("station1", new Position(5, 5));
     Station destination = new Station("station2", new Position(2, 2));
@@ -34,10 +34,10 @@ public class GoalTest extends TestCase {
         train.addHistory(station7, 11);
         train.addHistory(station8, 16);
 
-        assertFalse(goal.isComplete(train));
+        Assert.assertFalse(goal.isComplete(train));
         train.setFinalDestination(destination);
         train.addHistory(destination, 18);
-        assertTrue(goal.isComplete(train));
+        Assert.assertTrue(goal.isComplete(train));
 
     }
 
@@ -45,7 +45,7 @@ public class GoalTest extends TestCase {
     public void testCompletedWithinMaxTurns() throws Exception {
 
         Goal anotherGoal = new Goal(origin, destination, intermediary, 20, 0, 20, 50, train);
-        assertFalse(anotherGoal.completedWithinMaxTurns(train));
+        Assert.assertFalse(anotherGoal.completedWithinMaxTurns(train));
 
         Goal yetAnotherGoal = new Goal(destination, origin, intermediary, 20, 10, 20, 50, train);
         train.addHistory(origin, 20);
@@ -54,15 +54,15 @@ public class GoalTest extends TestCase {
         train.addHistory(station7, 40);
         train.addHistory(station8, 56);
         train.addHistory(destination, 60);
-        assertFalse(yetAnotherGoal.completedWithinMaxTurns(train));
+        Assert.assertFalse(yetAnotherGoal.completedWithinMaxTurns(train));
 
     }
 
     @Test
     public void testCompletedWithTrain() throws Exception {
-        assertEquals(goal.getTrain().getName(), train.getName());
+        Assert.assertEquals(goal.getTrain().getName(), train.getName());
         Train timeOfMyLife = new Train("I just love testing", "RedTrain.png", "RedTrainRight.png", 250);
-        assertFalse(goal.getTrain().getName().equals(timeOfMyLife.getName()));
+        Assert.assertFalse(goal.getTrain().getName().equals(timeOfMyLife.getName()));
 
     }
 

@@ -1,15 +1,15 @@
 package test;
 
 import gameLogic.map.Map;
-import junit.framework.TestCase;
 import org.junit.Test;
+import org.junit.Assert;
 
-public class StationHelperTest extends TestCase {
+public class StationHelperTest {
     @Test
     public void testDoesConnectionExist() throws Exception {
         Map map = new Map();
 
-        assertTrue(map.doesConnectionExist("Madrid", "Paris"));
-        assertFalse(map.doesConnectionExist("London", "Paris"));
+        Assert.assertTrue(map.doesConnectionExist("Madrid", "Paris"));
+        Assert.assertFalse(map.doesConnectionExist("London", "Paris"));
     }
 }

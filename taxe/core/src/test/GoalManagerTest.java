@@ -8,10 +8,10 @@ import gameLogic.player.Player;
 import gameLogic.player.PlayerManager;
 import gameLogic.resource.ResourceManager;
 import gameLogic.resource.Train;
-import junit.framework.TestCase;
+import org.junit.Assert;
 import org.junit.Test;
 
-public class GoalManagerTest extends TestCase {
+public class GoalManagerTest {
     ResourceManager rs = new ResourceManager();
     GoalManager goalManager = new GoalManager(rs);
     PlayerManager playerManager = new PlayerManager();
@@ -28,21 +28,21 @@ public class GoalManagerTest extends TestCase {
     public void testGenerateRandom() throws Exception {
 
         Goal newGoal1 = goalManager.generateRandom(1);
-        assertNotNull("Goals not generating correctly", newGoal1.toString());
+        Assert.assertNotNull("Goals not generating correctly", newGoal1.toString());
         Goal newGoal2 = goalManager.generateRandom(3);
-        assertNotNull("Goals not generating correctly", newGoal2.toString());
+        Assert.assertNotNull("Goals not generating correctly", newGoal2.toString());
     }
 
     @Test
     public void testAddRandomGoalToPlayer() throws Exception {
         playerManager.createPlayers(2);
         Player player1 = playerManager.getActivePlayer();
-        assertEquals(0, player1.getGoals().size());
+        Assert.assertEquals(0, player1.getGoals().size());
 
         goalManager.addRandomGoalToPlayer(player1);
         goalManager.addRandomGoalToPlayer(player1);
         goalManager.addRandomGoalToPlayer(player1);
 
-        assertEquals("Goals not being added correctly", 3, player1.getGoals().size());
+        Assert.assertEquals("Goals not being added correctly", 3, player1.getGoals().size());
     }
 }

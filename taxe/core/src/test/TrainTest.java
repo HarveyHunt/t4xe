@@ -4,13 +4,13 @@ package test;
 import gameLogic.map.Position;
 import gameLogic.map.Station;
 import gameLogic.resource.Train;
-import junit.framework.TestCase;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.Assert;
 
 import java.util.ArrayList;
 
-public class TrainTest extends TestCase {
+public class TrainTest {
     private Train train;
 
     @Before
@@ -27,8 +27,8 @@ public class TrainTest extends TestCase {
         route.add(station2);
 
         train.setRoute(route);
-        assertTrue("Setting a train route was not successful", train.getRoute().size() == 2);
-        assertTrue("Final destination wasn't set", train.getFinalDestination() == station2);
+        Assert.assertTrue("Setting a train route was not successful", train.getRoute().size() == 2);
+        Assert.assertTrue("Final destination wasn't set", train.getFinalDestination() == station2);
     }
 
 
