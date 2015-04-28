@@ -64,8 +64,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="8" language="java" name="fvs.taxe.actor.CollisionStationActor" project="taxe-core" 
-    file="/taxe-core/src/fvs/taxe/actor/CollisionStationActor.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="8" language="java" name="fvs.taxe.actor.JunctionActor" project="taxe-core" 
+    file="/taxe-core/src/fvs/taxe/actor/JunctionActor.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="-50" y="289"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -298,8 +298,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="34" language="java" name="gameLogic.map.CollisionStation" project="taxe-core" 
-    file="/taxe-core/src/gameLogic/map/CollisionStation.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="34" language="java" name="gameLogic.map.Junction" project="taxe-core" 
+    file="/taxe-core/src/gameLogic/map/Junction.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="81" width="196" x="144" y="963"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      

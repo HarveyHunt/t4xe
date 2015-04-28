@@ -15,7 +15,7 @@ import fvs.taxe.controller.StationController;
 import fvs.taxe.controller.TrainController;
 import gameLogic.Game;
 import gameLogic.GameState;
-import gameLogic.map.CollisionStation;
+import gameLogic.map.Junction;
 import gameLogic.map.Connection;
 import gameLogic.map.ConnectionType;
 import gameLogic.map.Station;
@@ -99,7 +99,7 @@ public class DialogButtonClicked implements ResourceDialogClickListener {
                 final StationClickListener stationListener = new StationClickListener() {
                     @Override
                     public void clicked(Station station) {
-                        if (station instanceof CollisionStation) {
+                        if (station instanceof Junction) {
                             context.getTopBarController().displayFlashMessage("Trains cannot be placed at junctions.", Color.RED);
                         } else {
                             train.setPosition(station.getLocation());

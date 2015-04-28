@@ -103,9 +103,9 @@ public class Map {
         return newStation;
     }
 
-    public CollisionStation addJunction(String name, Position location) {
+    public Junction addJunction(String name, Position location) {
         //This routine adds a new junction to the list of stations
-        CollisionStation newJunction = new CollisionStation(name, location);
+        Junction newJunction = new Junction(name, location);
         stations.add(newJunction);
         return newJunction;
     }

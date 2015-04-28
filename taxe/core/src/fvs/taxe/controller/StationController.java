@@ -11,7 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import fvs.taxe.TaxeGame;
 import fvs.taxe.Tooltip;
-import fvs.taxe.actor.CollisionStationActor;
+import fvs.taxe.actor.JunctionActor;
 import fvs.taxe.actor.StationActor;
 import fvs.taxe.clickListener.StationClickListener;
 import fvs.taxe.clickListener.TrainClicked;
@@ -19,7 +19,7 @@ import fvs.taxe.dialog.DialogStationMultitrain;
 import gameLogic.Game;
 import gameLogic.GameState;
 import gameLogic.goal.Goal;
-import gameLogic.map.CollisionStation;
+import gameLogic.map.Junction;
 import gameLogic.map.Connection;
 import gameLogic.map.IPositionable;
 import gameLogic.map.Station;
@@ -116,8 +116,8 @@ public class StationController {
         context.getStage().addActor(stationActor);
     }
 
-    private void renderCollisionStation(final Station collisionStation) {
-        final CollisionStationActor collisionStationActor = new CollisionStationActor(
+    private void renderJunction(final Station collisionStation) {
+        final JunctionActor collisionStationActor = new JunctionActor(
                 collisionStation.getLocation());
 
         //No need for a thorough clicked routine in the collision station unlike
@@ -191,8 +191,8 @@ public class StationController {
 
         //Iterates through every station and renders them on the GUI
         for (Station station : stations) {
-            if (station instanceof CollisionStation)
-                renderCollisionStation(station);
+            if (station instanceof Junction)
+                renderJunction(station);
             else
                 renderStation(station);
         }

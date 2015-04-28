@@ -11,7 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import fvs.taxe.TaxeGame;
 import fvs.taxe.clickListener.StationClickListener;
 import gameLogic.GameState;
-import gameLogic.map.CollisionStation;
+import gameLogic.map.Junction;
 import gameLogic.map.IPositionable;
 import gameLogic.map.Position;
 import gameLogic.map.Station;
@@ -74,7 +74,7 @@ public class RouteController {
                     if (context.getGameLogic().getMap().doesConnectionExist(lastStation.getName(), station.getName())) {
                         positions.add(station.getLocation());
                         //Sets the relevant boolean checking if the last node on the route is a junction or not
-                        canEndRouting = !(station instanceof CollisionStation);
+                        canEndRouting = !(station instanceof Junction);
                     } else {
                         context.getTopBarController().displayFlashMessage("This connection doesn't exist", Color.RED);
                     }
@@ -84,7 +84,7 @@ public class RouteController {
                     if (station.getName().equals(lastStation.getName())
                             || nextStation.getName().equals(station.getName())) {
                         positions.add(station.getLocation());
-                        canEndRouting = !(station instanceof CollisionStation);
+                        canEndRouting = !(station instanceof Junction);
                     } else {
                         context.getTopBarController().displayFlashMessage("This connection doesn't exist", Color.RED);
                     }
@@ -109,7 +109,7 @@ public class RouteController {
                         + integer.format(Math.ceil(distance / train.getSpeed() / 2))
                         + " turns.", Color.BLACK);
                 positions.add(station.getLocation());
-                canEndRouting = !(station instanceof CollisionStation);
+                canEndRouting = !(station instanceof Junction);
             }
         }
     }

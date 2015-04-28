@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.1.8" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
   associations="true" dependencies="false" nesting-relationships="true">  
-  <class id="1" language="java" name="fvs.taxe.actor.CollisionStationActor" project="taxe-core" 
-    file="/taxe-core/src/fvs/taxe/actor/CollisionStationActor.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="1" language="java" name="fvs.taxe.actor.JunctionActor" project="taxe-core" 
+    file="/taxe-core/src/fvs/taxe/actor/JunctionActor.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="117" width="192" x="136" y="-109"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      

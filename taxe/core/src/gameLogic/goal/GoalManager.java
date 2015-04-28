@@ -1,7 +1,7 @@
 package gameLogic.goal;
 
 import gameLogic.Game;
-import gameLogic.map.CollisionStation;
+import gameLogic.map.Junction;
 import gameLogic.map.Map;
 import gameLogic.map.Station;
 import gameLogic.player.Player;
@@ -30,14 +30,14 @@ public class GoalManager {
         do {
             //This generates a suitable random station to be the origin node of the goal
             origin = map.getRandomStation();
-        } while (origin instanceof CollisionStation);
+        } while (origin instanceof Junction);
 
         Station destination;
         do {
             //This generates a suitable random station to be the destination node of the goal (i.e not equal to the origin)
             destination = map.getRandomStation();
         }
-        while (destination == origin || destination instanceof CollisionStation);
+        while (destination == origin || destination instanceof Junction);
 
         double shortestDist = map.getShortestDistance(origin, destination); //Stores the shortest distance between two points
         int score = (int) (shortestDist * (Math.pow(1.0001, shortestDist))); //Score by default = shortestDist*1.0001^shortestDist.
@@ -51,7 +51,7 @@ public class GoalManager {
                 intermediary = map.getRandomStation();
             }
             while (intermediary == origin || intermediary == destination
-                    || intermediary instanceof CollisionStation
+                    || intermediary instanceof Junction
                     || map.inShortestPath(origin, destination, intermediary));
             //Calculates the bonus to be equal to the two distances between origin/intermediary and intermediary/destination added together
             bonus = (int) (map.getShortestDistance(origin, intermediary) + map.getShortestDistance(intermediary, destination));
