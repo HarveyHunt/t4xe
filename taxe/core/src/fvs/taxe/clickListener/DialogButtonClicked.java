@@ -108,11 +108,27 @@ public class DialogButtonClicked implements ResourceDialogClickListener {
                             //Resets the cursor
                             Gdx.input.setCursorImage(null, 0, 0);
 
-                            //Hides the current train but makes all moving trains visible
-                            TrainController trainController = new TrainController(context);
-                            TrainActor trainActor = trainController.renderTrain(train);
-                            trainController.setTrainsVisible(null, true);
-                            train.setActor(trainActor);
+                            /**
+                             * During a replay, a new thread is started by the
+                             * timer that handles click events. Due
+                             * to this, we can't render something in this thread
+                             * as, during a replay, we won't be in the main
+                             * thread - meaning we have no OpenGL context to
+                             * render to.
+                             *
+                             * In order to fix this, we politely ask LibGDX to
+                             * run the rendering code in the main thread.
+                             */
+                            Gdx.app.postRunnable(new Runnable() {
+                                @Override
+                                public void run() {
+                                    //Hides the current train but makes all moving trains visible
+                                    TrainController trainController = new TrainController(context);
+                                    TrainActor trainActor = trainController.renderTrain(train);
+                                    trainController.setTrainsVisible(null, true);
+                                    train.setActor(trainActor);
+                                }
+                            });
 
                             StationController.unsubscribeStationClick(this);
                             Game.getInstance().setState(GameState.NORMAL);
