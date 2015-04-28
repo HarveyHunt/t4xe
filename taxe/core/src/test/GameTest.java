@@ -3,12 +3,10 @@ package test;
 import gameLogic.Game;
 import gameLogic.player.Player;
 import gameLogic.player.PlayerManager;
+import junit.framework.TestCase;
 import org.junit.Before;
-import org.junit.Test;
 
-import static org.junit.Assert.assertTrue;
-
-public class GameTest extends LibGdxTest {
+public class GameTest extends TestCase {
     private PlayerManager pm;
 
     @Before
@@ -18,15 +16,13 @@ public class GameTest extends LibGdxTest {
         pm = game.getPlayerManager();
     }
 
-    @Test
     public void testInitialisePlayers() {
         Player currentPlayer = pm.getActivePlayer();
 
-        assertTrue("Player starting with more than 0 resources", currentPlayer.getResources().size() == 0);
+        assertTrue("Player not starting with 2 resources", currentPlayer.getResources().size() == 0);
         assertTrue("Player starting with more than 0 goals", currentPlayer.getGoals().size() == 0);
     }
 
-    @Test
     public void testPlayerChanged() throws Exception {
         Player p1 = pm.getActivePlayer();
         int resourceCount = p1.getResources().size();

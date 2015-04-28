@@ -2,13 +2,10 @@ package test;
 
 import gameLogic.player.Player;
 import gameLogic.player.PlayerManager;
+import junit.framework.TestCase;
 import org.junit.Before;
-import org.junit.Test;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-
-public class PlayerManagerTest {
+public class PlayerManagerTest extends TestCase {
     private PlayerManager pm;
 
     @Before
@@ -17,7 +14,6 @@ public class PlayerManagerTest {
         pm.createPlayers(2);
     }
 
-    @Test
     public void testGetCurrentPlayer() throws Exception {
         Player p1 = pm.getActivePlayer();
         pm.turnOver(null);
@@ -26,7 +22,6 @@ public class PlayerManagerTest {
         assertFalse("Active Player did not change", p1.equals(pm.getActivePlayer()));
     }
 
-    @Test
     public void testTurnNumber() throws Exception {
         int previous = pm.getTurnNumber();
         pm.turnOver(null);

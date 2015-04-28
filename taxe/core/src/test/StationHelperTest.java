@@ -1,13 +1,10 @@
 package test;
 
 import gameLogic.map.Map;
+import junit.framework.TestCase;
 import org.junit.Test;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-
-public class StationHelperTest extends LibGdxTest {
-    @Test
+public class StationHelperTest extends TestCase {
     public void testDoesConnectionExist() throws Exception {
         Map map = new Map();
 

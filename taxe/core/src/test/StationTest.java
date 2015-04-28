@@ -3,12 +3,10 @@ package test;
 
 import gameLogic.map.Position;
 import gameLogic.map.Station;
-import org.junit.Test;
+import junit.framework.TestCase;
 
-import static org.junit.Assert.assertTrue;
+public class StationTest extends TestCase {
 
-public class StationTest {
-    @Test
     public void testStationCreation() throws Exception {
         int x = 5000;
         int y = 7000;

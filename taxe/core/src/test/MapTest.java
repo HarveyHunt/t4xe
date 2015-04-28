@@ -2,12 +2,10 @@ package test;
 
 import gameLogic.map.Map;
 import gameLogic.map.Position;
+import junit.framework.TestCase;
 import org.junit.Before;
-import org.junit.Test;
 
-import static org.junit.Assert.assertTrue;
-
-public class MapTest extends LibGdxTest {
+public class MapTest extends TestCase {
     private Map map;
 
     @Before
@@ -15,7 +13,6 @@ public class MapTest extends LibGdxTest {
         map = new Map();
     }
 
-    @Test
     public void testAddStationAndConnection() throws Exception {
         String name1 = "station1";
         String name2 = "station2";
