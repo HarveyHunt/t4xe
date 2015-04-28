@@ -226,7 +226,6 @@ public class RouteController {
         //This method is used to draw the trains current route so that the user
         //can see where their trains are going
         routingButtons.clear();
-        train.getRoute();
 
         //This works by simulating the creation of a new route, but without the ability to save the route
         //This will instead draw the route passed to it, which is the one located in train.getRoute()

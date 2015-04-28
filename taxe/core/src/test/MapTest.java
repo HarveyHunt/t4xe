@@ -30,6 +30,7 @@ public class MapTest {
         Assert.assertTrue("Connection addition failed", map.doesConnectionExist(name2, name1));
 
         // Should throw an error by itself
+        // WTF IS THIS SHIT?!
         map.getStationFromPosition(new Position(9999, 9999));
     }
 }
