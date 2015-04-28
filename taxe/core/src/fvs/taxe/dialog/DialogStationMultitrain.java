@@ -41,7 +41,7 @@ public class DialogStationMultitrain extends Dialog {
 
     @Override
     protected void result(Object obj) {
-        if (obj == "CANCEL") {
+        if (obj.equals("CANCEL")) {
             this.remove();
         } else {
             TrainClicked clicker = new TrainClicked(context, (Train) obj);

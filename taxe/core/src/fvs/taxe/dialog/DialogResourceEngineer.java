@@ -47,15 +47,15 @@ public class DialogResourceEngineer extends Dialog {
 
     @Override
     protected void result(Object obj) {
-        if (obj == "CLOSE")
+        if (obj.equals("CLOSE"))
             this.remove();
-        else if (obj == "DROP")
+        else if (obj.equals("DROP"))
             clicked(Button.ENGINEER_DROP);
-        else if (obj == "PLACE")
+        else if (obj.equals("PLACE"))
             clicked(Button.ENGINEER_REPAIR_TRACK);
-        else if (obj == "REM_TRACK")
+        else if (obj.equals("REM_TRACK"))
             clicked(Button.ENGINEER_REMOVE_TRACK);
-        else if (obj == "ADD_TRACK")
+        else if (obj.equals("ADD_TRACK"))
             clicked(Button.ENGINEER_ADD_TRACK);
     }
 }

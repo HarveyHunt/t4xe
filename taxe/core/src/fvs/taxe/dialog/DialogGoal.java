@@ -50,9 +50,9 @@ public class DialogGoal extends Dialog {
     @Override
     protected void result(Object obj) {
         //Does things based on which button was pressed
-        if (obj == "CLOSE")
+        if (obj.equals("CLOSE"))
             this.remove();
-        else if (obj == "DROP")
+        else if (obj.equals("DROP"))
             //Removes the goal if the drop button is pressed
             clicked();
     }

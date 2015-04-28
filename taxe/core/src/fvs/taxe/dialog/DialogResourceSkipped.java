@@ -46,11 +46,11 @@ public class DialogResourceSkipped extends Dialog {
 
     @Override
     protected void result(Object obj) {
-        if (obj == "EXIT")
+        if (obj.equals("EXIT"))
             Gdx.app.exit();
-        else if (obj == "DROP")
+        else if (obj.equals("DROP"))
             clicked(Button.SKIP_DROP);
-        else if (obj == "USE")
+        else if (obj.equals("USE"))
             clicked(Button.SKIP_RESOURCE);
     }
 }

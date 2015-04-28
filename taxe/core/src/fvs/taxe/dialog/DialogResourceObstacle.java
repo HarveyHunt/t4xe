@@ -46,11 +46,11 @@ public class DialogResourceObstacle extends Dialog {
 
     @Override
     protected void result(Object obj) {
-        if (obj == "CLOSE")
+        if (obj.equals("CLOSE"))
             this.remove();
-        else if (obj == "DROP")
+        else if (obj.equals("DROP"))
             clicked(Button.OBSTACLE_DROP);
-        else if (obj == "PLACE")
+        else if (obj.equals("PLACE"))
             clicked(Button.OBSTACLE_USE);
     }
 }

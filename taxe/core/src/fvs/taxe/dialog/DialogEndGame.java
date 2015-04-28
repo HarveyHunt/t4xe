@@ -51,7 +51,7 @@ public class DialogEndGame extends Dialog {
 
     @Override
     protected void result(Object obj) {
-        if (obj == "Exit")
+        if (obj.equals("Exit"))
             Gdx.app.exit();
     }
 }
