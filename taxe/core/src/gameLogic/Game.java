@@ -10,25 +10,28 @@ import gameLogic.resource.ResourceManager;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Game {
     //This is sort of a super-class that can be accessed throughout the system as many of its methods are static
     //This is a useful tool to exploit to make implementing certain features easier
     private static Game instance;
     //This
-    public final int TOTAL_TURNS = 30;
+    public final int TOTAL_TURNS = 5;
     public final int MAX_POINTS = 10000;
-    private final PlayerManager playerManager;
-    private final GoalManager goalManager;
-    private final ResourceManager resourceManager;
+    private PlayerManager playerManager;
+    private GoalManager goalManager;
+    private ResourceManager resourceManager;
     private final Map map;
+    private final int CONFIG_PLAYERS = 2;
     private final List<GameStateListener> gameStateListeners = new ArrayList<GameStateListener>();
+    private static long seed = System.currentTimeMillis();
+    private static Random consistentRandom = new Random(seed);
     private GameState state;
 
     private Game() {
         //Creates players
         playerManager = new PlayerManager();
-        int CONFIG_PLAYERS = 2;
         playerManager.createPlayers(CONFIG_PLAYERS);
 
         //Give them starting resources and goals
@@ -39,6 +42,10 @@ public class Game {
 
         state = GameState.NORMAL;
 
+        setupTurnChangeSubscriptions();
+    }
+
+    private void setupTurnChangeSubscriptions() {
         //Adds all the subscriptions to the game which gives players resources and goals at the start of each turn.
         //Also decrements all connections and blocks a random one
         //The checking for whether a turn is being skipped is handled inside the methods, this just always calls them
@@ -55,6 +62,19 @@ public class Game {
         });
     }
 
+    public static Random getConsistentRandom() {
+        return consistentRandom;
+    }
+
+    public static long getSeed() {
+        return seed;
+    }
+
+    public static void setSeed(long seed) {
+        Game.seed = seed;
+        consistentRandom.setSeed(seed);
+    }
+
     public static Game getInstance() {
         if (instance == null) {
             instance = new Game();
@@ -62,7 +82,6 @@ public class Game {
             // method can't be called in the constructor
             instance.initialisePlayers();
         }
-
         return instance;
     }
 

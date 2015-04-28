@@ -11,8 +11,7 @@ import gameLogic.player.PlayerManager;
 public class DialogEndGame extends Dialog {
 
     public DialogEndGame(TaxeGame game, PlayerManager pm, Skin skin) {
-        super("GAME OVER", skin);
-        TaxeGame game1 = game;
+        super("Game Over", skin);
 
         double highScore = 0;
         int playerNum = 0;
@@ -30,11 +29,11 @@ public class DialogEndGame extends Dialog {
         //Declares the winner based on who received the highest score
         //If adding multiple players then this would need to be changed to reflect that
         if (playerNum != 0)
-            text("PLAYER " + playerNum + " WINS!");
+            text("Player " + playerNum + " Wins!");
         else
-            text("IT'S A TIE!");
+            text("It's a tie!");
 
-        button("Exit", "EXIT");
+        button("Exit", "Exit");
     }
 
     @Override
@@ -52,7 +51,7 @@ public class DialogEndGame extends Dialog {
 
     @Override
     protected void result(Object obj) {
-        if (obj == "EXIT")
+        if (obj == "Exit")
             Gdx.app.exit();
     }
 }

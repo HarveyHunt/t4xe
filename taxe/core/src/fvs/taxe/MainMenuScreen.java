@@ -11,11 +11,15 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
+import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 class MainMenuScreen extends ScreenAdapter {
     private final TaxeGame game;
     private final OrthographicCamera camera;
     private final Rectangle playBounds;
     private final Rectangle exitBounds;
+    private final Rectangle replayBounds;
     private final Vector3 touchPoint;
     private final Texture mapTexture;
     private final Image mapImage;
@@ -26,7 +30,9 @@ class MainMenuScreen extends ScreenAdapter {
         camera.setToOrtho(false);
 
         playBounds = new Rectangle(TaxeGame.WIDTH / 2 - 200, 350, 400, 100);
-        exitBounds = new Rectangle(TaxeGame.WIDTH / 2 - 200, 200, 400, 100);
+        replayBounds = new Rectangle(TaxeGame.WIDTH / 2 - 200, 200, 400, 100);
+        exitBounds = new Rectangle(TaxeGame.WIDTH / 2 - 200, 50, 400, 100);
+
         touchPoint = new Vector3();
 
         //Loads the gameMap in
@@ -35,16 +41,28 @@ class MainMenuScreen extends ScreenAdapter {
     }
 
     void update() {
-        //Begins the game or exits the application based on where the user presses
+        //Begins the game, loads a replay or exits the application based on where the user presses
         if (Gdx.input.justTouched()) {
             camera.unproject(touchPoint.set(Gdx.input.getX(), Gdx.input.getY(), 0));
             if (playBounds.contains(touchPoint.x, touchPoint.y)) {
-                game.setScreen(new GameScreen(game));
-                return;
+                game.setScreen(new GameScreen(game, null, false));
             }
 
-            if (exitBounds.contains(touchPoint.x, touchPoint.y))
+            if (replayBounds.contains(touchPoint.x, touchPoint.y)) {
+                // TODO: Add error handling for when the user fucks up.
+                JFileChooser chooser = new JFileChooser();
+                FileNameExtensionFilter filter = new FileNameExtensionFilter("Replay files", "json");
+                chooser.setFileFilter(filter);
+                if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+                    GameScreen screen = new GameScreen(game, chooser.getSelectedFile().getAbsolutePath(), true);
+                    game.setScreen(screen);
+                    screen.startReplay();
+                }
+            }
+
+            if (exitBounds.contains(touchPoint.x, touchPoint.y)) {
                 Gdx.app.exit();
+            }
         }
     }
 
@@ -68,6 +86,8 @@ class MainMenuScreen extends ScreenAdapter {
         game.shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
         game.shapeRenderer.setColor(Color.GREEN);
         game.shapeRenderer.rect(playBounds.getX(), playBounds.getY(), playBounds.getWidth(), playBounds.getHeight());
+        game.shapeRenderer.setColor(Color.YELLOW);
+        game.shapeRenderer.rect(replayBounds.getX(), replayBounds.getY(), replayBounds.getWidth(), replayBounds.getHeight());
         game.shapeRenderer.setColor(Color.RED);
         game.shapeRenderer.rect(exitBounds.getX(), exitBounds.getY(), exitBounds.getWidth(), exitBounds.getHeight());
         game.shapeRenderer.end();
@@ -78,6 +98,10 @@ class MainMenuScreen extends ScreenAdapter {
         game.font.draw(game.batch, startGameString,
                 playBounds.getX() + playBounds.getWidth() / 2 - game.font.getBounds(startGameString).width / 2,
                 playBounds.getY() + playBounds.getHeight() / 2 + game.font.getBounds(startGameString).height / 2);
+        String replayGameString = "Select a replay";
+        game.font.draw(game.batch, replayGameString,
+                replayBounds.getX() + replayBounds.getWidth() / 2 - game.font.getBounds(replayGameString).width / 2,
+                replayBounds.getY() + replayBounds.getHeight() / 2 + game.font.getBounds(replayGameString).height / 2);
         String exitGameString = "Exit";
         game.font.draw(game.batch, exitGameString,
                 exitBounds.getX() + exitBounds.getWidth() / 2 - game.font.getBounds(exitGameString).width / 2,

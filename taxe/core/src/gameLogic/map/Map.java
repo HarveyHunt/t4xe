@@ -8,15 +8,12 @@ import gameLogic.resource.Train;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class Map {
     private final List<Station> stations;
 
     private final List<Connection> enabledConnections;
     private final List<Connection> disabledConnections;
-
-    private final Random random = new Random();
     private final Dijkstra dijkstra;
 
     public Map() {
@@ -48,9 +45,8 @@ public class Map {
 
             //Checks whether or not the connection has station 1 and station 2 in its attributes, if so returns true, if not returns false
             if (s1.equals(stationName) && s2.equals(anotherStationName)
-                    || s1.equals(anotherStationName) && s2.equals(stationName)) {
+                    || s1.equals(anotherStationName) && s2.equals(stationName))
                 return true;
-            }
         }
 
         return false;
@@ -97,7 +93,7 @@ public class Map {
 
     public Station getRandomStation() {
         //Returns a random station
-        return stations.get(random.nextInt(stations.size()));
+        return stations.get(Game.getConsistentRandom().nextInt(stations.size()));
     }
 
     public Station addStation(String name, Position location) {
@@ -130,18 +126,16 @@ public class Map {
         // Attempt to move the connection from an enabled to a disabled state
         int i = enabledConnections.indexOf(target);
 
-        if (i > -1) {
+        if (i > -1)
             disabledConnections.add(enabledConnections.remove(i));
-        }
     }
 
     public void enableConnection(Connection target) {
         // Attempt to move the connection from a disabled to an enabled state
         int i = disabledConnections.indexOf(target);
 
-        if (i > -1) {
+        if (i > -1)
             enabledConnections.add(disabledConnections.remove(i));
-        }
     }
 
 
@@ -179,11 +173,10 @@ public class Map {
         //Returns the station whose name matches the string passed to the method
         int i = 0;
         while (i < stations.size()) {
-            if (stations.get(i).getName().equals(name)) {
+            if (stations.get(i).getName().equals(name))
                 return stations.get(i);
-            } else {
+            else
                 i++;
-            }
         }
         return null;
     }
@@ -191,9 +184,8 @@ public class Map {
     public Station getStationFromPosition(IPositionable position) {
         //Returns the station located at the position passed to the method
         for (Station station : stations) {
-            if (station.getLocation().equals(position)) {
+            if (station.getLocation().equals(position))
                 return station;
-            }
         }
 
         return null;
@@ -204,9 +196,8 @@ public class Map {
         //These stations are then added to a list which acts as the route
         List<Station> route = new ArrayList<Station>();
 
-        for (IPositionable position : positions) {
+        for (IPositionable position : positions)
             route.add(getStationFromPosition(position));
-        }
 
         return route;
     }
@@ -220,13 +211,13 @@ public class Map {
 
     Connection getRandomConnection() {
         //Returns a random connection, used for blocking a random connection
-        int index = random.nextInt(enabledConnections.size());
+        int index = Game.getConsistentRandom().nextInt(enabledConnections.size());
         return enabledConnections.get(index);
     }
 
     public void blockRandomConnection() {
         //This blocks a random connection
-        int rand = random.nextInt(2);
+        int rand = Game.getConsistentRandom().nextInt(2);
         if (rand > 0) {
             //50% chance of connection being blocked
             Connection toBlock;
@@ -250,11 +241,8 @@ public class Map {
                     }
                 }
             } while (!canBlock);
-
             toBlock.setBlocked(5);
-
         }
-
     }
 
     public void blockConnection(Station station1, Station station2, int turnsBlocked) {
