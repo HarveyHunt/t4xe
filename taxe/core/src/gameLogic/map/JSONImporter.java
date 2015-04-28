@@ -6,6 +6,10 @@ import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
 import gameLogic.resource.ResourceManager;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 //This is a new class that handles all of the importing from the JSON file for the map.
@@ -27,8 +31,21 @@ public class JSONImporter {
     public JSONImporter(ResourceManager resourceManager) {
         JsonReader jsonReader = new JsonReader();
 
-        //Defines the file to parse
-        JsonValue jsonVal = jsonReader.parse(Gdx.files.local("trains.json"));
+        /**
+         * Originally, this was done using Gdx.files.local, but that was fucking
+         * up when we were running tests. Good old FileInputStream has saved us.
+         *
+         * This is a nasty hack and we should really solve the problem, but we
+         * have to hand in worryingly soon...
+         *
+         * If anyone is reading this - I am sorry for my sins against Junit / Java.
+         */
+        JsonValue jsonVal = jsonReader.parse("");
+        try {
+            jsonVal = jsonReader.parse(new FileInputStream("trains.json"));
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
 
         ArrayList<Tuple<String, Integer>> trains = new ArrayList<Tuple<String, Integer>>();
 
