@@ -33,16 +33,13 @@ public class GoalManagerTest extends TestCase {
 
     public void testAddRandomGoalToPlayer() throws Exception {
         playerManager.createPlayers(2);
-        Player player1 = playerManager.getCurrentPlayer();
+        Player player1 = playerManager.getActivePlayer();
         assertEquals(0, player1.getGoals().size());
 
         goalManager.addRandomGoalToPlayer(player1);
         goalManager.addRandomGoalToPlayer(player1);
         goalManager.addRandomGoalToPlayer(player1);
 
-
         assertEquals("Goals not being added correctly", 3, player1.getGoals().size());
-
-
     }
 }

@@ -16,7 +16,6 @@ import gameLogic.listeners.TurnListener;
 import gameLogic.map.Map;
 
 import javax.swing.*;
-import javax.swing.Timer;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.util.*;
 

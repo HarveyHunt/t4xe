@@ -19,11 +19,11 @@ public class PlayerManagerTest {
 
     @Test
     public void testGetCurrentPlayer() throws Exception {
-        Player p1 = pm.getCurrentPlayer();
+        Player p1 = pm.getActivePlayer();
         pm.turnOver(null);
 
         // player should change after PlayerManager.turnOver() is called
-        assertFalse("Active Player did not change", p1.equals(pm.getCurrentPlayer()));
+        assertFalse("Active Player did not change", p1.equals(pm.getActivePlayer()));
     }
 
     @Test

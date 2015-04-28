@@ -20,7 +20,7 @@ public class ResourceManagerTest extends TestCase {
     public void testAddRandomResourceToPlayer() throws Exception {
         PlayerManager playerManager = new PlayerManager();
         playerManager.createPlayers(2);
-        Player player1 = playerManager.getCurrentPlayer();
+        Player player1 = playerManager.getActivePlayer();
 
         rm.addRandomResourceToPlayer(player1);
         rm.addRandomResourceToPlayer(player1);
