@@ -4,9 +4,11 @@ package test;
 import gameLogic.map.Position;
 import gameLogic.map.Station;
 import junit.framework.TestCase;
+import org.junit.Test;
 
 public class StationTest extends TestCase {
 
+    @Test
     public void testStationCreation() throws Exception {
         int x = 5000;
         int y = 7000;

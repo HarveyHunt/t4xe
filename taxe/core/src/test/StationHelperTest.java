@@ -5,6 +5,7 @@ import junit.framework.TestCase;
 import org.junit.Test;
 
 public class StationHelperTest extends TestCase {
+    @Test
     public void testDoesConnectionExist() throws Exception {
         Map map = new Map();
 

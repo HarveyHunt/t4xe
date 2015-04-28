@@ -5,6 +5,7 @@ import gameLogic.map.Position;
 import gameLogic.map.Station;
 import gameLogic.resource.Train;
 import junit.framework.TestCase;
+import org.junit.Test;
 
 public class GoalTest extends TestCase {
 
@@ -23,7 +24,7 @@ public class GoalTest extends TestCase {
     Train train = new Train("RedTrain", "RedTrain.png", "RedTrainRight.png", 250);
     Goal goal = new Goal(origin, destination, intermediary, 0, 4, 50, 20, train);
 
-
+    @Test
     public void testIsComplete() throws Exception {
         train.addHistory(origin, 0);
         train.addHistory(station3, 1);
@@ -40,7 +41,7 @@ public class GoalTest extends TestCase {
 
     }
 
-
+    @Test
     public void testCompletedWithinMaxTurns() throws Exception {
 
         Goal anotherGoal = new Goal(origin, destination, intermediary, 20, 0, 20, 50, train);
@@ -57,6 +58,7 @@ public class GoalTest extends TestCase {
 
     }
 
+    @Test
     public void testCompletedWithTrain() throws Exception {
         assertEquals(goal.getTrain().getName(), train.getName());
         Train timeOfMyLife = new Train("I just love testing", "RedTrain.png", "RedTrainRight.png", 250);

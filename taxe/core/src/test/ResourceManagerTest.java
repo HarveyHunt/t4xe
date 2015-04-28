@@ -5,10 +5,12 @@ import gameLogic.player.PlayerManager;
 import gameLogic.resource.ResourceManager;
 import gameLogic.resource.Train;
 import junit.framework.TestCase;
+import org.junit.Test;
 
 public class ResourceManagerTest extends TestCase {
     ResourceManager rm = new ResourceManager();
 
+    @Test
     public void testGetRandomTrain() throws Exception {
         Train train1 = rm.getRandomTrain();
         assertNotNull(train1.toString());
@@ -17,6 +19,7 @@ public class ResourceManagerTest extends TestCase {
         assertNotNull(train2.toString());
     }
 
+    @Test
     public void testAddRandomResourceToPlayer() throws Exception {
         PlayerManager playerManager = new PlayerManager();
         playerManager.createPlayers(2);

@@ -6,6 +6,7 @@ import gameLogic.map.Station;
 import gameLogic.resource.Train;
 import junit.framework.TestCase;
 import org.junit.Before;
+import org.junit.Test;
 
 import java.util.ArrayList;
 
@@ -17,6 +18,7 @@ public class TrainTest extends TestCase {
         train = new Train("RedTrain", "RedTrain.png", "RedTrainRight.png", 250);
     }
 
+    @Test
     public void testFinalDestination() throws Error {
         Station station1 = new Station("station1", new Position(5, 5));
         Station station2 = new Station("station2", new Position(6, 6));

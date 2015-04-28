@@ -6,9 +6,11 @@ import gameLogic.map.Station;
 import gameLogic.resource.Engineer;
 import gameLogic.resource.Obstacle;
 import junit.framework.TestCase;
+import org.junit.Test;
 
 public class ObstacleEgnineerTest extends TestCase {
 
+    @Test
     public void testObstacleAndEngineer() throws Exception {
 
         Station station1 = new Station("station1", new Position(6, 2));

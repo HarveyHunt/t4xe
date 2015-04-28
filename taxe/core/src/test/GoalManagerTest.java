@@ -9,6 +9,7 @@ import gameLogic.player.PlayerManager;
 import gameLogic.resource.ResourceManager;
 import gameLogic.resource.Train;
 import junit.framework.TestCase;
+import org.junit.Test;
 
 public class GoalManagerTest extends TestCase {
     ResourceManager rs = new ResourceManager();
@@ -23,6 +24,7 @@ public class GoalManagerTest extends TestCase {
 
     Goal goal = new Goal(station1, station2, station3, 0, 0, 0, 0, train);
 
+    @Test
     public void testGenerateRandom() throws Exception {
 
         Goal newGoal1 = goalManager.generateRandom(1);
@@ -31,6 +33,7 @@ public class GoalManagerTest extends TestCase {
         assertNotNull("Goals not generating correctly", newGoal2.toString());
     }
 
+    @Test
     public void testAddRandomGoalToPlayer() throws Exception {
         playerManager.createPlayers(2);
         Player player1 = playerManager.getActivePlayer();

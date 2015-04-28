@@ -5,6 +5,7 @@ import gameLogic.player.Player;
 import gameLogic.player.PlayerManager;
 import junit.framework.TestCase;
 import org.junit.Before;
+import org.junit.Test;
 
 public class GameTest extends TestCase {
     private PlayerManager pm;
@@ -15,6 +16,7 @@ public class GameTest extends TestCase {
         pm = game.getPlayerManager();
     }
 
+    @Test
     public void testInitialisePlayers() {
         Player currentPlayer = pm.getActivePlayer();
 
@@ -22,6 +24,7 @@ public class GameTest extends TestCase {
         assertTrue("Player starting with more than 0 goals", currentPlayer.getGoals().size() == 0);
     }
 
+    @Test
     public void testPlayerChanged() throws Exception {
         Player p1 = pm.getActivePlayer();
         int resourceCount = p1.getResources().size();

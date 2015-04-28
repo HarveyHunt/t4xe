@@ -4,6 +4,7 @@ import gameLogic.map.Map;
 import gameLogic.map.Position;
 import junit.framework.TestCase;
 import org.junit.Before;
+import org.junit.Test;
 
 public class MapTest extends TestCase {
     private Map map;
@@ -13,6 +14,7 @@ public class MapTest extends TestCase {
         map = new Map();
     }
 
+    @Test
     public void testAddStationAndConnection() throws Exception {
         String name1 = "station1";
         String name2 = "station2";

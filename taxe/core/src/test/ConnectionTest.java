@@ -4,6 +4,7 @@ import gameLogic.map.Connection;
 import gameLogic.map.Position;
 import gameLogic.map.Station;
 import junit.framework.TestCase;
+import org.junit.Test;
 
 public class ConnectionTest extends TestCase {
     Position position1 = new Position(200, 200);
@@ -12,6 +13,7 @@ public class ConnectionTest extends TestCase {
     Station station2 = new Station("station2", position2);
     Connection testConnection = new Connection(station1, station2);
 
+    @Test
     public void testBlocking() throws Exception {
         testConnection.setBlocked(1);
         assertEquals("Number of turns blocked not set", testConnection.getTurnsBlocked(), 1);
