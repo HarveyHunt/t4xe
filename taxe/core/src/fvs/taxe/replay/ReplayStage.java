@@ -50,14 +50,17 @@ public class ReplayStage extends Stage {
         Json json = new Json();
         // TODO: Consider a better place to put this.
         File file = new File(filepath);
+        PrintWriter output = null;
 
         try {
             FileWriter writer = new FileWriter(file, false);
-            PrintWriter output = new PrintWriter(writer);
+            output = new PrintWriter(writer);
             output.print(json.prettyPrint(rep));
-            output.close();
         } catch (IOException e) {
             System.out.println(e.getMessage());
+        } finally {
+            if (output != null)
+                output.close();
         }
     }
 
