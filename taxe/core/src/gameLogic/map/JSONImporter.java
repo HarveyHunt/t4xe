@@ -1,15 +1,12 @@
 package gameLogic.map;
 
 import Util.Tuple;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
 import gameLogic.resource.ResourceManager;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 
 //This is a new class that handles all of the importing from the JSON file for the map.
@@ -19,7 +16,12 @@ public class JSONImporter {
         JsonReader jsonReader = new JsonReader();
 
         //Defines the file to parse
-        JsonValue jsonVal = jsonReader.parse(Gdx.files.local("stations.json"));
+        JsonValue jsonVal = jsonReader.parse("");
+        try {
+            jsonVal = jsonReader.parse(new FileInputStream("stations.json"));
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
 
         //Parses the stations and adds them to the map
         parseStations(jsonVal, map);

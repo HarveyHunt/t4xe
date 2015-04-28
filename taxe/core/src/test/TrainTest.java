@@ -6,10 +6,9 @@ import gameLogic.map.Station;
 import gameLogic.resource.Train;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.Assert;
 
 import java.util.ArrayList;
-
-import static org.junit.Assert.assertTrue;
 
 public class TrainTest {
     private Train train;
@@ -28,8 +27,8 @@ public class TrainTest {
         route.add(station2);
 
         train.setRoute(route);
-        assertTrue("Setting a train route was not successful", train.getRoute().size() == 2);
-        assertTrue("Final destination wasn't set", train.getFinalDestination() == station2);
+        Assert.assertTrue("Setting a train route was not successful", train.getRoute().size() == 2);
+        Assert.assertTrue("Final destination wasn't set", train.getFinalDestination() == station2);
     }
 
 

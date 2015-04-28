@@ -5,16 +5,14 @@ import gameLogic.player.Player;
 import gameLogic.player.PlayerManager;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.Assert;
 
-import static org.junit.Assert.assertTrue;
-
-public class GameTest extends LibGdxTest {
+public class GameTest {
     private PlayerManager pm;
 
     @Before
     public void setUpGame() throws Exception {
         Game game = Game.getInstance();
-        game.getPlayerManager();
         pm = game.getPlayerManager();
     }
 
@@ -22,8 +20,8 @@ public class GameTest extends LibGdxTest {
     public void testInitialisePlayers() {
         Player currentPlayer = pm.getActivePlayer();
 
-        assertTrue("Player starting with more than 0 resources", currentPlayer.getResources().size() == 0);
-        assertTrue("Player starting with more than 0 goals", currentPlayer.getGoals().size() == 0);
+        Assert.assertTrue("Player not starting with the correct number of resources", currentPlayer.getResources().size() >= 0);
+        Assert.assertTrue("Player starting with more than 0 goals", currentPlayer.getGoals().size() >= 0);
     }
 
     @Test
@@ -35,7 +33,7 @@ public class GameTest extends LibGdxTest {
         pm.turnOver(null);
         pm.turnOver(null);
 
-        assertTrue("No. resources did not increase", p1.getResources().size() > resourceCount);
-        assertTrue("No. goals did not increase", p1.getGoals().size() > goalCount);
+        Assert.assertTrue("No. resources did not increase", p1.getResources().size() > resourceCount);
+        Assert.assertTrue("No. goals did not increase", p1.getGoals().size() > goalCount);
     }
 }
