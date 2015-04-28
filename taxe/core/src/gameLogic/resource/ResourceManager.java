@@ -12,6 +12,7 @@ public class ResourceManager {
     private ArrayList<Tuple<String, Integer>> trains;
 
     public ResourceManager() {
+        trains = new ArrayList<Tuple<String, Integer>>();
         //This calls the JSON importer which sets the train
         JSONImporter jsonImporter = new JSONImporter(this);
     }

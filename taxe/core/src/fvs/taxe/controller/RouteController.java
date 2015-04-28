@@ -33,6 +33,7 @@ public class RouteController {
 
     public RouteController(Context context) {
         this.context = context;
+        positions = new ArrayList<IPositionable>();
         StationController.subscribeStationClick(new StationClickListener() {
             @Override
             public void clicked(Station station) {
@@ -46,7 +47,6 @@ public class RouteController {
         this.train = train;
         isRouting = true;
         context.getGameLogic().setState(GameState.ROUTING);
-        positions = new ArrayList<IPositionable>();
 
         if (!train.isMoving())
             positions.add(train.getPosition());
