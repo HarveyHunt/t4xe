@@ -47,6 +47,7 @@ public class RouteController {
         this.train = train;
         isRouting = true;
         context.getGameLogic().setState(GameState.ROUTING);
+        positions.clear();
 
         if (!train.isMoving())
             positions.add(train.getPosition());
