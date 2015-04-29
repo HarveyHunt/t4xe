@@ -1,6 +1,5 @@
 package test;
 
-import Util.Tuple;
 import gameLogic.goal.Goal;
 import gameLogic.map.Position;
 import gameLogic.map.Station;
@@ -55,7 +54,7 @@ public class GoalTest {
     }
 
     @Test
-    public void wentThroughStation() {
+    public void testWentThroughStation() {
         Assert.assertTrue(train.getHistory().size() == 0);
         train.addHistory(origin, 1);
         Assert.assertTrue(train.getHistory().size() == 1);
