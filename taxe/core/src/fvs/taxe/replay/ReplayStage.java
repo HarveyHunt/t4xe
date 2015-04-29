@@ -22,9 +22,10 @@ import java.nio.file.Paths;
  * once again.
  */
 public class ReplayStage extends Stage {
-    private final int REPLAY_TIME_MULTIPLIER = 2;
+    private final int REPLAY_TIME_MULTIPLIER = 1;
     private boolean replaying = false;
     private Replay rep = new Replay(Game.getSeed());
+    private int clickIndex = 0;
 
     /**
      * This is called when the user clicks something. When we're playing back a
@@ -90,12 +91,12 @@ public class ReplayStage extends Stage {
      * is replayed as a mouse down and a subsequent mouse up.
      */
     public void replaySingleClick() {
-        ClickEvent c = rep.events.get(0);
+        ClickEvent c = rep.events.get(clickIndex);
+        clickIndex++;
         // We can get away with reusing the same ClickEvent as we can assume
         // that a click up and down occur at the same location.
         super.touchDown(c.screenX, c.screenY, c.pointer, c.button);
         super.touchUp(c.screenX, c.screenY, c.pointer, c.button);
-        rep.events.remove(0);
 
         // Give control back to the user so they can click the exit button.
         if (!hasMoreClicks()) {
@@ -104,10 +105,15 @@ public class ReplayStage extends Stage {
     }
 
     public long getNextClickTimeStamp() {
-        return (rep.events.get(0).timestamp - rep.seed) / REPLAY_TIME_MULTIPLIER;
+        if (clickIndex == 0)
+            return (rep.events.get(clickIndex).timestamp
+                    - rep.seed) / REPLAY_TIME_MULTIPLIER;
+        else
+            return (rep.events.get(clickIndex).timestamp
+                    - rep.events.get(clickIndex - 1).timestamp) / REPLAY_TIME_MULTIPLIER;
     }
 
     public boolean hasMoreClicks() {
-        return !rep.events.isEmpty();
+        return !(rep.events.size() - 1 == clickIndex);
     }
 }
