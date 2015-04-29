@@ -103,7 +103,7 @@ public class ReplayStage extends Stage {
             replaying = false;
         }
     }
-
+    
     public long getNextClickTimeStamp() {
         if (clickIndex == 0)
             return (rep.events.get(clickIndex).timestamp
@@ -114,6 +114,6 @@ public class ReplayStage extends Stage {
     }
 
     public boolean hasMoreClicks() {
-        return !(rep.events.size() - 1 == clickIndex);
+        return (rep.events.size() - 1 != clickIndex);
     }
 }
