@@ -25,9 +25,14 @@ public class MapTest {
         map.addStation(name2, new Position(200, 200));
 
         Assert.assertTrue("Failed to add stations", map.getStations().size() - previousSize == 2);
+        Assert.assertFalse(map.doesConnectionExist(name2, name1));
 
         map.addConnection(name1, name2);
         Assert.assertTrue("Connection addition failed", map.doesConnectionExist(name2, name1));
+
+        // TODO This test doesn't work but we need something similar
+        // map.disableConnection(map.getEnabledConnections().get(0));
+        // Assert.assertTrue(map.getDisabledConnections().get(0).isBlocked());
 
         // Should throw an error by itself
         // WTF IS THIS SHIT?!

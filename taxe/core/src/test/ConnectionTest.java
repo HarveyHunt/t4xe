@@ -18,7 +18,11 @@ public class ConnectionTest {
     public void testBlocking() throws Exception {
         testConnection.setBlocked(1);
         Assert.assertEquals("Number of turns blocked not set", testConnection.getTurnsBlocked(), 1);
+        Assert.assertTrue(testConnection.isBlocked());
         testConnection.decrementBlocked();
         Assert.assertFalse("Number of turns blocked not decrementing", testConnection.isBlocked());
+        Assert.assertFalse(testConnection.isBlocked());
+        testConnection.decrementBlocked();
+        Assert.assertEquals(testConnection.getTurnsBlocked(), 0);
     }
 }
