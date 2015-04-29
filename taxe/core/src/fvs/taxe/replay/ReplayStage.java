@@ -49,7 +49,7 @@ public class ReplayStage extends Stage {
      */
     public void saveReplay(String filepath) {
         Json json = new Json();
-        // TODO: Consider a better place to put this.
+
         File file = new File(filepath);
         PrintWriter output = null;
 
@@ -103,7 +103,7 @@ public class ReplayStage extends Stage {
             replaying = false;
         }
     }
-    
+
     public long getNextClickTimeStamp() {
         if (clickIndex == 0)
             return (rep.events.get(clickIndex).timestamp
