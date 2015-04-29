@@ -122,6 +122,7 @@ class GameScreen extends ScreenAdapter {
      * mouse click. The timer then schedules another timer to do the same again.
      */
     private void scheduleClickReplay() {
+        topBarController.displayFlashMessage("Replay in progress ...", Color.BLACK, 10.0f);
         stage.replaySingleClick();
 
         if (!stage.hasMoreClicks())
