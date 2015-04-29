@@ -25,11 +25,17 @@ public class ResourceManagerTest {
         playerManager.createPlayers(2);
         Player player1 = playerManager.getActivePlayer();
 
-        rm.addRandomResourceToPlayer(player1);
-        rm.addRandomResourceToPlayer(player1);
-        rm.addRandomResourceToPlayer(player1);
+        for (int i=0; i<3; i++){
+            rm.addRandomResourceToPlayer(player1);
+        }
 
         Assert.assertEquals(3, player1.getResources().size());
+
+        for (int i=0; i<rm.getMax()+5; i++){
+            rm.addRandomResourceToPlayer(player1);
+        }
+
+        Assert.assertEquals(rm.getMax(), player1.getResources().size());
 
     }
 }

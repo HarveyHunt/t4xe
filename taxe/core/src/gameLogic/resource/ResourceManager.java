@@ -16,6 +16,10 @@ public class ResourceManager {
         JSONImporter jsonImporter = new JSONImporter(this);
     }
 
+    public int getMax() {
+        return CONFIG_MAX_RESOURCES;
+    }
+
     public void setTrains(ArrayList<Tuple<String, Integer>> trains) {
         this.trains = trains;
     }
