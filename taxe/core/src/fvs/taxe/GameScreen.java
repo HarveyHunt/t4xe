@@ -81,6 +81,7 @@ class GameScreen extends ScreenAdapter {
                     gameLogic.setState(GameState.ANIMATING);
                     topBarController.displayFlashMessage("Time is passing...", Color.BLACK);
                 }
+                topBarController.displayFlashMessage("Replay in progress...", Color.BLACK, 10.0f);
             }
         });
 
