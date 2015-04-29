@@ -85,7 +85,7 @@ public class GoalTest {
      * For this test, we make it to the end destination, but not in time.
      */
     @Test
-    public void testCompletedWithinMaxTurnsAsTooLate() {
+    public void testNotCompletedWithinMaxTurnsAsTooLate() {
         goal = new Goal(destination, origin, intermediary, 10, 10, 20, 50, train);
         train.addHistory(origin, 0);
         train.addHistory(station3, 1);
