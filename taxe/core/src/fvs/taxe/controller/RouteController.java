@@ -1,6 +1,6 @@
 package fvs.taxe.controller;
 
-import Util.Tuple;
+import Util.Pair;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
@@ -184,7 +184,7 @@ public class RouteController {
         game.shapeRenderer.setColor(color);
 
         // get a list of all stations that the train has passed so far
-        ArrayList<Station> history = Tuple.getFirstsFromList(train.getHistory());
+        ArrayList<Station> history = Pair.getFirstsFromList(train.getHistory());
         // iterate through all positions in the route
         for (int i = 0; i < positions.size(); i++) {
             if (i > 0) {

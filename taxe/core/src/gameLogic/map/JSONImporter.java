@@ -1,6 +1,6 @@
 package gameLogic.map;
 
-import Util.Tuple;
+import Util.Pair;
 import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
 import gameLogic.resource.ResourceManager;
@@ -49,7 +49,7 @@ public class JSONImporter {
             System.out.println(e.getMessage());
         }
 
-        ArrayList<Tuple<String, Integer>> trains = new ArrayList<Tuple<String, Integer>>();
+        ArrayList<Pair<String, Integer>> trains = new ArrayList<Pair<String, Integer>>();
 
         //Loads each train from the JSON file
         for (JsonValue train = jsonVal.getChild("trains"); train != null; train = train.next()) {
@@ -66,7 +66,7 @@ public class JSONImporter {
             }
 
             //Sets the trains loaded in from the JSON as the trains used by the resource manager passed to the method
-            trains.add(new Tuple<String, Integer>(name, speed));
+            trains.add(new Pair<String, Integer>(name, speed));
         }
 
         resourceManager.setTrains(trains);

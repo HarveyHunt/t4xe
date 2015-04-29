@@ -1,6 +1,6 @@
 package gameLogic.resource;
 
-import Util.Tuple;
+import Util.Pair;
 import gameLogic.Game;
 import gameLogic.map.JSONImporter;
 import gameLogic.player.Player;
@@ -9,15 +9,15 @@ import java.util.ArrayList;
 
 public class ResourceManager {
     private final int CONFIG_MAX_RESOURCES = 7;
-    private ArrayList<Tuple<String, Integer>> trains;
+    private ArrayList<Pair<String, Integer>> trains;
 
     public ResourceManager() {
-        trains = new ArrayList<Tuple<String, Integer>>();
+        trains = new ArrayList<Pair<String, Integer>>();
         //This calls the JSON importer which sets the train
         JSONImporter jsonImporter = new JSONImporter(this);
     }
 
-    public void setTrains(ArrayList<Tuple<String, Integer>> trains) {
+    public void setTrains(ArrayList<Pair<String, Integer>> trains) {
         this.trains = trains;
     }
 
@@ -45,7 +45,7 @@ public class ResourceManager {
     public Train getRandomTrain() {
         //Uses a random number generator to pick a random train and return the complete train class for that train.
         int index = Game.getConsistentRandom().nextInt(trains.size());
-        Tuple<String, Integer> train = trains.get(index);
+        Pair<String, Integer> train = trains.get(index);
         return new Train(train.getFirst(), train.getFirst().replaceAll(" ", "") + ".png", train.getFirst().replaceAll(" ", "") + "Right.png", train.getSecond());
     }
 

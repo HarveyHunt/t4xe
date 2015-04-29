@@ -1,6 +1,6 @@
 package gameLogic.resource;
 
-import Util.Tuple;
+import Util.Pair;
 import fvs.taxe.actor.TrainActor;
 import gameLogic.map.IPositionable;
 import gameLogic.map.Station;
@@ -13,7 +13,7 @@ public class Train extends Resource {
     private final String rightImage;
     private final int speed;
     //Station name and turn number
-    private final List<Tuple<Station, Integer>> history;
+    private final List<Pair<Station, Integer>> history;
     private IPositionable position;
     private TrainActor actor;
     // Final destination should be set to null after firing the arrival event
@@ -27,7 +27,7 @@ public class Train extends Resource {
         this.leftImage = leftImage;
         this.rightImage = rightImage;
         this.speed = speed;
-        history = new ArrayList<Tuple<Station, Integer>>();
+        history = new ArrayList<Pair<Station, Integer>>();
         route = new ArrayList<Station>();
     }
 
@@ -98,13 +98,13 @@ public class Train extends Resource {
     }
 
     //Station name and turn number
-    public List<Tuple<Station, Integer>> getHistory() {
+    public List<Pair<Station, Integer>> getHistory() {
         return history;
     }
 
     //Station name and turn number
     public void addHistory(Station station, int turn) {
-        history.add(new Tuple<Station, Integer>(station, turn));
+        history.add(new Pair<Station, Integer>(station, turn));
     }
 
     @Override

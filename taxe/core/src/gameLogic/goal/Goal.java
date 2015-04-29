@@ -1,6 +1,6 @@
 package gameLogic.goal;
 
-import Util.Tuple;
+import Util.Pair;
 import gameLogic.map.Station;
 import gameLogic.resource.Train;
 
@@ -66,7 +66,7 @@ public class Goal {
         //This is interesting because this method in itself doesn't check whether a goal is completed
         //The fact that this method is only called when a train reaches its destination allows this to work
         boolean passedOrigin = false;
-        for (Tuple<Station, Integer> history : train.getHistory()) {
+        for (Pair<Station, Integer> history : train.getHistory()) {
             //Checks whether or not the station is the origin and if it was visited after the goal was issued
             if (history.getFirst().getName().equals(origin.getName())
                     && history.getSecond() >= turnIssued) {
