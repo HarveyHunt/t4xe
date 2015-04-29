@@ -8,17 +8,13 @@ import gameLogic.player.Player;
 import java.util.ArrayList;
 
 public class ResourceManager {
-    private final int CONFIG_MAX_RESOURCES = 7;
+    public final int CONFIG_MAX_RESOURCES = 7;
     private ArrayList<Pair<String, Integer>> trains;
 
     public ResourceManager() {
         trains = new ArrayList<Pair<String, Integer>>();
         //This calls the JSON importer which sets the train
         JSONImporter jsonImporter = new JSONImporter(this);
-    }
-
-    public int getMax() {
-        return CONFIG_MAX_RESOURCES;
     }
 
     public void setTrains(ArrayList<Pair<String, Integer>> trains) {

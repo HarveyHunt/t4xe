@@ -31,11 +31,11 @@ public class ResourceManagerTest {
 
         Assert.assertEquals(3, player1.getResources().size());
 
-        for (int i=0; i<rm.getMax()+5; i++){
+        for (int i = 0; i < rm.CONFIG_MAX_RESOURCES + 5; i++){
             rm.addRandomResourceToPlayer(player1);
         }
 
-        Assert.assertEquals(rm.getMax(), player1.getResources().size());
+        Assert.assertEquals(rm.CONFIG_MAX_RESOURCES, player1.getResources().size());
 
     }
 }
