@@ -1,4 +1,4 @@
-DUS' extension of FVS' game.
+CPH's extension of DUS' extension of FVS' game.
 
 Project Set-up Instructions
 ===========================
